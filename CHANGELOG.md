@@ -28,5 +28,5 @@ Based on [keep a changelog](https://keepachangelog.com/en/1.0.0/).
 ### [v0.0.1] - Security -->
 
 <!-- Links to the Tags, Releases or Branches -->
-[Unreleased]:https://github.com/myUser/myRepository/tree/develop
+[Unreleased]:https://github.com/KindredLabsFoundation/kindred-labs-site/tree/dev
 <!-- [v0.0.1]: https://github.com/myUser/myRepository/tree/v0.0.1 -->

@@ -15,4 +15,13 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.7" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Constants\" />
+    <Folder Include="Models\CDRP\" />
+    <Folder Include="Models\Forms\" />
+    <Folder Include="Models\Identity\" />
+    <Folder Include="Servics\Implementation\" />
+    <Folder Include="Servics\Interfaces\" />
+  </ItemGroup>
 </Project>

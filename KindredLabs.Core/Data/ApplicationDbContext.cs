@@ -8,10 +8,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KindredLabs.Core.Data;
 
+/// <summary>
+/// The database context for the Kindred Labs application, handling identity and core business entities.
+/// </summary>
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDataProtectionKeyContext
 {
     private readonly IDataProtectionProvider? _dataProtectionProvider;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ApplicationDbContext"/> class.
+    /// </summary>
+    /// <param name="options">The options to be used by the <see cref="DbContext"/>.</param>
+    /// <param name="dataProtectionProvider">Optional provider for data protection services.</param>
     public ApplicationDbContext(
         DbContextOptions<ApplicationDbContext> options,
         IDataProtectionProvider? dataProtectionProvider = null
@@ -21,12 +29,35 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDataPro
         _dataProtectionProvider = dataProtectionProvider;
     }
 
+    /// <summary>
+    /// Gets or sets the data protection keys for the application.
+    /// </summary>
     public DbSet<DataProtectionKey> DataProtectionKeys { get; set; } = null!;
+
+    /// <summary>
+    /// Gets or sets the form drafts created by users.
+    /// </summary>
     public DbSet<Draft> Drafts { get; set; } = null!;
+
+    /// <summary>
+    /// Gets or sets the submission logs for completed forms.
+    /// </summary>
     public DbSet<SubmissionLog> SubmissionLogs { get; set; } = null!;
+
+    /// <summary>
+    /// Gets or sets the candidates for the CDRP panel.
+    /// </summary>
     public DbSet<CdrpCandidate> CdrpCandidates { get; set; } = null!;
+
+    /// <summary>
+    /// Gets or sets the comment periods for the framework versions.
+    /// </summary>
     public DbSet<CommentPeriod> CommentPeriods { get; set; } = null!;
 
+    /// <summary>
+    /// Configures the schema needed for the identity framework and application entities.
+    /// </summary>
+    /// <param name="modelBuilder">The builder being used to construct the model for this context.</param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

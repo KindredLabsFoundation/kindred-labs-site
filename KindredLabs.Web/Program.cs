@@ -41,6 +41,8 @@ builder.Services.AddRazorPages().AddViewLocalization().AddDataAnnotationsLocaliz
 
 // Services
 builder.Services.AddScoped<IEncryptionService, EncryptionService>();
+builder.Services.AddScoped<IDraftService, DraftService>();
+builder.Services.AddScoped<ISubmissionService, SubmissionService>();
 
 // Postmark
 builder.Services.AddSingleton<PostmarkClient>(_ => new PostmarkClient(

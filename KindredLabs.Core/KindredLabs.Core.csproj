@@ -9,6 +9,10 @@
   <ItemGroup>
     <PackageReference Include="itext7" Version="9.6.0" />
     <PackageReference
+      Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore"
+      Version="10.0.7"
+    />
+    <PackageReference
       Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore"
       Version="10.0.7"
     />
@@ -19,9 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Constants\" />
-    <Folder Include="Models\CDRP\" />
-    <Folder Include="Models\Forms\" />
-    <Folder Include="Models\Identity\" />
     <Folder Include="Servics\Implementation\" />
     <Folder Include="Servics\Interfaces\" />
   </ItemGroup>

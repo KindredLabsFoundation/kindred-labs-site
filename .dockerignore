@@ -1,0 +1,28 @@
+﻿# Version Control
+.git
+.gitignore
+
+# IDE
+.idea
+.vs
+
+# Build outputs
+**/bin/
+**/obj/
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+*.md
+
+# Local environment
+.env.local
+
+# Docker
+Dockerfile
+docker-compose.yaml
+.dockerignore
+
+appsettings.json
+appsettings.*.json

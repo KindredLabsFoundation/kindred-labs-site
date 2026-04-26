@@ -483,3 +483,4 @@ $RECYCLE.BIN/
 
 appsettings.json
 appsettings.*.json
+.env.local

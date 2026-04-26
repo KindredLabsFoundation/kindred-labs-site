@@ -3,6 +3,7 @@ using KindredLabs.Core.Models.Identity;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PostmarkDotNet;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +36,12 @@ builder
 // Localization
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddRazorPages().AddViewLocalization().AddDataAnnotationsLocalization();
+
+// Postmark
+builder.Services.AddSingleton<PostmarkClient>(_ => new PostmarkClient(
+    builder.Configuration["Postmark:ApiKey"]
+        ?? throw new InvalidOperationException("Postmark API key not configured.")
+));
 
 var app = builder.Build();
 

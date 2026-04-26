@@ -485,3 +485,4 @@ appsettings.json
 appsettings.*.json
 .env.local
 migration.sql
+.junie

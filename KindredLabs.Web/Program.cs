@@ -45,6 +45,7 @@ builder.Services.AddScoped<IEncryptionService, EncryptionService>();
 builder.Services.AddScoped<IDraftService, DraftService>();
 builder.Services.AddScoped<ISubmissionService, SubmissionService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IPdfService, PdfService>();
 
 // Postmark
 builder.Services.AddSingleton<PostmarkClient>(_ => new PostmarkClient(

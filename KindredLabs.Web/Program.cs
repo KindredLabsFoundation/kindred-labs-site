@@ -2,6 +2,7 @@ using KindredLabs.Core.Data;
 using KindredLabs.Core.Models.Identity;
 using KindredLabs.Core.Services.Implementations;
 using KindredLabs.Core.Services.Interfaces;
+using KindredLabs.Web.Services;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -43,6 +44,7 @@ builder.Services.AddRazorPages().AddViewLocalization().AddDataAnnotationsLocaliz
 builder.Services.AddScoped<IEncryptionService, EncryptionService>();
 builder.Services.AddScoped<IDraftService, DraftService>();
 builder.Services.AddScoped<ISubmissionService, SubmissionService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 // Postmark
 builder.Services.AddSingleton<PostmarkClient>(_ => new PostmarkClient(

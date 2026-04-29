@@ -15,8 +15,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
-
 // Data Protection -- keys persisted to PostgreSQL
 builder
     .Services.AddDataProtection()
@@ -48,6 +46,9 @@ builder.Services.AddScoped<IDraftService, DraftService>();
 builder.Services.AddScoped<ISubmissionService, SubmissionService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IPdfService, PdfService>();
+builder.Services.AddScoped<ICdrpCandidateService, CdrpCandidateService>();
+builder.Services.AddScoped<ICommentPeriodService, CommentPeriodService>();
+builder.Services.AddScoped<IAdminRoleService, AdminRoleService>();
 builder.Services.AddHostedService<DraftExpiryBackgroundService>();
 
 // Postmark
@@ -57,6 +58,17 @@ builder.Services.AddSingleton<PostmarkClient>(_ => new PostmarkClient(
 ));
 
 var app = builder.Build();
+
+// Seed Owner Role
+using (var scope = app.Services.CreateScope())
+{
+    var adminRoleService = scope.ServiceProvider.GetRequiredService<IAdminRoleService>();
+    var ownerEmail = app.Configuration["Admin:OwnerEmail"];
+    if (!string.IsNullOrEmpty(ownerEmail))
+    {
+        await adminRoleService.SeedOwnerRoleAsync(ownerEmail);
+    }
+}
 
 // Localization middleware
 var supportedCultures = new[] { "en", "es" };

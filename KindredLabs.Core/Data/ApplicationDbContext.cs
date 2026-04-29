@@ -55,6 +55,11 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDataPro
     public DbSet<CommentPeriod> CommentPeriods { get; set; } = null!;
 
     /// <summary>
+    /// Gets or sets the audit logs for administrative actions.
+    /// </summary>
+    public DbSet<AdminAuditLog> AdminAuditLogs { get; set; } = null!;
+
+    /// <summary>
     /// Configures the schema needed for the identity framework and application entities.
     /// </summary>
     /// <param name="modelBuilder">The builder being used to construct the model for this context.</param>
@@ -111,6 +116,28 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDataPro
         {
             entity.HasKey(e => e.Id);
             entity.HasIndex(e => e.IsLocked);
+        });
+
+        // AdminAuditLog
+        modelBuilder.Entity<AdminAuditLog>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity
+                .HasOne(e => e.PerformedByUser)
+                .WithMany()
+                .HasForeignKey(e => e.PerformedByUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            entity
+                .HasOne(e => e.TargetUser)
+                .WithMany()
+                .HasForeignKey(e => e.TargetUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasIndex(e => e.PerformedByUserId);
+            entity.HasIndex(e => e.TargetUserId);
+            entity.HasIndex(e => e.PerformedAt);
         });
     }
 }

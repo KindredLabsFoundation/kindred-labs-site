@@ -49,6 +49,7 @@ builder.Services.AddScoped<IPdfService, PdfService>();
 builder.Services.AddScoped<ICdrpCandidateService, CdrpCandidateService>();
 builder.Services.AddScoped<ICommentPeriodService, CommentPeriodService>();
 builder.Services.AddScoped<IAdminRoleService, AdminRoleService>();
+builder.Services.AddHttpClient<IGitHubDiscussionsService, GitHubDiscussionsService>();
 builder.Services.AddHostedService<DraftExpiryBackgroundService>();
 
 // Postmark

@@ -48,16 +48,6 @@ public class GitHubDiscussionsService : IGitHubDiscussionsService
         string categorySlug
     )
     {
-        var query =
-            @"
-        query($owner: String!, $name: String!, $categorySlug: String!) {
-          repository(owner: $owner, name: $name) {
-            discussions(first: 100, categoryId: null) { # Note: categoryId filtering is tricky in GraphQL without knowing ID, 
-                                                        # so we filter by slug in the result or use category query
-            }
-          }
-        }";
-
         // Better query: Get category ID first or use category field if available
         var queryWithCategory =
             @"

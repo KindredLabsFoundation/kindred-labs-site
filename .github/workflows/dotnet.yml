@@ -24,7 +24,7 @@ jobs:
       run: dotnet build --no-restore --configuration Release /p:TreatWarningsAsErrors=true /p:WarningsNotAsErrors=NU1901
 
     - name: Test
-      run: dotnet test --no-build --configuration Release --verbosity normal
+      run: dotnet test KindredLabs.Tests --no-build --configuration Release --verbosity normal
 
   docker-build:
     runs-on: ubuntu-latest

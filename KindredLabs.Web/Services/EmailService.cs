@@ -14,7 +14,7 @@ public class EmailService : IEmailService
 {
     private readonly PostmarkClient _client;
     private readonly string _senderAddress;
-    private readonly IStringLocalizer<EmailService> _localizer;
+    private readonly IStringLocalizer<Resources.Services.EmailService> _localizer;
     private readonly ILogger<EmailService> _logger;
 
     /// <summary>
@@ -27,7 +27,7 @@ public class EmailService : IEmailService
     public EmailService(
         PostmarkClient client,
         IConfiguration configuration,
-        IStringLocalizer<EmailService> localizer,
+        IStringLocalizer<Resources.Services.EmailService> localizer,
         ILogger<EmailService> logger
     )
     {
@@ -121,7 +121,7 @@ public class EmailService : IEmailService
         var subject = _localizer["CdrpConfirmation_Subject"].Value;
         var body = _localizer["CdrpConfirmation_Body"].Value;
 
-        await SendEmailAsync(toEmail, subject, body);
+        await SendEmailInternalAsync(toEmail, subject, body);
     }
 
     /// <inheritdoc />
@@ -130,18 +130,82 @@ public class EmailService : IEmailService
         var subject = _localizer["ContactConfirmation_Subject"].Value;
         var body = _localizer["ContactConfirmation_Body"].Value;
 
-        await SendEmailAsync(toEmail, subject, body);
+        await SendEmailInternalAsync(toEmail, subject, body);
     }
 
-    private async Task SendEmailAsync(string toEmail, string subject, string body)
+    /// <inheritdoc />
+    public async Task SendContactRequestAsync(
+        string toEmail,
+        string fromEmail,
+        string name,
+        string subject,
+        string category,
+        string message
+    )
+    {
+        var emailSubject = $"[{category}] {subject}";
+        var body = string.Format(
+            _localizer["ContactRequest_Body"].Value,
+            name,
+            fromEmail,
+            category,
+            message
+        );
+
+        var postmarkMessage = new PostmarkMessage
+        {
+            From = _senderAddress,
+            To = toEmail,
+            ReplyTo = fromEmail,
+            Subject = emailSubject,
+            TextBody = body,
+        };
+
+        try
+        {
+            var result = await _client.SendMessageAsync(postmarkMessage);
+            if (result.Status != PostmarkStatus.Success)
+            {
+                _logger.LogError(
+                    "Failed to send contact request email to {To}. Status: {Status}, Message: {Message}",
+                    toEmail,
+                    result.Status,
+                    result.Message
+                );
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(
+                ex,
+                "Exception occurred while sending contact request email to {To}",
+                toEmail
+            );
+        }
+    }
+
+    private async Task SendEmailInternalAsync(
+        string toEmail,
+        string subject,
+        string body,
+        bool isHtml = false
+    )
     {
         var message = new PostmarkMessage
         {
             From = _senderAddress,
             To = toEmail,
             Subject = subject,
-            TextBody = body,
         };
+
+        if (isHtml)
+        {
+            message.HtmlBody = body;
+        }
+        else
+        {
+            message.TextBody = body;
+        }
 
         try
         {
@@ -160,5 +224,77 @@ public class EmailService : IEmailService
         {
             _logger.LogError(ex, "Exception occurred while sending email to {To}", toEmail);
         }
+    }
+
+    /// <inheritdoc />
+    public async Task SendEmailAsync(string toEmail, string subject, string htmlMessage)
+    {
+        await SendEmailInternalAsync(toEmail, subject, htmlMessage, true);
+    }
+
+    /// <inheritdoc />
+    public async Task SendAdditionalEmailConfirmationAsync(string toEmail, string confirmationLink)
+    {
+        var subject = _localizer["AdditionalEmailConfirmation_Subject"].Value;
+        var body = string.Format(
+            _localizer["AdditionalEmailConfirmation_Body"].Value,
+            confirmationLink
+        );
+
+        await SendEmailInternalAsync(toEmail, subject, body);
+    }
+
+    /// <inheritdoc />
+    public async Task SendPrimaryEmailChangedNotificationAsync(
+        string oldEmail,
+        string newEmail,
+        string securityEmail
+    )
+    {
+        var subject = _localizer["PrimaryEmailChanged_Subject"].Value;
+        var body = string.Format(
+            _localizer["PrimaryEmailChanged_Body"].Value,
+            oldEmail,
+            newEmail,
+            securityEmail
+        );
+
+        await SendEmailInternalAsync(oldEmail, subject, body);
+    }
+
+    /// <inheritdoc />
+    public async Task SendAccountDeletionConfirmationAsync(string toEmail)
+    {
+        var subject = _localizer["AccountDeletionConfirmation_Subject"].Value;
+        var body = _localizer["AccountDeletionConfirmation_Body"].Value;
+
+        await SendEmailInternalAsync(toEmail, subject, body);
+    }
+
+    /// <inheritdoc />
+    public async Task SendPasswordChangedNotificationAsync(string toEmail, string securityEmail)
+    {
+        var subject = _localizer["PasswordChanged_Subject"].Value;
+        var body = string.Format(_localizer["PasswordChanged_Body"].Value, securityEmail);
+
+        await SendEmailInternalAsync(toEmail, subject, body);
+    }
+
+    /// <inheritdoc />
+    public async Task SendTwoFactorEnabledNotificationAsync(string toEmail, string securityEmail)
+    {
+        var subject = _localizer["TwoFactorEnabled_Subject"].Value;
+        var body = string.Format(_localizer["TwoFactorEnabled_Body"].Value, securityEmail);
+
+        await SendEmailInternalAsync(toEmail, subject, body);
+    }
+
+    /// <inheritdoc />
+    public async Task SendTwoFactorDisabledNotificationAsync(string toEmail, string securityEmail)
+    {
+        var subject = _localizer["TwoFactorDisabled_Subject"].Value;
+        var body = string.Format(_localizer["TwoFactorDisabled_Body"].Value, securityEmail);
+
+        await SendEmailInternalAsync(toEmail, subject, body);
     }
 }

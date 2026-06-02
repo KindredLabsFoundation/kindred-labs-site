@@ -1,0 +1,25 @@
+﻿@model KindredLabs.Web.Models.FormActionsViewModel
+
+<div class="flex gap-3 mb-6">
+    <button type="button"
+        onclick="clearForm('@Model.MainFormId')"
+        class="px-4 py-2 rounded font-semibold border border-white/20 
+        text-kindred-text hover:border-kindred-gold hover:text-kindred-gold 
+        transition-colors">
+        @Model.ClearLabel
+    </button>
+
+    <form method="post" 
+        asp-page="@Model.DeleteHandlerPage"
+        asp-page-handler="Delete"
+        asp-route-culture="@Model.Culture"
+        id="@Model.DeleteFormId">
+        <input type="hidden" name="draftId" value="@Model.DraftId" />
+        <button type="button"
+            onclick="confirmDelete('@Model.DeleteFormId', '@Html.Raw(Model.DeleteConfirmMessage)')"
+            class="px-4 py-2 rounded font-semibold bg-red-700 
+            hover:bg-red-800 text-white transition-colors">
+            @Model.DeleteLabel
+        </button>
+    </form>
+</div>

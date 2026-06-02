@@ -1,19 +1,565 @@
 ﻿@page
-@model KindredLabs.Web.Pages.Framework.Forms.DataProvenance
+@model KindredLabs.Web.Pages.Forms.DataProvenanceModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using KindredLabs.Web.Models
+@inject IViewLocalizer Localizer
+@inject IStringLocalizer<KindredLabs.Web.Resources.Pages.Forms.DataProvenance> FormLocalizer
 
 @{
-    Layout = null;
+    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+    ViewData["Title"] = FormLocalizer["PageTitle"];
 }
 
-<!DOCTYPE html>
+<div class="max-w-4xl mx-auto px-4 py-16">
+    <div id="edit-mode">
+        <h1 class="text-2xl sm:text-3xl font-bold text-kindred-gold mb-8">@FormLocalizer["PageTitle"]</h1>
+@await Html.PartialAsync("_FormActions", new FormActionsViewModel
+        {
+            MainFormId = "provenance-form",
+            DeleteFormId = "deleteForm",
+            DraftId = Model.DraftId.ToString(),
+            DeleteHandlerPage = "/Framework/Forms/DataProvenance",
+            Culture = currentCulture,
+            ClearLabel = FormLocalizer["ClearButton"],
+            DeleteLabel = FormLocalizer["DeleteButton"],
+            DeleteConfirmMessage = FormLocalizer["DeleteConfirmMessage"]
+        })
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
+        <form id="provenance-form" method="post" asp-page-handler="Submit">
+            <div asp-validation-summary="All" class="text-red-400 text-sm mb-6"></div>
+
+            @* Record Information *@
+            <div class="bg-white/5 p-6 rounded-lg mb-8 border border-white/10">
+                <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4">@FormLocalizer["RecordHeader"]</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div>
+                        <label asp-for="Form.RecordId" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["RecordId"]</label>
+                        <input asp-for="Form.RecordId" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text opacity-50 cursor-not-allowed" readonly data-no-clear />
+                    </div>
+                    <div>
+                        <label asp-for="Form.InternalReference" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["InternalReferenceLabel"]</label>
+                        <input asp-for="Form.InternalReference" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" placeholder="@FormLocalizer["InternalReferencePlaceholder"]" />
+                    </div>
+                    <div>
+                        <label asp-for="Form.Date" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["Date"]</label>
+                        <input asp-for="Form.Date" type="date" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+                    </div>
+                    <div>
+                        <label asp-for="Form.ModelNameAndVersion" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["ModelNameAndVersion"]</label>
+                        <input asp-for="Form.ModelNameAndVersion" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+                    </div>
+                    <div>
+                        <label asp-for="Form.PreparedByName" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["PreparedByName"]</label>
+                        <input asp-for="Form.PreparedByName" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text opacity-50 cursor-not-allowed" readonly data-no-clear />
+                    </div>
+                    <div>
+                        <label asp-for="Form.PreparedByRole" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["PreparedByRole"]</label>
+                        <input asp-for="Form.PreparedByRole" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+                    </div>
+                </div>
+            </div>
+
+            @* Section 1: Source Identification *@
+            <div class="mb-12">
+                <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4 mt-8">@FormLocalizer["Section1Title"]</h2>
+                <div class="space-y-6">
+                    <div>
+                        <label asp-for="Form.DataSourceName" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["DataSourceName"]</label>
+                        <input asp-for="Form.DataSourceName" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+                    </div>
+                    <div>
+                        <label asp-for="Form.GeneratingSystemOrProcess" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["GeneratingSystemOrProcess"]</label>
+                        <textarea asp-for="Form.GeneratingSystemOrProcess" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required></textarea>
+                    </div>
+                    <div>
+                        <label asp-for="Form.DateRange" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["DateRange"]</label>
+                        <input asp-for="Form.DateRange" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+                    </div>
+                    <div>
+                        <label asp-for="Form.PopulationReflected" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["PopulationReflected"]</label>
+                        <textarea asp-for="Form.PopulationReflected" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required></textarea>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["KnownBiasInGeneratingProcess"]</span>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            @foreach (var val in new[] { "Yes", "No", "Unknown" })
+                            {
+                                <label class="inline-flex items-center">
+                                    <input type="radio" asp-for="Form.KnownBias" value="@val" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                    <span class="ml-2 text-kindred-text">@FormLocalizer[val]</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                    <div id="bias-description-container" class="hidden">
+                        <label asp-for="Form.BiasDescription" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["BiasDescription"]</label>
+                        <textarea asp-for="Form.BiasDescription" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            @* Section 2: Original Collection Purpose *@
+            <div class="mb-12">
+                <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4 mt-8">@FormLocalizer["Section2Title"]</h2>
+                <div class="space-y-6">
+                    <div>
+                        <label asp-for="Form.OriginalCollectionPurpose" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["OriginalCollectionPurpose"]</label>
+                        <textarea asp-for="Form.OriginalCollectionPurpose" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required></textarea>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["IsOriginalCollectionPurposeCompatible"]</span>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            @foreach (var val in new[] { "Yes", "No", "Requires Elevated Review" })
+                            {
+                                <label class="inline-flex items-center">
+                                    <input type="radio" asp-for="Form.CompatibilityAssessment" value="@val" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                    <span class="ml-2 text-kindred-text">@FormLocalizer[val == "Requires Elevated Review" ? "RequiresElevatedReview" : val]</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <label asp-for="Form.CompatibilityExplanation" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["CompatibilityExplanation"]</label>
+                        <textarea asp-for="Form.CompatibilityExplanation" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required></textarea>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["IndividualAwareness"]</span>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            @foreach (var val in new[] { "Yes", "No", "Unknown" })
+                            {
+                                <label class="inline-flex items-center">
+                                    <input type="radio" asp-for="Form.IndividualAwareness" value="@val" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                    <span class="ml-2 text-kindred-text">@FormLocalizer[val]</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @* Section 3: Representational Scope *@
+            <div class="mb-12">
+                <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4 mt-8">@FormLocalizer["Section3Title"]</h2>
+                <div class="space-y-6">
+                    <div>
+                        <label asp-for="Form.PopulationsRepresented" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["PopulationsRepresented"]</label>
+                        <textarea asp-for="Form.PopulationsRepresented" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required></textarea>
+                    </div>
+                    <div>
+                        <label asp-for="Form.PopulationsUnderrepresented" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["PopulationsUnderrepresented"]</label>
+                        <textarea asp-for="Form.PopulationsUnderrepresented" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required></textarea>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["HistoricalPatterns"]</span>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            @foreach (var val in new[] { "Yes", "No", "Unknown" })
+                            {
+                                <label class="inline-flex items-center">
+                                    <input type="radio" asp-for="Form.HistoricalPatterns" value="@val" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                    <span class="ml-2 text-kindred-text">@FormLocalizer[val]</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                    <div id="patterns-description-container" class="hidden">
+                        <label asp-for="Form.PatternsDescription" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["PatternsDescription"]</label>
+                        <textarea asp-for="Form.PatternsDescription" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold"></textarea>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["RepresentationalAdequacyAssessment"]</span>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            @foreach (var val in new[] { "Adequate", "Requires Remediation", "Requires Elevated Review" })
+                            {
+                                <label class="inline-flex items-center">
+                                    <input type="radio" asp-for="Form.AdequacyAssessment" value="@val" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                    <span class="ml-2 text-kindred-text">@FormLocalizer[val == "Requires Remediation" ? "RequiresRemediation" : (val == "Requires Elevated Review" ? "RequiresElevatedReview" : val)]</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                    <div id="remediation-description-container" class="hidden">
+                        <label asp-for="Form.RemediationDescription" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["RemediationDescription"]</label>
+                        <textarea asp-for="Form.RemediationDescription" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            @* Section 4: Data Quality *@
+            <div class="mb-12">
+                <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4 mt-8">@FormLocalizer["Section4Title"]</h2>
+                <div class="space-y-6">
+                    <div>
+                        <span class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["KnownGapsOrAnomalies"]</span>
+                        <div class="flex gap-4">
+                            @foreach (var val in new[] { "Yes", "No" })
+                            {
+                                <label class="inline-flex items-center">
+                                    <input type="radio" asp-for="Form.KnownGaps" value="@val" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                    <span class="ml-2 text-kindred-text">@FormLocalizer[val]</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                    <div id="gaps-description-container" class="hidden">
+                        <label asp-for="Form.GapsDescription" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["GapsDescription"]</label>
+                        <textarea asp-for="Form.GapsDescription" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold"></textarea>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["ConditionsOfUnreliability"]</span>
+                        <div class="flex gap-4">
+                            @foreach (var val in new[] { "Yes", "No" })
+                            {
+                                <label class="inline-flex items-center">
+                                    <input type="radio" asp-for="Form.ConditionsOfUnreliability" value="@val" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                    <span class="ml-2 text-kindred-text">@FormLocalizer[val]</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                    <div id="conditions-description-container" class="hidden">
+                        <label asp-for="Form.ConditionsDescription" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["ConditionsDescription"]</label>
+                        <textarea asp-for="Form.ConditionsDescription" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold"></textarea>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["QualityAssessment"]</span>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            @foreach (var val in new[] { "Adequate for Governance Purposes", "Requires Disclosure in Fine-Tuning Record", "Requires Remediation" })
+                            {
+                                <label class="inline-flex items-center">
+                                    <input type="radio" asp-for="Form.QualityAssessment" value="@val" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                    <span class="ml-2 text-kindred-text">@FormLocalizer[val == "Adequate for Governance Purposes" ? "AdequateForGovernance" : (val == "Requires Disclosure in Fine-Tuning Record" ? "RequiresDisclosure" : "RequiresRemediation")]</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @* Section 5: Prior Use History *@
+            <div class="mb-12">
+                <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4 mt-8">@FormLocalizer["Section5Title"]</h2>
+                <div class="space-y-6">
+                    <div>
+                        <span class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["PriorFineTuningUse"]</span>
+                        <div class="flex gap-4">
+                            @foreach (var val in new[] { "Yes", "No" })
+                            {
+                                <label class="inline-flex items-center">
+                                    <input type="radio" asp-for="Form.PriorUse" value="@val" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                    <span class="ml-2 text-kindred-text">@FormLocalizer[val]</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                    <div id="prior-use-description-container" class="hidden">
+                        <label asp-for="Form.PriorUseDescription" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["PriorUseDescription"]</label>
+                        <textarea asp-for="Form.PriorUseDescription" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold"></textarea>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["CumulativeEffectAssessment"]</span>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            @foreach (var val in new[] { "Yes", "No", "Unknown" })
+                            {
+                                <label class="inline-flex items-center">
+                                    <input type="radio" asp-for="Form.CumulativeEffectAssessment" value="@val" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                    <span class="ml-2 text-kindred-text">@FormLocalizer[val]</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                    <div id="cumulative-effect-description-container" class="hidden">
+                        <label asp-for="Form.CumulativeEffectDescription" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["CumulativeEffectDescription"]</label>
+                        <textarea asp-for="Form.CumulativeEffectDescription" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            @* Elevated Review Section *@
+            <div id="elevated-review-section" class="border border-kindred-gold/30 rounded-lg p-6 bg-white/5 mt-6 hidden">
+                <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4">@FormLocalizer["ElevatedReviewTitle"]</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label asp-for="Form.ElevatedReviewAuthorityName" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["ElevatedReviewAuthorityName"]</label>
+                        <input asp-for="Form.ElevatedReviewAuthorityName" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" />
+                    </div>
+                    <div>
+                        <label asp-for="Form.ElevatedReviewAuthorityRole" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["ElevatedReviewAuthorityRole"]</label>
+                        <input asp-for="Form.ElevatedReviewAuthorityRole" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" />
+                    </div>
+                    <div class="md:col-span-2">
+                        <span class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["RoutedFrom"]</span>
+                        <div class="flex gap-6">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" asp-for="Form.RoutedFromSection2" class="form-checkbox text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" />
+                                <span class="ml-2 text-kindred-text">@FormLocalizer["Section2"]</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" asp-for="Form.RoutedFromSection3" class="form-checkbox text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" />
+                                <span class="ml-2 text-kindred-text">@FormLocalizer["Section3"]</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2">
+                        <span class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["Decision"]</span>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            @foreach (var val in new[] { "Approved", "Approved with Conditions", "Not Approved" })
+                            {
+                                <label class="inline-flex items-center">
+                                    <input type="radio" asp-for="Form.ElevatedReviewDecision" value="@val" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                    <span class="ml-2 text-kindred-text">@FormLocalizer[val == "Approved with Conditions" ? "ApprovedWithConditions" : (val == "Not Approved" ? "NotApproved" : val)]</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label asp-for="Form.ElevatedReviewRationale" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["Rationale"]</label>
+                        <textarea asp-for="Form.ElevatedReviewRationale" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold"></textarea>
+                    </div>
+                    <div id="conditions-textarea-container" class="md:col-span-2 hidden">
+                        <label asp-for="Form.ConditionsOnApproval" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["ConditionsOnApproval"]</label>
+                        <textarea asp-for="Form.ConditionsOnApproval" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            @* Approval Section (Manual completion) *@
+            <div class="border border-white/10 rounded-lg p-6 mt-6">
+                <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4">@FormLocalizer["ApprovalTitle"]</h2>
+                <p class="text-sm text-kindred-text/60 italic mb-6">@FormLocalizer["ManualCompletionNote"]</p>
+                <div class="space-y-6">
+                    <div>
+                        <div class="text-sm font-medium text-kindred-text mb-1">@FormLocalizer["ConditionsOnApproval"]</div>
+                        <div class="border-b border-white/20 h-8"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <div class="text-sm font-medium text-kindred-text mb-1">@FormLocalizer["NextReviewDate"]</div>
+                            <div class="border-b border-white/20 h-8"></div>
+                        </div>
+                        <div>
+                            <div class="text-sm font-medium text-kindred-text mb-1">@FormLocalizer["PreparedByDate"]</div>
+                            <div class="border-b border-white/20 h-8"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-sm font-medium text-kindred-text mb-1">@FormLocalizer["GovernanceAuthoritySignOff"]</div>
+                        <div class="border-b border-white/20 h-8"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 flex justify-between items-center">
+                <div id="save-status" class="text-sm text-kindred-text/60">
+                    @if (Model.LastSavedAt.HasValue)
+                    {
+                        <span>@FormLocalizer["DraftSavedAt", Model.LastSavedAt.Value.ToLocalTime().ToString("g")]</span>
+                    }
+                </div>
+                <button type="button" id="preview-btn" class="btn-primary">@FormLocalizer["Preview"]</button>
+            </div>
+
+            @* Hidden signature input *@
+            <input type="hidden" name="signatureBase64" id="signature-input" />
+        </form>
+    </div>
+
+    @* Preview Mode *@
+    <div id="preview-mode" class="hidden">
+        <h1 class="text-2xl sm:text-3xl font-bold text-kindred-gold mb-8">@FormLocalizer["Preview"]</h1>
+        <div id="preview-content" class="bg-white/5 p-8 rounded-lg border border-white/20 space-y-8">
+            @* Content will be populated via JS *@
+        </div>
+
+        <div class="mt-8 border border-white/10 rounded-lg p-6">
+            <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4">@FormLocalizer["GovernanceAuthoritySignOff"]</h2>
+            <div class="mb-6">
+                <canvas id="signature-pad" class="border border-white/20 bg-white/10 rounded w-full h-40"></canvas>
+            </div>
+            <div class="flex justify-end gap-4">
+                <button type="button" id="clear-signature" class="text-sm text-kindred-text hover:text-kindred-gold">@FormLocalizer["ClearSignature"]</button>
+            </div>
+        </div>
+
+        <div class="mt-12 flex justify-between">
+            <button type="button" id="back-to-edit" class="btn-secondary border border-white/20 px-6 py-2 rounded text-kindred-text hover:bg-white/10">@FormLocalizer["BackToEdit"]</button>
+            <button type="button" id="submit-btn" class="btn-primary">@FormLocalizer["Submit"]</button>
+        </div>
+    </div>
 </div>
-</body>
-</html>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('provenance-form');
+            const editMode = document.getElementById('edit-mode');
+            const previewMode = document.getElementById('preview-mode');
+            const previewContent = document.getElementById('preview-content');
+            const signaturePadElement = document.getElementById('signature-pad');
+            const signatureInput = document.getElementById('signature-input');
+            const saveStatus = document.getElementById('save-status');
+
+            const signaturePad = new SignaturePad(signaturePadElement);
+
+            // Conditional Logic
+            function resetFormUI() {
+                // Section 1: Bias
+                const knownBias = form.querySelector('input[name="Form.KnownBias"]:checked')?.value;
+                document.getElementById('bias-description-container').classList.toggle('hidden', knownBias !== 'Yes' && knownBias !== 'Unknown');
+
+                // Section 2: Compatibility -> Elevated Review
+                const compatibility = form.querySelector('input[name="Form.CompatibilityAssessment"]:checked')?.value;
+                const routedS2 = form.querySelector('input[name="Form.RoutedFromSection2"]');
+                if (compatibility === 'Requires Elevated Review') routedS2.checked = true;
+
+                // Section 3: Patterns
+                const patterns = form.querySelector('input[name="Form.HistoricalPatterns"]:checked')?.value;
+                document.getElementById('patterns-description-container').classList.toggle('hidden', patterns !== 'Yes' && patterns !== 'Unknown');
+
+                // Section 3: Adequacy -> Elevated Review & Remediation
+                const adequacy = form.querySelector('input[name="Form.AdequacyAssessment"]:checked')?.value;
+                const routedS3 = form.querySelector('input[name="Form.RoutedFromSection3"]');
+                if (adequacy === 'Requires Elevated Review') routedS3.checked = true;
+                document.getElementById('remediation-description-container').classList.toggle('hidden', adequacy !== 'Requires Remediation');
+
+                // Section 4: Gaps
+                const gaps = form.querySelector('input[name="Form.KnownGaps"]:checked')?.value;
+                document.getElementById('gaps-description-container').classList.toggle('hidden', gaps !== 'Yes');
+
+                // Section 4: Unreliability
+                const unreliability = form.querySelector('input[name="Form.ConditionsOfUnreliability"]:checked')?.value;
+                document.getElementById('conditions-description-container').classList.toggle('hidden', unreliability !== 'Yes');
+
+                // Section 5: Prior Use
+                const priorUse = form.querySelector('input[name="Form.PriorUse"]:checked')?.value;
+                document.getElementById('prior-use-description-container').classList.toggle('hidden', priorUse !== 'Yes');
+
+                // Section 5: Cumulative Effect
+                const cumulative = form.querySelector('input[name="Form.CumulativeEffectAssessment"]:checked')?.value;
+                document.getElementById('cumulative-effect-description-container').classList.toggle('hidden', cumulative !== 'Yes' && cumulative !== 'Unknown');
+
+                // Elevated Review Visibility
+                const showElevated = (compatibility === 'Requires Elevated Review' || adequacy === 'Requires Elevated Review');
+                document.getElementById('elevated-review-section').classList.toggle('hidden', !showElevated);
+
+                // Elevated Review Decision
+                const decision = form.querySelector('input[name="Form.ElevatedReviewDecision"]:checked')?.value;
+                document.getElementById('conditions-textarea-container').classList.toggle('hidden', decision !== 'Approved with Conditions');
+            }
+
+            form.addEventListener('change', resetFormUI);
+            resetFormUI();
+
+            form.addEventListener('formCleared', resetFormUI);
+
+        // Dirty flag
+        let isDirty = false;
+        form.addEventListener('input', () => isDirty = true);
+        form.addEventListener('change', () => isDirty = true);
+
+        // Auto-save
+        let autoSaveTimer = setInterval(() => {
+            if (isDirty) {
+                saveDraft();
+            }
+        }, 60000);
+
+        async function saveDraft() {
+            const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => {
+                    if (key.startsWith('Form.')) {
+                        const field = key.replace('Form.', '');
+                        if (key.includes('RoutedFrom')) {
+                             data[field] = value === 'on';
+                        } else {
+                             data[field] = value;
+                        }
+                    }
+                });
+                
+                // Handle checkboxes explicitly as FormData 'on' logic is tricky
+                data.RoutedFromSection2 = form.querySelector('input[name="Form.RoutedFromSection2"]').checked;
+                data.RoutedFromSection3 = form.querySelector('input[name="Form.RoutedFromSection3"]').checked;
+
+                try {
+                    const response = await fetch('?handler=SaveDraft', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    if (response.ok) {
+                        const result = await response.json();
+                        saveStatus.textContent = `@FormLocalizer["DraftSavedAt"]`.replace('{0}', result.lastSavedAt);
+                        isDirty = false;
+                    }
+                } catch (e) { console.error('Auto-save failed', e); }
+            }
+
+            // Preview
+            document.getElementById('preview-btn').addEventListener('click', function () {
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+                
+                const formData = new FormData(form);
+                let html = '<div class="space-y-6">';
+                
+                const sections = [
+                    { title: '@FormLocalizer["RecordHeader"]', fields: ['RecordId', 'InternalReference', 'Date', 'ModelNameAndVersion', 'PreparedByName', 'PreparedByRole', 'PreparedByDate'] },
+                    { title: '@FormLocalizer["Section1Title"]', fields: ['DataSourceName', 'GeneratingSystemOrProcess', 'DateRange', 'PopulationReflected', 'KnownBias', 'BiasDescription'] },
+                    { title: '@FormLocalizer["Section2Title"]', fields: ['OriginalCollectionPurpose', 'CompatibilityAssessment', 'CompatibilityExplanation', 'IndividualAwareness'] },
+                    { title: '@FormLocalizer["Section3Title"]', fields: ['PopulationsRepresented', 'PopulationsUnderrepresented', 'HistoricalPatterns', 'PatternsDescription', 'AdequacyAssessment', 'RemediationDescription'] },
+                    { title: '@FormLocalizer["Section4Title"]', fields: ['KnownGaps', 'GapsDescription', 'ConditionsOfUnreliability', 'ConditionsDescription', 'QualityAssessment'] },
+                    { title: '@FormLocalizer["Section5Title"]', fields: ['PriorUse', 'PriorUseDescription', 'CumulativeEffectAssessment', 'CumulativeEffectDescription'] }
+                ];
+
+                const compatibility = form.querySelector('input[name="Form.CompatibilityAssessment"]:checked')?.value;
+                const adequacy = form.querySelector('input[name="Form.AdequacyAssessment"]:checked')?.value;
+                if (compatibility === 'Requires Elevated Review' || adequacy === 'Requires Elevated Review') {
+                    sections.push({ title: '@FormLocalizer["ElevatedReviewTitle"]', fields: ['ElevatedReviewAuthorityName', 'ElevatedReviewAuthorityRole', 'ElevatedReviewDecision', 'ElevatedReviewRationale', 'ConditionsOnApproval'] });
+                }
+
+                sections.forEach(s => {
+                    html += `<div><h3 class="text-kindred-gold font-bold border-b border-white/10 pb-2 mb-3">${s.title}</h3><dl class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">`;
+                    s.fields.forEach(f => {
+                        let val = formData.get('Form.' + f);
+                        if (f.startsWith('RoutedFrom')) val = form.querySelector('input[name="Form.' + f + '"]').checked ? '@FormLocalizer["Yes"]' : '@FormLocalizer["No"]';
+                        
+                        const label = document.querySelector(`label[for="Form_${f}"]`)?.textContent || FormLocalizer[f + "Label"]?.Value || f;
+                        html += `<div><dt class="text-xs text-kindred-text/60 uppercase tracking-wider">${label}</dt><dd class="text-kindred-text">${val || '<span class="italic opacity-30">[@FormLocalizer["Unknown"]]</span>'}</dd></div>`;
+                    });
+                    html += `</dl></div>`;
+                });
+
+                html += '</div>';
+                previewContent.innerHTML = html;
+                editMode.classList.add('hidden');
+                previewMode.classList.remove('hidden');
+                window.scrollTo(0, 0);
+            });
+
+            document.getElementById('back-to-edit').addEventListener('click', function () {
+                previewMode.classList.add('hidden');
+                editMode.classList.remove('hidden');
+            });
+
+            document.getElementById('clear-signature').addEventListener('click', function () {
+                signaturePad.clear();
+            });
+
+            document.getElementById('submit-btn').addEventListener('click', function () {
+                if (signaturePad.isEmpty()) {
+                    alert('@FormLocalizer["SignatureRequired"]');
+                    return;
+                }
+                signatureInput.value = signaturePad.toDataURL();
+                form.submit();
+            });
+        });
+    </script>
+}

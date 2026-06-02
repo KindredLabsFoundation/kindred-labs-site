@@ -7,25 +7,34 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using KindredLabs.Core.Models.Identity;
+using KindredLabs.Core.Services.Interfaces;
+using KindredLabs.Web.Resources.Pages.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Localization;
 
 namespace KindredLabs.Web.Pages.Account
 {
     public class ForgotPasswordModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IEmailSender _emailSender;
+        private readonly IEmailService _emailService;
+        private readonly IStringLocalizer<ForgotPassword> _localizer;
 
-        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(
+            UserManager<ApplicationUser> userManager,
+            IEmailService emailService,
+            IStringLocalizer<ForgotPassword> localizer
+        )
         {
             _userManager = userManager;
-            _emailSender = emailSender;
+            _emailService = emailService;
+            _localizer = localizer;
         }
 
         /// <summary>
@@ -65,16 +74,28 @@ namespace KindredLabs.Web.Pages.Account
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
+                var culture = RouteData.Values["culture"]?.ToString() ?? "en";
                 var callbackUrl = Url.Page(
                     "/Account/ResetPassword",
                     pageHandler: null,
-                    values: new { area = "Identity", code },
-                    protocol: Request.Scheme);
+                    values: new
+                    {
+                        area = "",
+                        code,
+                        culture,
+                    },
+                    protocol: Request.Scheme
+                );
 
-                await _emailSender.SendEmailAsync(
-                    Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                if (callbackUrl != null)
+                {
+                    await _emailService.SendEmailAsync(
+                        Input.Email,
+                        _localizer["Reset Password"],
+                        $"{_localizer["Please reset your password by"]} <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>{_localizer["clicking here"]}</a>."
+                    );
+                }
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

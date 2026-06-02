@@ -42,4 +42,27 @@ public interface IDraftService
     /// </summary>
     /// <returns>A task that represents the asynchronous purge operation.</returns>
     Task PurgeExpiredDraftsAsync();
+
+    /// <summary>
+    /// Retrieves a draft by user identifier and form type.
+    /// </summary>
+    /// <param name="userId">The unique identifier of the user.</param>
+    /// <param name="formType">The type of form.</param>
+    /// <returns>The draft if found; otherwise, <see langword="null"/>.</returns>
+    Task<Draft?> GetDraftAsync(string userId, FormType formType);
+
+    /// <summary>
+    /// Deletes a draft by user identifier and form type.
+    /// </summary>
+    /// <param name="userId">The unique identifier of the user.</param>
+    /// <param name="formType">The type of form.</param>
+    /// <returns>A task that represents the asynchronous delete operation.</returns>
+    Task DeleteDraftAsync(string userId, FormType formType);
+
+    /// <summary>
+    /// Deletes all drafts for a specific user.
+    /// </summary>
+    /// <param name="userId">The unique identifier of the user.</param>
+    /// <returns>A task that represents the asynchronous delete operation.</returns>
+    Task DeleteDraftsByUserIdAsync(string userId);
 }

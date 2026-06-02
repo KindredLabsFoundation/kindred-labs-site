@@ -1,10 +1,124 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<script type="application/ld+json">
+{
+  "@("@")context": "https://schema.org",
+  "@("@")type": "Organization",
+  "name": "Kindred Labs Foundation",
+  "url": "https://www.kindredlabsfoundation.org",
+  "description": "Kindred Labs Foundation builds ethical governance infrastructure for artificial intelligence.",
+  "foundingLocation": {
+    "@("@")type": "Place",
+    "name": "West Deptford, New Jersey, United States"
+  },
+  "knowsAbout": [
+    "Artificial Intelligence Ethics",
+    "AI Governance",
+    "Machine Learning Accountability"
+  ]
+}
+</script>
+
+<section class="bg-kindred-dark py-20 text-center">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-kindred-gold mb-4">
+        @Model.Localizer["HeroHeading"]
+    </h1>
+    <p class="text-lg md:text-xl italic font-bold opacity-85 mb-4">
+        @Model.Localizer["HeroSubheading"]
+    </p>
+    <p class="text-base md:text-lg opacity-80 max-w-2xl mx-auto">
+        @Model.Localizer["HeroBody"]
+    </p>
+</section>
+
+<section class="bg-kindred-dark py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["MissionHeading"]
+        </h2>
+        <p class="text-base md:text-lg leading-relaxed opacity-90">
+            @Model.Localizer["MissionBody"]
+        </p>
+    </div>
+</section>
+
+<section class="bg-kindred-dark py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["VisionHeading"]
+        </h2>
+        <p class="text-base md:text-lg leading-relaxed opacity-90">
+            @Model.Localizer["VisionBody"]
+        </p>
+    </div>
+</section>
+
+<section class="bg-kindred-dark py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["EthosHeading"]
+        </h2>
+        
+        <div class="flex flex-wrap justify-center gap-6">
+            @{
+                string[] ethosKeys = { "EthosItem1", "EthosItem2", "EthosItem3", "EthosItem4" };
+                foreach (var key in ethosKeys)
+                {
+                    var fullText = Model.Localizer[key].Value;
+                    var colonIndex = fullText.IndexOf(':');
+                    var keyword = colonIndex > -1 ? fullText.Substring(0, colonIndex) : fullText;
+                    
+                    <div class="flip-container w-64 h-72">
+                        <div class="flip-card">
+                            <div class="flip-front bg-kindred-dark border-2 border-kindred-gold rounded-2xl flex items-center justify-center">
+                                <span class="text-kindred-gold text-2xl font-bold text-center">@keyword</span>
+                            </div>
+                            <div class="flip-back bg-white/5 border-2 border-kindred-gold rounded-2xl p-6 flex items-center justify-center">
+                                <p class="text-center text-sm opacity-90">@fullText</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        
+        <p class="text-base md:text-lg max-w-3xl mx-auto px-4 text-center mt-12 opacity-80">@Model.Localizer["EthosBody"]</p>
+    </div>
+</section>
+
+<section class="bg-kindred-dark py-16">
+    <div class="max-w-xl mx-auto">
+        <div class="swap-card">
+            <div class="swap-front">
+                <h2 class="text-kindred-gold text-xl sm:text-2xl font-bold">@Model.Localizer["CdrpHeading"]</h2>
+                <p class="opacity-70 text-sm mt-2">@Model.Localizer["CdrpTeaser"]</p>
+            </div>
+            <div class="swap-back">
+                <p class="opacity-90 text-sm mb-4">@Model.Localizer["CdrpBody"]</p>
+                <a asp-page="/CDRP/Index" 
+                   asp-route-culture="@System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName"
+                   class="btn-primary">@Model.Localizer["CdrpLinkText"]</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-kindred-dark py-16">
+    <div class="max-w-xl mx-auto">
+        <div class="swap-card">
+            <div class="swap-front">
+                <h2 class="text-kindred-gold text-xl sm:text-2xl font-bold">@Model.Localizer["FrameworkHeading"]</h2>
+                <p class="opacity-70 text-sm mt-2">@Model.Localizer["FrameworkTeaser"]</p>
+            </div>
+            <div class="swap-back">
+                <p class="opacity-90 text-sm mb-4">@Model.Localizer["FrameworkBody"]</p>
+                <a asp-page="/Framework/Index" 
+                   asp-route-culture="@System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName"
+                   class="btn-primary">@Model.Localizer["FrameworkLinkText"]</a>
+            </div>
+        </div>
+    </div>
+</section>

@@ -42,7 +42,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDataPro
     /// <summary>
     /// Gets or sets the submission logs for completed forms.
     /// </summary>
-    public DbSet<SubmissionLog> SubmissionLogs { get; set; } = null!;
+    public virtual DbSet<SubmissionLog> SubmissionLogs { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the candidates for the CDRP panel.
@@ -58,6 +58,21 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDataPro
     /// Gets or sets the audit logs for administrative actions.
     /// </summary>
     public DbSet<AdminAuditLog> AdminAuditLogs { get; set; } = null!;
+
+    /// <summary>
+    /// Gets or sets the login history records.
+    /// </summary>
+    public DbSet<LoginHistory> LoginHistories { get; set; } = null!;
+
+    /// <summary>
+    /// Gets or sets the security audit logs.
+    /// </summary>
+    public DbSet<SecurityAuditLog> SecurityAuditLogs { get; set; } = null!;
+
+    /// <summary>
+    /// Gets or sets the additional emails associated with users.
+    /// </summary>
+    public DbSet<UserEmail> UserEmails { get; set; } = null!;
 
     /// <summary>
     /// Configures the schema needed for the identity framework and application entities.
@@ -89,8 +104,15 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDataPro
         {
             entity.HasKey(e => e.Id);
 
+            entity
+                .HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.SetNull);
+
             entity.Property(e => e.FormType).HasConversion<string>();
 
+            entity.HasIndex(e => e.UserId);
             entity.HasIndex(e => e.SubmittedAt);
         });
 
@@ -103,7 +125,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDataPro
                 .HasOne(e => e.User)
                 .WithMany()
                 .HasForeignKey(e => e.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.SetNull);
 
             entity.Property(e => e.Status).HasConversion<string>();
 
@@ -138,6 +160,51 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDataPro
             entity.HasIndex(e => e.PerformedByUserId);
             entity.HasIndex(e => e.TargetUserId);
             entity.HasIndex(e => e.PerformedAt);
+        });
+
+        // LoginHistory
+        modelBuilder.Entity<LoginHistory>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity
+                .HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            entity.HasIndex(e => e.UserId);
+            entity.HasIndex(e => e.LoginAt);
+        });
+
+        // SecurityAuditLog
+        modelBuilder.Entity<SecurityAuditLog>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity
+                .HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            entity.HasIndex(e => e.UserId);
+            entity.HasIndex(e => e.PerformedAt);
+        });
+
+        // UserEmail
+        modelBuilder.Entity<UserEmail>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity
+                .HasOne(e => e.User)
+                .WithMany(u => u.AdditionalEmails)
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasIndex(e => e.Email).IsUnique();
+            entity.HasIndex(e => e.UserId);
         });
     }
 }

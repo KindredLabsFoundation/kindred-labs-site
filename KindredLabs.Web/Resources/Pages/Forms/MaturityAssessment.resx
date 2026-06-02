@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="0" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="PageTitle" xml:space="preserve"><value>Maturity Assessment Checklist</value></data>
+  <data name="MaturityLevelsReference" xml:space="preserve"><value>Maturity Levels Reference</value></data>
+  <data name="Level0Label" xml:space="preserve"><value>Absent</value></data>
+  <data name="Level1Label" xml:space="preserve"><value>Nascent</value></data>
+  <data name="Level2Label" xml:space="preserve"><value>Developing</value></data>
+  <data name="Level3Label" xml:space="preserve"><value>Structural</value></data>
+  <data name="RecordInformation" xml:space="preserve"><value>Record Information</value></data>
+  <data name="RecordId" xml:space="preserve"><value>Record ID</value></data>
+  <data name="AssessmentDate" xml:space="preserve"><value>Assessment Date</value></data>
+  <data name="FrameworkVersion" xml:space="preserve"><value>Framework Version</value></data>
+  <data name="OrganizationName" xml:space="preserve"><value>Organization Name</value></data>
+  <data name="AssessorName" xml:space="preserve"><value>Assessor Name</value></data>
+  <data name="AssessorRole" xml:space="preserve"><value>Assessor Role</value></data>
+  <data name="AssessorOrganization" xml:space="preserve"><value>Assessor Organization</value></data>
+  <data name="AssessmentType" xml:space="preserve"><value>Assessment Type</value></data>
+  <data name="SelfAttestedAlignment" xml:space="preserve"><value>Self-Attested Alignment</value></data>
+  <data name="IndependentMaturityAssessment" xml:space="preserve"><value>Independent Maturity Assessment</value></data>
+  <data name="LayerScore" xml:space="preserve"><value>Layer Score</value></data>
+  <data name="DomainScore" xml:space="preserve"><value>Domain Score</value></data>
+  <data name="NotApplicable" xml:space="preserve"><value>Not Applicable</value></data>
+  <data name="NADocumentation" xml:space="preserve"><value>Documentation for N/A</value></data>
+  <data name="Yes" xml:space="preserve"><value>Yes</value></data>
+  <data name="No" xml:space="preserve"><value>No</value></data>
+  <data name="MaturityProfileSummary" xml:space="preserve"><value>Maturity Profile Summary</value></data>
+  <data name="Layer" xml:space="preserve"><value>Layer</value></data>
+  <data name="DomainScores" xml:space="preserve"><value>Domain Scores</value></data>
+  <data name="Layer1GapNarrativeLabel" xml:space="preserve"><value>Layer 1 Gap Narrative: Identify the highest-priority governance gaps in the Training layer. For each gap, describe what decisions are being made without governance and the first recommended governance action.</value></data>
+  <data name="Layer2GapNarrativeLabel" xml:space="preserve"><value>Layer 2 Gap Narrative: Identify the highest-priority governance gaps in the Fine-Tuning layer. For each gap, describe what decisions are being made without governance and the first recommended governance action.</value></data>
+  <data name="Layer3GapNarrativeLabel" xml:space="preserve"><value>Layer 3 Gap Narrative: Identify the highest-priority governance gaps in the Deployment layer. For each gap, describe what decisions are being made without governance and the first recommended governance action.</value></data>
+  <data name="AssessorSignOff" xml:space="preserve"><value>Assessor Sign-Off</value></data>
+  <data name="Date" xml:space="preserve"><value>Date</value></data>
+  <data name="Preview" xml:space="preserve"><value>Preview</value></data>
+  <data name="Submit" xml:space="preserve"><value>Submit</value></data>
+  <data name="BackToEdit" xml:space="preserve"><value>Back to Edit</value></data>
+  <data name="SaveDraft" xml:space="preserve"><value>Save Draft</value></data>
+  <data name="DraftSavedAt" xml:space="preserve"><value>Draft saved at {0}</value></data>
+  <data name="SignatureRequired" xml:space="preserve"><value>Please sign before submitting.</value></data>
+  <data name="ClearSignature" xml:space="preserve"><value>Clear</value></data>
+  <data name="DrawSignature" xml:space="preserve"><value>Draw Signature</value></data>
+  <data name="Score" xml:space="preserve"><value>Score</value></data>
+  <data name="Layer 1: Training" xml:space="preserve"><value>Layer 1: Training</value></data>
+  <data name="Layer 2: Fine-Tuning" xml:space="preserve"><value>Layer 2: Fine-Tuning</value></data>
+  <data name="Layer 3: Deployment" xml:space="preserve"><value>Layer 3: Deployment</value></data>
+  <data name="Dataset Curation" xml:space="preserve"><value>Dataset Curation</value></data>
+  <data name="Category Design" xml:space="preserve"><value>Category Design</value></data>
+  <data name="Training Architecture" xml:space="preserve"><value>Training Architecture</value></data>
+  <data name="Representational Review" xml:space="preserve"><value>Representational Review</value></data>
+  <data name="Proprietary Data Selection" xml:space="preserve"><value>Proprietary Data Selection</value></data>
+  <data name="Fine-Tuning Objectives" xml:space="preserve"><value>Fine-Tuning Objectives</value></data>
+  <data name="Customization Scope" xml:space="preserve"><value>Customization Scope</value></data>
+  <data name="RAG Configuration" xml:space="preserve"><value>RAG Configuration</value></data>
+  <data name="Vendor Selection" xml:space="preserve"><value>Vendor Selection</value></data>
+  <data name="Use Case Authorization" xml:space="preserve"><value>Use Case Authorization</value></data>
+  <data name="Deployment Scoping" xml:space="preserve"><value>Deployment Scoping</value></data>
+  <data name="Accountability Boundaries" xml:space="preserve"><value>Accountability Boundaries</value></data>
+  <data name="Domain1_1_Level0" xml:space="preserve"><value>Does any formal review process exist for training data selection?</value></data>
+  <data name="Domain1_1_Level1" xml:space="preserve"><value>Is there documented awareness within the governance function that dataset curation decisions are governance decisions?</value></data>
+  <data name="Domain1_1_Level2" xml:space="preserve"><value>Does a formal review process exist for dataset curation that includes governance function involvement?</value></data>
+  <data name="Domain1_1_Level3" xml:space="preserve"><value>Does the formal process include all of the following: named review authority, documented inclusion and exclusion criteria, consent basis documentation, representational scope assessment, and a pre-training gate?</value></data>
+  <data name="Domain1_2_Level0" xml:space="preserve"><value>Does the governance function have any involvement in category boundary decisions before they are encoded?</value></data>
+  <data name="Domain1_2_Level1" xml:space="preserve"><value>Does the governance function have awareness that category design is a governance decision, even without a formal process for influencing it?</value></data>
+  <data name="Domain1_2_Level2" xml:space="preserve"><value>Does a formal review process exist for category design decisions that includes governance function involvement before categories are encoded?</value></data>
+  <data name="Domain1_2_Level3" xml:space="preserve"><value>Does the process include all of the following: a category inventory produced before training, named authority for approving contested categories, documented rationale, and a defined process for challenging boundaries?</value></data>
+  <data name="Domain1_3_Level0" xml:space="preserve"><value>Does any documented governance review exist for optimization objectives before training begins?</value></data>
+  <data name="Domain1_3_Level1" xml:space="preserve"><value>Does the governance function have visibility into training architecture decisions even without formal authority over them?</value></data>
+  <data name="Domain1_3_Level2" xml:space="preserve"><value>Does a formal review process exist for optimization objectives that includes governance sign-off before training begins?</value></data>
+  <data name="Domain1_3_Level3" xml:space="preserve"><value>Does the process include all of the following: a training objective authorization document, named authority for sign-off, defined evaluation criteria, and authority to halt or restart training?</value></data>
+  <data name="Domain1_4_Level0" xml:space="preserve"><value>Does a named authority or formal process exist for assessing representational adequacy before training?</value></data>
+  <data name="Domain1_4_Level1" xml:space="preserve"><value>Is representational adequacy considered informally during training data selection, even without a structured process?</value></data>
+  <data name="Domain1_4_Level2" xml:space="preserve"><value>Does a structured representational review process exist that assesses the training corpus against defined population coverage criteria before training proceeds?</value></data>
+  <data name="Domain1_4_Level3" xml:space="preserve"><value>Does the process include all of the following: a named review authority with power to halt training, defined standards for adequate representation, a documented remediation process, and a representational review report?</value></data>
+  <data name="Domain2_1_Level0" xml:space="preserve"><value>Does the governance function have any involvement in fine-tuning data selection decisions?</value></data>
+  <data name="Domain2_1_Level1" xml:space="preserve"><value>Does the governance function have awareness that proprietary data selection for fine-tuning is a governance decision?</value></data>
+  <data name="Domain2_1_Level2" xml:space="preserve"><value>Does a formal review process exist for fine-tuning data selection that includes governance function involvement?</value></data>
+  <data name="Domain2_1_Level3" xml:space="preserve"><value>Does the process include all of the following: a fine-tuning data record for each dataset, documented consent basis, named review authority, elevated review for employee/customer data, and a pre-fine-tuning gate?</value></data>
+  <data name="Domain2_2_Level0" xml:space="preserve"><value>Are fine-tuning objectives subject to any governance function involvement or review before fine-tuning begins?</value></data>
+  <data name="Domain2_2_Level1" xml:space="preserve"><value>Does the governance function have visibility into fine-tuning objectives even without formal authority over them?</value></data>
+  <data name="Domain2_2_Level2" xml:space="preserve"><value>Does a formal review process exist for fine-tuning objectives that requires governance sign-off before fine-tuning begins?</value></data>
+  <data name="Domain2_2_Level3" xml:space="preserve"><value>Does the process include all of the following: a fine-tuning objective authorization document, named sign-off authority, documented assessment of assumptions, defined evaluation criteria, and a process for future audit?</value></data>
+  <data name="Domain2_3_Level0" xml:space="preserve"><value>Does any governance-specific record exist for customization decisions, separate from general system architecture documentation?</value></data>
+  <data name="Domain2_3_Level1" xml:space="preserve"><value>Does the governance function have awareness that customization scope decisions are governance decisions, even without a formal review process?</value></data>
+  <data name="Domain2_3_Level2" xml:space="preserve"><value>Does a formal process exist for reviewing and documenting customization decisions before deployment?</value></data>
+  <data name="Domain2_3_Level3" xml:space="preserve"><value>Does the process include all of the following: a customization scope boundary document, named authority for authorizing decisions, a defined process for reviewing relaxations, and handoff to deployment governance?</value></data>
+  <data name="Domain2_4_Level0" xml:space="preserve"><value>Is RAG configuration subject to any governance review?</value></data>
+  <data name="Domain2_4_Level1" xml:space="preserve"><value>Does the governance function have awareness that RAG configuration is a governance decision?</value></data>
+  <data name="Domain2_4_Level2" xml:space="preserve"><value>Does a formal review process exist for RAG corpus authorization and configuration changes?</value></data>
+  <data name="Domain2_4_Level3" xml:space="preserve"><value>Does the process include all of the following: a RAG corpus governance log, named authority, a defined review cycle, a process for removing outdated content, and an evaluation process for output quality?</value></data>
+  <data name="Domain3_1_Level0" xml:space="preserve"><value>Does the governance function have any formal involvement in vendor selection decisions?</value></data>
+  <data name="Domain3_1_Level1" xml:space="preserve"><value>Does the governance function have informal input into vendor selection even without a formal process or defined criteria?</value></data>
+  <data name="Domain3_1_Level2" xml:space="preserve"><value>Does a formal governance review process exist for vendor selection that includes governance function involvement and defined governance criteria?</value></data>
+  <data name="Domain3_1_Level3" xml:space="preserve"><value>Does the process include all of the following: a vendor governance scorecard, required disclosures, governance function sign-off, a vendor disclosure file, and defined review at renewal?</value></data>
+  <data name="Domain3_2_Level0" xml:space="preserve"><value>Does a formal process exist for authorizing use cases before deployment?</value></data>
+  <data name="Domain3_2_Level1" xml:space="preserve"><value>Does informal consideration of use case appropriateness occur before deployment even without a structured authorization process?</value></data>
+  <data name="Domain3_2_Level2" xml:space="preserve"><value>Does a formal use case authorization process exist that requires governance review before a use case goes into production?</value></data>
+  <data name="Domain3_2_Level3" xml:space="preserve"><value>Does the process include all of the following: a use case authorization register, named authority, defined criteria, a list of prohibited use cases, and a process for reviewing use case creep?</value></data>
+  <data name="Domain3_3_Level0" xml:space="preserve"><value>Does a formal governance review of deployment scope exist that covers access, action authority, and human oversight requirements?</value></data>
+  <data name="Domain3_3_Level1" xml:space="preserve"><value>Does informal consideration of deployment scope occur even without a formal process or documented scope definition?</value></data>
+  <data name="Domain3_3_Level2" xml:space="preserve"><value>Does a formal process exist for defining and reviewing deployment scope before a system goes into production?</value></data>
+  <data name="Domain3_3_Level3" xml:space="preserve"><value>Does the process include all of the following: a deployment scope document, named authority, defined human review requirements, a process for authorizing scope changes, and a monitoring review process?</value></data>
+  <data name="Domain3_4_Level0" xml:space="preserve"><value>Is there a pre-defined accountability structure in place to handle AI failures before they occur?</value></data>
+  <data name="Domain3_4_Level1" xml:space="preserve"><value>Does informal understanding of accountability exist within the governance function even without documented assignments?</value></data>
+  <data name="Domain3_4_Level2" xml:space="preserve"><value>Does a documented accountability structure exist that defines governance function versus technical function responsibility before a failure occurs?</value></data>
+  <data name="Domain3_4_Level3" xml:space="preserve"><value>Does the structure include all of the following: named accountability assignments, a documented vendor versus organization boundary, a defined remediation process, a failure escalation protocol, and a process for learning from decisions?</value></data>
+</root>

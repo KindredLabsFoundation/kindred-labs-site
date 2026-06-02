@@ -3,6 +3,7 @@ using KindredLabs.Core.Models.Forms;
 using KindredLabs.Core.Services.Implementations;
 using KindredLabs.Core.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -16,6 +17,7 @@ public class DraftServiceTests
     private readonly ApplicationDbContext _context;
     private readonly DbContextOptions<ApplicationDbContext> _options;
     private readonly Mock<IEncryptionService> _mockEncryption;
+    private readonly Mock<ILogger<DraftService>> _mockLogger;
     private readonly DraftService _service;
 
     /// <summary>
@@ -28,7 +30,8 @@ public class DraftServiceTests
             .Options;
         _context = new ApplicationDbContext(_options);
         _mockEncryption = new Mock<IEncryptionService>();
-        _service = new DraftService(_context, _mockEncryption.Object);
+        _mockLogger = new Mock<ILogger<DraftService>>();
+        _service = new DraftService(_context, _mockEncryption.Object, _mockLogger.Object);
     }
 
     /// <summary>
@@ -223,5 +226,114 @@ public class DraftServiceTests
         var resultList = result.ToList();
         Assert.Single(resultList);
         Assert.Equal(inWindow.Id, resultList[0].Id);
+    }
+
+    [Fact]
+    public async Task DeleteDraftAsync_ById_RemovesDraft()
+    {
+        // Arrange
+        var draft = new Draft
+        {
+            Id = Guid.NewGuid(),
+            UserId = "u1",
+            FormData = "data",
+            ExpiresAt = DateTime.UtcNow.AddHours(1),
+        };
+        _context.Drafts.Add(draft);
+        await _context.SaveChangesAsync();
+
+        // Act
+        await _service.DeleteDraftAsync(draft.Id);
+
+        // Assert
+        Assert.Null(await _context.Drafts.FindAsync(draft.Id));
+    }
+
+    [Fact]
+    public async Task DeleteDraftAsync_ByIdNotFound_DoesNotThrow()
+    {
+        // Act & Assert
+        var exception = await Record.ExceptionAsync(() =>
+            _service.DeleteDraftAsync(Guid.NewGuid())
+        );
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public async Task DeleteDraftAsync_ByUserId_RemovesAllDraftsForUser()
+    {
+        // Arrange
+        var userId = "u1";
+        var draft1 = new Draft
+        {
+            Id = Guid.NewGuid(),
+            UserId = userId,
+            FormType = FormType.DataProvenance,
+            FormData = "d1",
+            ExpiresAt = DateTime.UtcNow.AddHours(1),
+        };
+        var draft2 = new Draft
+        {
+            Id = Guid.NewGuid(),
+            UserId = userId,
+            FormType = FormType.ConsentDocumentation,
+            FormData = "d2",
+            ExpiresAt = DateTime.UtcNow.AddHours(1),
+        };
+        var draftOther = new Draft
+        {
+            Id = Guid.NewGuid(),
+            UserId = "other",
+            FormType = FormType.DataProvenance,
+            FormData = "d3",
+            ExpiresAt = DateTime.UtcNow.AddHours(1),
+        };
+
+        _context.Drafts.AddRange(draft1, draft2, draftOther);
+        await _context.SaveChangesAsync();
+
+        // Act
+        await _service.DeleteDraftsByUserIdAsync(userId);
+
+        // Assert
+        var remaining = await _context.Drafts.ToListAsync();
+        Assert.Single(remaining);
+        Assert.Equal("other", remaining[0].UserId);
+    }
+
+    [Fact]
+    public async Task GetDraftAsync_DecryptionFailure_ReturnsNull()
+    {
+        // Arrange
+        var draft = new Draft
+        {
+            Id = Guid.NewGuid(),
+            UserId = "u1",
+            FormData = "corrupt",
+            ExpiresAt = DateTime.UtcNow.AddHours(1),
+        };
+        _context.Drafts.Add(draft);
+        await _context.SaveChangesAsync();
+
+        _mockEncryption
+            .Setup(e => e.Decrypt(It.IsAny<string>()))
+            .Throws(new System.Security.Cryptography.CryptographicException("Decryption failed"));
+
+        // Act
+        var result = await _service.GetDraftAsync(draft.Id, "u1");
+
+        // Assert
+        Assert.Null(result);
+        _mockLogger.Verify(
+            x =>
+                x.Log(
+                    LogLevel.Error,
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, t) => true),
+                    It.IsAny<Exception>(),
+                    It.Is<Func<It.IsAnyType, Exception?, string>>((v, t) => true)
+                ),
+            Times.Once
+        );
     }
 }

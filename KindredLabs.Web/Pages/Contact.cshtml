@@ -1,19 +1,107 @@
-﻿@page
-@model KindredLabs.Web.Pages.Contact
-
+@page
+@model ContactModel
 @{
-    Layout = null;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
+<div class="max-w-4xl mx-auto px-4 py-16 text-center">
+    <h1 class="text-2xl sm:text-3xl font-bold text-kindred-gold mb-6">
+        @Model.Localizer["PageHeading"]
+    </h1>
+    <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed max-w-2xl mx-auto">
+        @Model.Localizer["PageSubheading"]
+    </p>
 </div>
-</body>
-</html>
+
+<div class="max-w-2xl mx-auto px-4 pb-16">
+    <form method="post" class="space-y-6">
+        <div class="sr-only">
+            <label asp-for="Website">Honeypot</label>
+            <input asp-for="Website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div>
+            <label asp-for="Name" class="block text-kindred-text text-sm font-medium mb-1">
+                @Model.Localizer["NameLabel"]
+            </label>
+            <input asp-for="Name" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+            @if (!ModelState.IsValid && ModelState["Name"]?.Errors.Count > 0)
+            {
+                <p class="text-red-500 text-sm mt-1">
+                    @ModelState["Name"]!.Errors[0].ErrorMessage
+                </p>
+            }
+        </div>
+
+        <div>
+            <label asp-for="Email" class="block text-kindred-text text-sm font-medium mb-1">
+                @Model.Localizer["EmailLabel"]
+            </label>
+            <input asp-for="Email" type="email" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+            @if (!ModelState.IsValid && ModelState["Email"]?.Errors.Count > 0)
+            {
+                <p class="text-red-500 text-sm mt-1">
+                    @ModelState["Email"]!.Errors[0].ErrorMessage
+                </p>
+            }
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <label asp-for="Category" class="block text-kindred-text text-sm font-medium mb-1">
+                    @Model.Localizer["CategoryLabel"]
+                </label>
+                <select asp-for="Category" class="culture-select w-full" required>
+                    <option value="">-- @Model.Localizer["CategoryLabel"] --</option>
+                    <option value="General">@Model.Localizer["CategoryGeneral"]</option>
+                    <option value="Partnerships">@Model.Localizer["CategoryPartnerships"]</option>
+                    <option value="Media">@Model.Localizer["CategoryMedia"]</option>
+                </select>
+                @if (!ModelState.IsValid && ModelState["Category"]?.Errors.Count > 0)
+                {
+                    <p class="text-red-500 text-sm mt-1">
+                        @ModelState["Category"]!.Errors[0].ErrorMessage
+                    </p>
+                }
+            </div>
+            <div>
+                <label asp-for="Subject" class="block text-kindred-text text-sm font-medium mb-1">
+                    @Model.Localizer["SubjectLabel"]
+                </label>
+                <input asp-for="Subject" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+                @if (!ModelState.IsValid && ModelState["Subject"]?.Errors.Count > 0)
+                {
+                    <p class="text-red-500 text-sm mt-1">
+                        @ModelState["Subject"]!.Errors[0].ErrorMessage
+                    </p>
+                }
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="Message" class="block text-kindred-text text-sm font-medium mb-1">
+                @Model.Localizer["MessageLabel"]
+            </label>
+            <textarea asp-for="Message" rows="6" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required minlength="10"></textarea>
+            @if (!ModelState.IsValid && ModelState["Message"]?.Errors.Count > 0)
+            {
+                <p class="text-red-500 text-sm mt-1">
+                    @ModelState["Message"]!.Errors[0].ErrorMessage
+                </p>
+            }
+        </div>
+
+        <button type="submit" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">
+            @Model.Localizer["SubmitButton"]
+        </button>
+    </form>
+</div>
+
+@if (TempData["ContactSuccess"] != null)
+{
+    <div id="contactToast" class="fixed bottom-4 end-4 z-50 bg-kindred-gold text-kindred-dark px-6 py-4 rounded shadow-lg flex items-center gap-4">
+        <span>@Model.Localizer["SuccessMessage"]</span>
+        <button type="button" onclick="document.getElementById('contactToast').remove()" class="font-bold text-xl leading-none">
+            &times;
+        </button>
+    </div>
+}

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace KindredLabs.Core.Services.Interfaces;
+﻿namespace KindredLabs.Core.Services.Interfaces;
 
 /// <summary>
 /// Data transfer object representing a GitHub discussion.
@@ -14,7 +10,15 @@ namespace KindredLabs.Core.Services.Interfaces;
 /// <param name="CategoryName">The name of the category the discussion belongs to.</param>
 /// <param name="CommentCount">The number of comments in the discussion.</param>
 /// <param name="CreatedAt">The date and time when the discussion was created.</param>
-public record GitHubDiscussion(string Id, string Title, string Body, string Url, string CategoryName, int CommentCount, DateTime CreatedAt);
+public record GitHubDiscussion(
+    string Id,
+    string Title,
+    string Body,
+    string Url,
+    string CategoryName,
+    int CommentCount,
+    DateTime CreatedAt
+);
 
 /// <summary>
 /// Data transfer object representing a comment in a GitHub discussion.

@@ -36,12 +36,12 @@ public class CdrpCandidate
     /// <summary>
     /// Gets or sets the unique identifier of the user who is a candidate.
     /// </summary>
-    public string UserId { get; set; } = null!;
+    public string? UserId { get; set; }
 
     /// <summary>
     /// Gets or sets the navigation property for the user.
     /// </summary>
-    public ApplicationUser User { get; set; } = null!;
+    public virtual ApplicationUser? User { get; set; }
 
     /// <summary>
     /// Gets or sets the encrypted JSON representation of the candidate's expression of interest form data.

@@ -1,0 +1,53 @@
+﻿@page
+@model KindredLabs.Web.Pages.Account.Manage.EmailModel
+@inject IStringLocalizer<KindredLabs.Web.Resources.Pages.Account.Manage.Email> Localizer
+
+@{
+    ViewData["Title"] = Localizer["Manage Email"];
+    ViewData["ActivePage"] = ManageNavPages.Email;
+}
+
+<div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="flex flex-col md:flex-row gap-8">
+        <aside class="md:w-1/4">
+            <partial name="_ManageNav" />
+        </aside>
+        <main class="flex-1 max-w-md">
+            <h1 class="text-xl sm:text-2xl font-bold text-kindred-gold mb-8">@ViewData["Title"]</h1>
+            <partial name="_StatusMessage" for="StatusMessage" />
+
+            <form id="email-form" method="post" novalidate>
+                <div asp-validation-summary="All" class="text-red-400 text-sm mb-4" role="alert"></div>
+
+                @if (Model.IsEmailConfirmed)
+                {
+                    <div class="mb-4">
+                        <label asp-for="Email" class="block text-sm font-medium text-kindred-text mb-1">@Localizer["Email"]</label>
+                        <div class="relative">
+                            <input asp-for="Email" class="w-full bg-white/10 border border-white/20 rounded px-3 py-2 text-kindred-text opacity-50 cursor-not-allowed" disabled />
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                <span class="text-green-400 font-bold">✓</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-4">
+                        <label asp-for="Email" class="block text-sm font-medium text-kindred-text mb-1">@Localizer["Email"]</label>
+                        <input asp-for="Email" class="w-full bg-white/10 border border-white/20 rounded px-3 py-2 text-kindred-text opacity-50 cursor-not-allowed" disabled />
+                        <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base text-sm mt-2">@Localizer["Send verification email"]</button>
+                    </div>
+                }
+
+                <div class="mb-6">
+                    <label asp-for="Input.NewEmail" class="block text-sm font-medium text-kindred-text mb-1">@Localizer["New email"]</label>
+                    <input asp-for="Input.NewEmail" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" autocomplete="email" aria-required="true" placeholder="new-email@example.com" required type="email" />
+                    <span asp-validation-for="Input.NewEmail" class="text-red-400 text-sm mt-1 block"></span>
+                </div>
+
+                <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">@Localizer["Change email"]</button>
+            </form>
+        </main>
+    </div>
+</div>

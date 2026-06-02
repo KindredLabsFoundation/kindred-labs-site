@@ -6,22 +6,29 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using KindredLabs.Core.Models.Identity;
+using KindredLabs.Web.Resources.Pages.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Localization;
 
 namespace KindredLabs.Web.Pages.Account
 {
     public class ConfirmEmailModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IStringLocalizer<ConfirmEmail> _localizer;
 
-        public ConfirmEmailModel(UserManager<ApplicationUser> userManager)
+        public ConfirmEmailModel(
+            UserManager<ApplicationUser> userManager,
+            IStringLocalizer<ConfirmEmail> localizer
+        )
         {
             _userManager = userManager;
+            _localizer = localizer;
         }
 
         /// <summary>
@@ -30,6 +37,7 @@ namespace KindredLabs.Web.Pages.Account
         /// </summary>
         [TempData]
         public string StatusMessage { get; set; }
+
         public async Task<IActionResult> OnGetAsync(string userId, string code)
         {
             if (userId == null || code == null)
@@ -45,7 +53,9 @@ namespace KindredLabs.Web.Pages.Account
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
-            StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
+            StatusMessage = result.Succeeded
+                ? _localizer["Thank you for confirming your email."]
+                : _localizer["Error confirming your email."];
             return Page();
         }
     }

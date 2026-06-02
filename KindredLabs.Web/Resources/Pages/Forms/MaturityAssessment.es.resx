@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="0" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="PageTitle" xml:space="preserve"><value>Lista de Verificación de Evaluación de Madurez</value></data>
+  <data name="MaturityLevelsReference" xml:space="preserve"><value>Referencia de Niveles de Madurez</value></data>
+  <data name="Level0Label" xml:space="preserve"><value>Ausente</value></data>
+  <data name="Level1Label" xml:space="preserve"><value>Naciente</value></data>
+  <data name="Level2Label" xml:space="preserve"><value>En Desarrollo</value></data>
+  <data name="Level3Label" xml:space="preserve"><value>Estructural</value></data>
+  <data name="RecordInformation" xml:space="preserve"><value>Información del Registro</value></data>
+  <data name="RecordId" xml:space="preserve"><value>ID del Registro</value></data>
+  <data name="AssessmentDate" xml:space="preserve"><value>Fecha de Evaluación</value></data>
+  <data name="FrameworkVersion" xml:space="preserve"><value>Versión del Marco</value></data>
+  <data name="OrganizationName" xml:space="preserve"><value>Nombre de la Organización</value></data>
+  <data name="AssessorName" xml:space="preserve"><value>Nombre del Evaluador</value></data>
+  <data name="AssessorRole" xml:space="preserve"><value>Rol del Evaluador</value></data>
+  <data name="AssessorOrganization" xml:space="preserve"><value>Organización del Evaluador</value></data>
+  <data name="AssessmentType" xml:space="preserve"><value>Tipo de Evaluación</value></data>
+  <data name="SelfAttestedAlignment" xml:space="preserve"><value>Alineación Autodeclarada</value></data>
+  <data name="IndependentMaturityAssessment" xml:space="preserve"><value>Evaluación de Madurez Independiente</value></data>
+  <data name="LayerScore" xml:space="preserve"><value>Puntaje de Capa</value></data>
+  <data name="DomainScore" xml:space="preserve"><value>Puntaje de Dominio</value></data>
+  <data name="NotApplicable" xml:space="preserve"><value>No Aplicable</value></data>
+  <data name="NADocumentation" xml:space="preserve"><value>Documentación para N/A</value></data>
+  <data name="Yes" xml:space="preserve"><value>Sí</value></data>
+  <data name="No" xml:space="preserve"><value>No</value></data>
+  <data name="MaturityProfileSummary" xml:space="preserve"><value>Resumen del Perfil de Madurez</value></data>
+  <data name="Layer" xml:space="preserve"><value>Capa</value></data>
+  <data name="DomainScores" xml:space="preserve"><value>Puntajes de Dominio</value></data>
+  <data name="Layer1GapNarrativeLabel" xml:space="preserve"><value>Narrativa de Brechas de la Capa 1: Identifique las brechas de gobernanza de mayor prioridad en la capa de Entrenamiento. Para cada brecha, describa qué decisiones se están tomando sin gobernanza y la primera acción de gobernanza recomendada.</value></data>
+  <data name="Layer2GapNarrativeLabel" xml:space="preserve"><value>Narrativa de Brechas de la Capa 2: Identifique las brechas de gobernanza de mayor prioridad en la capa de Ajuste Fino. Para cada brecha, describa qué decisiones se están tomando sin gobernanza y la primera acción de gobernanza recomendada.</value></data>
+  <data name="Layer3GapNarrativeLabel" xml:space="preserve"><value>Narrativa de Brechas de la Capa 3: Identifique las brechas de gobernanza de mayor prioridad en la capa de Despliegue. Para cada brecha, describa qué decisiones se están tomando sin gobernanza y la primera acción de gobernanza recomendada.</value></data>
+  <data name="AssessorSignOff" xml:space="preserve"><value>Firma del Evaluador</value></data>
+  <data name="Date" xml:space="preserve"><value>Fecha</value></data>
+  <data name="Preview" xml:space="preserve"><value>Vista Previa</value></data>
+  <data name="Submit" xml:space="preserve"><value>Enviar</value></data>
+  <data name="BackToEdit" xml:space="preserve"><value>Volver a Editar</value></data>
+  <data name="SaveDraft" xml:space="preserve"><value>Guardar Borrador</value></data>
+  <data name="DraftSavedAt" xml:space="preserve"><value>Borrador guardado a las {0}</value></data>
+  <data name="SignatureRequired" xml:space="preserve"><value>Por favor, firme antes de enviar.</value></data>
+  <data name="ClearSignature" xml:space="preserve"><value>Limpiar</value></data>
+  <data name="DrawSignature" xml:space="preserve"><value>Dibujar Firma</value></data>
+  <data name="Score" xml:space="preserve"><value>Puntaje</value></data>
+  <data name="Layer 1: Training" xml:space="preserve"><value>Capa 1: Entrenamiento</value></data>
+  <data name="Layer 2: Fine-Tuning" xml:space="preserve"><value>Capa 2: Ajuste Fino</value></data>
+  <data name="Layer 3: Deployment" xml:space="preserve"><value>Capa 3: Despliegue</value></data>
+  <data name="Dataset Curation" xml:space="preserve"><value>Curación de Conjuntos de Datos</value></data>
+  <data name="Category Design" xml:space="preserve"><value>Diseño de Categorías</value></data>
+  <data name="Training Architecture" xml:space="preserve"><value>Arquitectura de Entrenamiento</value></data>
+  <data name="Representational Review" xml:space="preserve"><value>Revisión Representacional</value></data>
+  <data name="Proprietary Data Selection" xml:space="preserve"><value>Selección de Datos Propios</value></data>
+  <data name="Fine-Tuning Objectives" xml:space="preserve"><value>Objetivos de Ajuste Fino</value></data>
+  <data name="Customization Scope" xml:space="preserve"><value>Alcance de Personalización</value></data>
+  <data name="RAG Configuration" xml:space="preserve"><value>Configuración de RAG</value></data>
+  <data name="Vendor Selection" xml:space="preserve"><value>Selección de Proveedores</value></data>
+  <data name="Use Case Authorization" xml:space="preserve"><value>Autorización de Casos de Uso</value></data>
+  <data name="Deployment Scoping" xml:space="preserve"><value>Alcance del Despliegue</value></data>
+  <data name="Accountability Boundaries" xml:space="preserve"><value>Límites de Responsabilidad</value></data>
+  <data name="Domain1_1_Level0" xml:space="preserve"><value>¿Existe algún proceso de revisión formal para la selección de datos de entrenamiento?</value></data>
+  <data name="Domain1_1_Level1" xml:space="preserve"><value>¿Existe conciencia documentada dentro de la función de gobernanza de que las decisiones de curación de conjuntos de datos son decisiones de gobernanza?</value></data>
+  <data name="Domain1_1_Level2" xml:space="preserve"><value>¿Existe un proceso de revisión formal para la curación de conjuntos de datos que incluya la participación de la función de gobernanza?</value></data>
+  <data name="Domain1_1_Level3" xml:space="preserve"><value>¿El proceso formal incluye todo lo siguiente: autoridad de revisión designada, criterios de inclusión y exclusión documentados, documentación de la base de consentimiento, evaluación del alcance representacional y una puerta previa al entrenamiento?</value></data>
+  <data name="Domain1_2_Level0" xml:space="preserve"><value>¿Tiene la función de gobernanza alguna participación en las decisiones de límites de categorías antes de que se codifiquen?</value></data>
+  <data name="Domain1_2_Level1" xml:space="preserve"><value>¿Tiene la función de gobernanza conciencia de que el diseño de categorías es una decisión de gobernanza, incluso sin un proceso formal para influir en él?</value></data>
+  <data name="Domain1_2_Level2" xml:space="preserve"><value>¿Existe un proceso de revisión formal para las decisiones de diseño de categorías que incluya la participación de la función de gobernanza antes de que se codifiquen las categorías?</value></data>
+  <data name="Domain1_2_Level3" xml:space="preserve"><value>¿El proceso incluye todo lo siguiente: un inventario de categorías producido antes del entrenamiento, autoridad designada para aprobar categorías cuestionadas, justificación documentada y un proceso definido para desafiar los límites?</value></data>
+  <data name="Domain1_3_Level0" xml:space="preserve"><value>¿Existe alguna revisión de gobernanza documentada para los objetivos de optimización antes de que comience el entrenamiento?</value></data>
+  <data name="Domain1_3_Level1" xml:space="preserve"><value>¿Tiene la función de gobernanza visibilidad de las decisiones de arquitectura de entrenamiento incluso sin autoridad formal sobre ellas?</value></data>
+  <data name="Domain1_3_Level2" xml:space="preserve"><value>¿Existe un proceso de revisión formal para los objetivos de optimización que incluya la aprobación de la gobernanza antes de que comience el entrenamiento?</value></data>
+  <data name="Domain1_3_Level3" xml:space="preserve"><value>¿El proceso incluye todo lo siguiente: un documento de autorización de objetivos de entrenamiento, autoridad designada para la aprobación, criterios de evaluación definidos y autoridad para detener o reiniciar el entrenamiento?</value></data>
+  <data name="Domain1_4_Level0" xml:space="preserve"><value>¿Existe una autoridad designada o un proceso formal para evaluar la adecuación representacional antes del entrenamiento?</value></data>
+  <data name="Domain1_4_Level1" xml:space="preserve"><value>¿Se considera la adecuación representacional de manera informal durante la selección de datos de entrenamiento, incluso sin un proceso estructurado?</value></data>
+  <data name="Domain1_4_Level2" xml:space="preserve"><value>¿Existe un proceso de revisión representacional estructurado que evalúe el corpus de entrenamiento frente a criterios de cobertura de población definidos antes de que proceda el entrenamiento?</value></data>
+  <data name="Domain1_4_Level3" xml:space="preserve"><value>¿El proceso incluye todo lo siguiente: una autoridad de revisión designada con poder para detener el entrenamiento, estándares definidos para una representación adecuada, un proceso de remediación documentado y un informe de revisión representacional?</value></data>
+  <data name="Domain2_1_Level0" xml:space="preserve"><value>¿Tiene la función de gobernanza alguna participación en las decisiones de selección de datos de ajuste fino?</value></data>
+  <data name="Domain2_1_Level1" xml:space="preserve"><value>¿Tiene la función de gobernanza conciencia de que la selección de datos propios para el ajuste fino es una decisión de gobernanza?</value></data>
+  <data name="Domain2_1_Level2" xml:space="preserve"><value>¿Existe un proceso de revisión formal para la selección de datos de ajuste fino que incluya la participación de la función de gobernanza?</value></data>
+  <data name="Domain2_1_Level3" xml:space="preserve"><value>¿El proceso incluye todo lo siguiente: un registro de datos de ajuste fino para cada conjunto de datos, base de consentimiento documentada, autoridad de revisión designada, revisión elevada para datos de empleados/clientes y una puerta previa al ajuste fino?</value></data>
+  <data name="Domain2_2_Level0" xml:space="preserve"><value>¿Están los objetivos de ajuste fino sujetos a alguna participación o revisión de la función de gobernanza antes de que comience el ajuste fino?</value></data>
+  <data name="Domain2_2_Level1" xml:space="preserve"><value>¿Tiene la función de gobernanza visibilidad de los objetivos de ajuste fino incluso sin autoridad formal sobre ellos?</value></data>
+  <data name="Domain2_2_Level2" xml:space="preserve"><value>¿Existe un proceso de revisión formal para los objetivos de ajuste fino que requiera la aprobación de la gobernanza antes de que comience el ajuste fino?</value></data>
+  <data name="Domain2_2_Level3" xml:space="preserve"><value>¿El proceso incluye todo lo siguiente: un documento de autorización de objetivos de ajuste fino, autoridad designada para la aprobación, evaluación documentada de las suposiciones, criterios de evaluación definidos y un proceso para auditorías futuras?</value></data>
+  <data name="Domain2_3_Level0" xml:space="preserve"><value>¿Existe algún registro específico de gobernanza para las decisiones de personalización, independiente de la documentación general de la arquitectura del sistema?</value></data>
+  <data name="Domain2_3_Level1" xml:space="preserve"><value>¿Tiene la función de gobernanza conciencia de que las decisiones sobre el alcance de la personalización son decisiones de gobernanza, incluso sin un proceso de revisión formal?</value></data>
+  <data name="Domain2_3_Level2" xml:space="preserve"><value>¿Existe un proceso formal para revisar y documentar las decisiones de personalización antes del despliegue?</value></data>
+  <data name="Domain2_3_Level3" xml:space="preserve"><value>¿El proceso incluye todo lo siguiente: un documento de límites de alcance de personalización, autoridad designada para autorizar decisiones, un proceso definido para revisar relajaciones y entrega a la gobernanza de despliegue?</value></data>
+  <data name="Domain2_4_Level0" xml:space="preserve"><value>¿Está la configuración de RAG sujeta a alguna revisión de gobernanza?</value></data>
+  <data name="Domain2_4_Level1" xml:space="preserve"><value>¿Tiene la función de gobernanza conciencia de que la configuración de RAG es una decisión de gobernanza?</value></data>
+  <data name="Domain2_4_Level2" xml:space="preserve"><value>¿Existe un proceso de revisión formal para la autorización del corpus de RAG y los cambios de configuración?</value></data>
+  <data name="Domain2_4_Level3" xml:space="preserve"><value>¿El proceso incluye todo lo siguiente: un registro de gobernanza del corpus de RAG, autoridad designada, un ciclo de revisión definido, un proceso para eliminar contenido obsoleto y un proceso de evaluación para la calidad de la salida?</value></data>
+  <data name="Domain3_1_Level0" xml:space="preserve"><value>¿Tiene la función de gobernanza alguna participación formal en las decisiones de selección de proveedores?</value></data>
+  <data name="Domain3_1_Level1" xml:space="preserve"><value>¿Tiene la función de gobernanza aportes informales en la selección de proveedores incluso sin un proceso formal o criterios definidos?</value></data>
+  <data name="Domain3_1_Level2" xml:space="preserve"><value>¿Existe un proceso de revisión de gobernanza formal para la selección de proveedores que incluya la participación de la función de gobernanza y criterios de gobernanza definidos?</value></data>
+  <data name="Domain3_1_Level3" xml:space="preserve"><value>¿El proceso incluye todo lo siguiente: una tarjeta de puntuación de gobernanza de proveedores, divulgaciones requeridas, aprobación de la función de gobernanza, un archivo de divulgación de proveedores y una revisión definida en la renovación?</value></data>
+  <data name="Domain3_2_Level0" xml:space="preserve"><value>¿Existe un proceso formal para autorizar los casos de uso antes del despliegue?</value></data>
+  <data name="Domain3_2_Level1" xml:space="preserve"><value>¿Ocurre una consideración informal de la adecuación del caso de uso antes del despliegue incluso sin un proceso de autorización estructurado?</value></data>
+  <data name="Domain3_2_Level2" xml:space="preserve"><value>¿Existe un proceso de autorización de casos de uso formal que requiera revisión de gobernanza antes de que un caso de uso entre en producción?</value></data>
+  <data name="Domain3_2_Level3" xml:space="preserve"><value>¿El proceso incluye todo lo siguiente: un registro de autorización de casos de uso, autoridad designada, criterios definidos, una lista de casos de uso explícitamente prohibidos y un proceso para revisar el exceso de casos de uso?</value></data>
+  <data name="Domain3_3_Level0" xml:space="preserve"><value>¿Existe una revisión de gobernanza formal del alcance del despliegue que cubra el acceso, la autoridad de acción y los requisitos de supervisión humana?</value></data>
+  <data name="Domain3_3_Level1" xml:space="preserve"><value>¿Ocurre una consideración informal del alcance del despliegue incluso sin un proceso formal o una definición de alcance documentada?</value></data>
+  <data name="Domain3_3_Level2" xml:space="preserve"><value>¿Existe un proceso formal para definir y revisar el alcance del despliegue antes de que un sistema entre en producción?</value></data>
+  <data name="Domain3_3_Level3" xml:space="preserve"><value>¿El proceso incluye todo lo siguiente: un documento de alcance de despliegue, autoridad designada, requisitos de revisión humana definidos, un proceso para autorizar cambios de alcance y un proceso de revisión de monitoreo?</value></data>
+  <data name="Domain3_4_Level0" xml:space="preserve"><value>¿Existe una estructura de responsabilidad predefinida para manejar las fallas de IA antes de que ocurran?</value></data>
+  <data name="Domain3_4_Level1" xml:space="preserve"><value>¿Existe un entendimiento informal de la responsabilidad dentro de la función de gobernanza incluso sin asignaciones documentadas?</value></data>
+  <data name="Domain3_4_Level2" xml:space="preserve"><value>¿Existe una estructura de responsabilidad documentada que defina la responsabilidad de la función de gobernanza frente a la función técnica antes de que ocurra una falla?</value></data>
+  <data name="Domain3_4_Level3" xml:space="preserve"><value>¿La estructura incluye todo lo siguiente: asignaciones de responsabilidad designadas, un límite de responsabilidad documentado entre proveedor y organización, un proceso de remediación definido, un protocolo de escalada de fallas y un proceso para aprender de las decisiones?</value></data>
+</root>

@@ -10,14 +10,18 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
+using KindredLabs.Core.Models.Identity;
+using KindredLabs.Core.Services.Interfaces;
+using KindredLabs.Web.Resources.Pages.Account;
+using KindredLabs.Web.Resources.Pages.Account;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using KindredLabs.Core.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 
 namespace KindredLabs.Web.Pages.Account
@@ -29,21 +33,25 @@ namespace KindredLabs.Web.Pages.Account
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
+        private readonly IEmailService _emailService;
+        private readonly IStringLocalizer<Register> _localizer;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailService emailService,
+            IStringLocalizer<Register> localizer
+        )
         {
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
+            _emailService = emailService;
+            _localizer = localizer;
         }
 
         /// <summary>
@@ -71,6 +79,20 @@ namespace KindredLabs.Web.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required]
+            [Display(Name = "FirstName")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [Display(Name = "LastName")]
+            public string LastName { get; set; }
+
+            [Display(Name = "Organization")]
+            public string? Organization { get; set; }
+
+            [Display(Name = "JobTitle")]
+            public string? JobTitle { get; set; }
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -85,7 +107,11 @@ namespace KindredLabs.Web.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(
+                100,
+                ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.",
+                MinimumLength = 6
+            )]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
@@ -96,21 +122,27 @@ namespace KindredLabs.Web.Pages.Account
             /// </summary>
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare(
+                "Password",
+                ErrorMessage = "The password and confirmation password do not match."
+            )]
             public string ConfirmPassword { get; set; }
         }
-
 
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            ExternalLogins = (
+                await _signInManager.GetExternalAuthenticationSchemesAsync()
+            ).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            ExternalLogins = (
+                await _signInManager.GetExternalAuthenticationSchemesAsync()
+            ).ToList();
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
@@ -121,23 +153,56 @@ namespace KindredLabs.Web.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    user.FirstName = Input.FirstName;
+                    user.LastName = Input.LastName;
+                    user.Organization = Input.Organization;
+                    user.JobTitle = Input.JobTitle;
+                    var updateResult = await _userManager.UpdateAsync(user);
+                    if (!updateResult.Succeeded)
+                    {
+                        await _userManager.DeleteAsync(user);
+                        foreach (var error in updateResult.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                        return Page();
+                    }
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
+                    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.Name;
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
+                        values: new
+                        {
+                            area = "Identity",
+                            userId = userId,
+                            code = code,
+                            returnUrl = returnUrl,
+                            culture = currentCulture,
+                        },
+                        protocol: Request.Scheme
+                    );
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    if (callbackUrl != null)
+                    {
+                        await _emailService.SendRegistrationConfirmationAsync(
+                            Input.Email,
+                            callbackUrl
+                        );
+                    }
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        return RedirectToPage(
+                            "RegisterConfirmation",
+                            new { email = Input.Email, returnUrl = returnUrl }
+                        );
                     }
                     else
                     {
@@ -163,9 +228,11 @@ namespace KindredLabs.Web.Pages.Account
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
-                    $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+                throw new InvalidOperationException(
+                    $"Can't create an instance of '{nameof(ApplicationUser)}'. "
+                        + $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively "
+                        + $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml"
+                );
             }
         }
 
@@ -173,7 +240,9 @@ namespace KindredLabs.Web.Pages.Account
         {
             if (!_userManager.SupportsUserEmail)
             {
-                throw new NotSupportedException("The default UI requires a user store with email support.");
+                throw new NotSupportedException(
+                    "The default UI requires a user store with email support."
+                );
             }
             return (IUserEmailStore<ApplicationUser>)_userStore;
         }

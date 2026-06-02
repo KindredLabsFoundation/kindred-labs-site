@@ -486,3 +486,4 @@ appsettings.*.json
 .env.local
 migration.sql
 .junie
+package-lock.json

@@ -1,19 +1,57 @@
 ﻿@page
-@model KindredLabs.Web.Pages.About
-
+@model AboutModel
 @{
-    Layout = null;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
+<div class="max-w-4xl mx-auto px-4 py-16 text-center">
+    <h1 class="text-2xl sm:text-3xl font-bold text-kindred-gold mb-6">
+        @Model.Localizer["PageHeading"]
+    </h1>
+    <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed max-w-2xl mx-auto">
+        @Model.Localizer["PageSubheading"]
+    </p>
 </div>
-</body>
-</html>
+
+<div class="max-w-4xl mx-auto px-4 pb-16">
+    <div class="flex flex-col md:flex-row items-center gap-8">
+        <div class="flex-shrink-0">
+            <img src="/images/placeholder.jpg" 
+                 alt="@Model.Localizer["TeamMember1Alt"]"
+                 class="w-48 h-48 object-cover rounded-lg" />
+        </div>
+        <div class="flex-1 text-center md:text-start">
+            <p class="text-kindred-gold text-sm font-semibold uppercase 
+                tracking-widest mb-2">
+                @Model.Localizer["TeamMember1Role"]
+            </p>
+            <h2 class="text-xl md:text-2xl font-bold text-kindred-text mb-4">
+                @Model.Localizer["TeamMember1Name"]
+            </h2>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["TeamMember1Bio"]
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 pb-16">
+    <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+        <div class="flex-shrink-0">
+            <img src="/images/bvogtman.jpg" 
+                 alt="@Model.Localizer["TeamMember2Alt"]"
+                 class="w-48 h-48 object-cover rounded-lg" />
+        </div>
+        <div class="flex-1 text-center md:text-start">
+            <p class="text-kindred-gold text-sm font-semibold uppercase 
+                tracking-widest mb-2">
+                @Model.Localizer["TeamMember2Role"]
+            </p>
+            <h2 class="text-xl md:text-2xl font-bold text-kindred-text mb-4">
+                @Model.Localizer["TeamMember2Name"]
+            </h2>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["TeamMember2Bio"]
+            </p>
+        </div>
+    </div>
+</div>

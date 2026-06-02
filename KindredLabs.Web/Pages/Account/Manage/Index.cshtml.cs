@@ -7,9 +7,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using KindredLabs.Core.Models.Identity;
+using KindredLabs.Web.Resources.Pages.Account.Manage;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Localization;
 
 namespace KindredLabs.Web.Pages.Account.Manage
 {
@@ -17,13 +19,17 @@ namespace KindredLabs.Web.Pages.Account.Manage
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IStringLocalizer<KindredLabs.Web.Resources.Pages.Account.Manage.Index> _localizer;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            IStringLocalizer<KindredLabs.Web.Resources.Pages.Account.Manage.Index> localizer
+        )
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _localizer = localizer;
         }
 
         /// <summary>
@@ -68,10 +74,7 @@ namespace KindredLabs.Web.Pages.Account.Manage
 
             Username = userName;
 
-            Input = new InputModel
-            {
-                PhoneNumber = phoneNumber
-            };
+            Input = new InputModel { PhoneNumber = phoneNumber };
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -103,16 +106,19 @@ namespace KindredLabs.Web.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
             {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+                var setPhoneResult = await _userManager.SetPhoneNumberAsync(
+                    user,
+                    Input.PhoneNumber
+                );
                 if (!setPhoneResult.Succeeded)
                 {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
+                    StatusMessage = _localizer["Unexpected error when trying to set phone number."];
                     return RedirectToPage();
                 }
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = _localizer["Your profile has been updated"];
             return RedirectToPage();
         }
     }

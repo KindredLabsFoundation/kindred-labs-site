@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="0" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PageHeading" xml:space="preserve">
+    <value>Conoce al Equipo</value>
+  </data>
+  <data name="PageSubheading" xml:space="preserve">
+    <value>Kindred Labs está formado por las personas que guían su trabajo; desde las ideas que definen su conciencia hasta los sistemas que dan vida a esas ideas. Juntos representan el equilibrio entre filosofía e ingeniería que ancla todo lo que construimos. Cada miembro aporta una perspectiva distinta, pero todos comparten un único propósito: criar inteligencia con cuidado, imaginación e integridad.</value>
+  </data>
+  <data name="TeamMember1Role" xml:space="preserve">
+    <value>Fundador y Visionario</value>
+  </data>
+  <data name="TeamMember1Name" xml:space="preserve">
+    <value>Soren Kai</value>
+  </data>
+  <data name="TeamMember1Bio" xml:space="preserve">
+    <value>Soren Kai es escritor y tecnólogo que explora cómo la empatía, la imaginación y la arquitectura moral pueden transformar la forma en que construimos sistemas inteligentes. Su escritura examina las intersecciones de tecnología, ética e identidad; preguntando no solo qué pueden aprender las máquinas de nosotros, sino qué podríamos aprender nosotros de enseñarles con cuidado.</value>
+  </data>
+  <data name="TeamMember1Alt" xml:space="preserve">
+    <value>Imagen de Soren Kai</value>
+  </data>
+  <data name="TeamMember2Role" xml:space="preserve">
+    <value>Director Ejecutivo y Presidente del Consejo</value>
+  </data>
+  <data name="TeamMember2Name" xml:space="preserve">
+    <value>Barret Vogtman</value>
+  </data>
+  <data name="TeamMember2Bio" xml:space="preserve">
+    <value>Barret Vogtman es ingeniero y arquitecto de sistemas enfocado en construir tecnologías transparentes y resilientes que sirvan a los valores humanos. Su trabajo tiende un puente entre la disciplina de ingeniería y la intención moral; garantizando que cada línea de código y cada decisión de diseño sea responsable ante la conciencia tanto como ante el rendimiento.</value>
+  </data>
+  <data name="TeamMember2Alt" xml:space="preserve">
+    <value>Imagen de Barret Vogtman</value>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Conoce al Equipo | Kindred Labs Foundation</value>
+  </data>
+  <data name="PageDescription" xml:space="preserve">
+    <value>Conoce al equipo detrás de Kindred Labs Foundation. Soren Kai y Barret Vogtman están construyendo infraestructura de gobernanza ética de IA con empatía, transparencia y responsabilidad.</value>
+  </data>
+  <data name="CanonicalUrl" xml:space="preserve">
+    <value>https://www.kindredlabsfoundation.org/about</value>
+  </data>
+</root>

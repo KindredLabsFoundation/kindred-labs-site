@@ -1,0 +1,510 @@
+﻿@page
+@model KindredLabs.Web.Pages.Account.IndexModel
+@{
+    ViewData["Title"] = Model.Localizer["PageTitle"];
+    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+    var hasMultipleVerified = Model.AdditionalEmails.Count(e => e.IsVerified) > 0;
+}
+
+<div class="max-w-4xl mx-auto px-4 py-16">
+    <h1 class="text-2xl sm:text-3xl font-bold text-kindred-gold mb-12 text-center">
+        @Model.Localizer["PageHeading"]
+    </h1>
+
+    <div class="space-y-12">
+        <!-- Section 1: Profile -->
+        <section class="bg-white/5 border border-white/10 rounded-lg p-6 sm:p-8">
+            <h2 class="text-xl font-bold text-kindred-gold mb-6">@Model.Localizer["ProfileSection"]</h2>
+            
+            <!-- Read-only View -->
+            <div id="profile-read" class="space-y-6">
+                <div class="space-y-6">
+                    <div>
+                        <span class="block text-kindred-text/50 text-xs font-medium uppercase tracking-wider mb-1">@Model.Localizer["NameLabel"]</span>
+                        <p class="text-kindred-text">@Model.CurrentUser.FirstName @Model.CurrentUser.LastName</p>
+                    </div>
+                    <div>
+                        <span class="block text-kindred-text/50 text-xs font-medium uppercase tracking-wider mb-1">@Model.Localizer["OrganizationLabel"]</span>
+                        <p class="text-kindred-text">@(string.IsNullOrEmpty(Model.CurrentUser.Organization) ? "—" : Model.CurrentUser.Organization)</p>
+                    </div>
+                    <div>
+                        <span class="block text-kindred-text/50 text-xs font-medium uppercase tracking-wider mb-1">@Model.Localizer["JobTitleLabel"]</span>
+                        <p class="text-kindred-text">@(string.IsNullOrEmpty(Model.CurrentUser.JobTitle) ? "—" : Model.CurrentUser.JobTitle)</p>
+                    </div>
+                </div>
+                <div class="flex justify-end pt-4">
+                    <button type="button" onclick="toggleProfileEdit(true)" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">
+                        @Model.Localizer["EditLink"]
+                    </button>
+                </div>
+            </div>
+
+            <!-- Edit Mode -->
+            <div id="profile-edit" class="hidden">
+                <form asp-page-handler="SaveProfile" method="post" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label asp-for="Profile.FirstName" class="block text-kindred-text text-sm font-medium mb-1">
+                                @Model.Localizer["FirstNameLabel"]
+                            </label>
+                            <input asp-for="Profile.FirstName" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" />
+                            <span asp-validation-for="Profile.FirstName" class="text-red-500 text-sm mt-1 block"></span>
+                        </div>
+                        <div>
+                            <label asp-for="Profile.LastName" class="block text-kindred-text text-sm font-medium mb-1">
+                                @Model.Localizer["LastNameLabel"]
+                            </label>
+                            <input asp-for="Profile.LastName" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" />
+                            <span asp-validation-for="Profile.LastName" class="text-red-500 text-sm mt-1 block"></span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label asp-for="Profile.Organization" class="block text-kindred-text text-sm font-medium mb-1">
+                                @Model.Localizer["OrganizationLabel"]
+                            </label>
+                            <input asp-for="Profile.Organization" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" />
+                        </div>
+                        <div>
+                            <label asp-for="Profile.JobTitle" class="block text-kindred-text text-sm font-medium mb-1">
+                                @Model.Localizer["JobTitleLabel"]
+                            </label>
+                            <input asp-for="Profile.JobTitle" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" />
+                        </div>
+                    </div>
+                    <div class="flex justify-end gap-6 pt-4">
+                        <button type="button" onclick="toggleProfileEdit(false)" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">
+                            @Model.Localizer["CancelLink"]
+                        </button>
+                        <button type="submit" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base font-bold">
+                            @Model.Localizer["SaveLink"]
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+        <!-- Section: Preferences -->
+        <section class="bg-white/5 border border-white/10 rounded-lg p-6 sm:p-8">
+            <h2 class="text-xl font-bold text-kindred-gold mb-6">@Model.Localizer["PreferencesSection"]</h2>
+            
+            <!-- Read-only View -->
+            <div id="preferences-read">
+                <div class="space-y-6">
+                    <div>
+                        <span class="block text-kindred-text/50 text-xs font-medium uppercase tracking-wider mb-1">@Model.Localizer["PreferredLanguageLabel"]</span>
+                        <p class="text-kindred-text">
+                            @(Model.CurrentUser?.PreferredLocale == "es" ? "Español" : "English")
+                        </p>
+                    </div>
+                </div>
+                <div class="flex justify-end pt-4">
+                    <button type="button" onclick="togglePreferencesEdit(true)" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">
+                        @Model.Localizer["EditLink"]
+                    </button>
+                </div>
+            </div>
+
+            <!-- Edit Mode -->
+            <div id="preferences-edit" class="hidden">
+                <form asp-page-handler="SavePreferences" method="post" class="space-y-6">
+                    <div>
+                        <label asp-for="PreferredLanguage" class="block text-kindred-text text-sm font-medium mb-1">
+                            @Model.Localizer["PreferredLanguageLabel"]
+                        </label>
+                        <select asp-for="PreferredLanguage" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold appearance-none">
+                            <option value="en" class="bg-kindred-dark">English</option>
+                            <option value="es" class="bg-kindred-dark">Español</option>
+                        </select>
+                    </div>
+                    <div class="flex justify-end gap-6 pt-4">
+                        <button type="button" onclick="togglePreferencesEdit(false)" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">
+                            @Model.Localizer["CancelLink"]
+                        </button>
+                        <button type="submit" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base font-bold">
+                            @Model.Localizer["SaveLink"]
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Section 2: Email -->
+        <section class="bg-white/5 border border-white/10 rounded-lg p-6 sm:p-8">
+            <h2 class="text-xl font-bold text-kindred-gold mb-6">@Model.Localizer["EmailSectionTitle"]</h2>
+            
+            <!-- Email Read-only View -->
+            <div id="email-read" class="email-mode-container space-y-4">
+                <div class="flex items-center justify-between py-2">
+                    <div>
+                        <span class="text-kindred-text font-medium">@Model.CurrentUser.Email</span>
+                        <span class="ml-2 px-2 py-0.5 text-[10px] font-bold bg-kindred-gold text-kindred-dark rounded uppercase tracking-tighter">
+                            @Model.Localizer["PrimaryBadge"]
+                        </span>
+                    </div>
+                </div>
+
+                @foreach (var email in Model.AdditionalEmails)
+                {
+                    <div class="flex items-center justify-between py-2">
+                        <div>
+                            <span class="text-kindred-text">@email.Email</span>
+                            @if (!email.IsVerified)
+                            {
+                                <span class="ml-2 px-2 py-0.5 text-[10px] font-bold bg-white/10 text-kindred-text/60 rounded uppercase tracking-tighter">
+                                    @Model.Localizer["PendingBadge"]
+                                </span>
+                            }
+                        </div>
+                        @if (!email.IsVerified)
+                        {
+                            <div class="flex gap-4 items-center">
+                                <div class="resend-container" data-email-id="@email.Id">
+                                    <span class="resend-countdown text-xs text-kindred-text opacity-30" data-seconds="60">
+                                        @string.Format(Model.Localizer["ResendAvailableIn"].Value, 60)
+                                    </span>
+                                    <form asp-page-handler="ResendVerification" method="post" class="resend-form hidden">
+                                        <input type="hidden" name="emailId" value="@email.Id" />
+                                        <button type="submit" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base text-xs">
+                                            @Model.Localizer["ResendVerification"]
+                                        </button>
+                                    </form>
+                                </div>
+                                <form asp-page-handler="RemoveEmail" method="post">
+                                    <input type="hidden" name="emailId" value="@email.Id" />
+                                    <button type="submit" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base text-xs">
+                                        @Model.Localizer["RemoveButton"]
+                                    </button>
+                                </form>
+                            </div>
+                        }
+                    </div>
+                }
+
+                <div class="flex justify-end gap-6 pt-6">
+                    <button type="button" onclick="setEmailMode('edit')" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">
+                        @Model.Localizer["EditLink"]
+                    </button>
+                    @if (hasMultipleVerified)
+                    {
+                        <button type="button" onclick="setEmailMode('change-primary')" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">
+                            @Model.Localizer["ChangePrimaryLink"]
+                        </button>
+                    }
+                    else
+                    {
+                        <span class="text-kindred-text opacity-30 cursor-not-allowed">
+                            @Model.Localizer["ChangePrimaryLink"]
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- Email Edit Mode -->
+            <div id="email-edit" class="email-mode-container hidden space-y-4">
+                <!-- Primary (can't remove) -->
+                <div class="flex items-center justify-between py-2">
+                    <span class="text-kindred-text opacity-50">@Model.CurrentUser.Email</span>
+                    <span class="px-2 py-0.5 text-[10px] font-bold bg-kindred-gold text-kindred-dark rounded uppercase tracking-tighter opacity-50">
+                        @Model.Localizer["PrimaryBadge"]
+                    </span>
+                </div>
+
+                @foreach (var email in Model.AdditionalEmails)
+                {
+                    <div class="flex items-center justify-between py-2">
+                        <span class="text-kindred-text">@email.Email</span>
+                        <div class="flex gap-4 items-center">
+                            @if (!email.IsVerified)
+                            {
+                                <div class="resend-container" data-email-id="@email.Id">
+                                    <span class="resend-countdown text-xs text-kindred-text opacity-30" data-seconds="60">
+                                        @string.Format(Model.Localizer["ResendAvailableIn"].Value, 60)
+                                    </span>
+                                    <form asp-page-handler="ResendVerification" method="post" class="resend-form hidden">
+                                        <input type="hidden" name="emailId" value="@email.Id" />
+                                        <button type="submit" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base text-xs">
+                                            @Model.Localizer["ResendVerification"]
+                                        </button>
+                                    </form>
+                                </div>
+                            }
+                            <form asp-page-handler="RemoveEmail" method="post">
+                                <input type="hidden" name="emailId" value="@email.Id" />
+                                <button type="submit" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base text-xs">
+                                    @Model.Localizer["RemoveButton"]
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                }
+
+                <form asp-page-handler="AddEmail" method="post" class="pt-4">
+                    <div class="flex items-center gap-4">
+                        <input asp-for="NewEmail" type="email" placeholder="@Model.Localizer["AddEmailLabel"]" class="flex-1 bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+                        <button type="submit" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">
+                            @Model.Localizer["AddEmailButton"]
+                        </button>
+                    </div>
+                    <span asp-validation-for="NewEmail" class="text-red-500 text-sm mt-1 block"></span>
+                </form>
+
+                <div class="flex justify-end gap-6 pt-6">
+                    <button type="button" onclick="setEmailMode('read')" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">
+                        @Model.Localizer["CancelLink"]
+                    </button>
+                    <button type="button" onclick="setEmailMode('read')" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity font-bold cursor-pointer font-ui text-base">
+                        @Model.Localizer["SaveLink"]
+                    </button>
+                </div>
+            </div>
+
+            <!-- Change Primary Mode -->
+            <div id="email-change-primary" class="email-mode-container hidden space-y-4">
+                <form asp-page-handler="MakePrimary" method="post" id="make-primary-form">
+                    <div class="space-y-2">
+                        <!-- Current Primary -->
+                        <label class="flex items-center gap-3 py-2 cursor-pointer group">
+                            <input type="radio" name="emailId" value="" checked onchange="validatePrimarySelection(this)" data-current="true"
+                                   class="w-4 h-4 text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold focus:ring-offset-kindred-dark" />
+                            <span class="text-kindred-text">@Model.CurrentUser.Email</span>
+                            <span class="px-2 py-0.5 text-[10px] font-bold bg-kindred-gold text-kindred-dark rounded uppercase tracking-tighter">
+                                @Model.Localizer["PrimaryBadge"]
+                            </span>
+                        </label>
+
+                        @foreach (var email in Model.AdditionalEmails.Where(e => e.IsVerified))
+                        {
+                            <label class="flex items-center gap-3 py-2 cursor-pointer group">
+                                <input type="radio" name="emailId" value="@email.Id" onchange="validatePrimarySelection(this)"
+                                       class="w-4 h-4 text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold focus:ring-offset-kindred-dark" />
+                                <span class="text-kindred-text">@email.Email</span>
+                            </label>
+                        }
+                    </div>
+
+                    <div class="flex justify-end gap-6 pt-6">
+                        <button type="button" onclick="setEmailMode('read')" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">
+                            @Model.Localizer["CancelLink"]
+                        </button>
+                        <button type="submit" id="save-primary-btn" disabled
+                                class="bg-transparent border-none p-0 text-kindred-gold opacity-30 cursor-not-allowed transition-all font-bold cursor-pointer font-ui text-base">
+                            @Model.Localizer["SaveLink"]
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Section 3: Security -->
+        <section class="bg-white/5 border border-white/10 rounded-lg p-6 sm:p-8">
+            <h2 class="text-xl font-bold text-kindred-gold mb-6">@Model.Localizer["SecuritySection"]</h2>
+            
+            <div class="flex flex-col gap-4">
+                <a asp-page="/Account/Manage/ChangePassword" asp-route-culture="@currentCulture" 
+                   class="text-kindred-gold hover:opacity-70 transition-opacity flex items-center gap-2">
+                    @Model.Localizer["ChangePasswordLink"]
+                </a>
+                <a href="/@currentCulture/Account/Manage/TwoFactor" 
+                   class="text-kindred-gold hover:opacity-70 transition-opacity flex items-center gap-2">
+                    @Model.Localizer["TwoFactorLink"]
+                </a>
+                <a asp-page="/Account/Security/LoginHistory" asp-route-culture="@Model.CurrentCulture"
+                   class="text-kindred-gold hover:opacity-70 transition-opacity flex items-center gap-2">
+                    @Model.Localizer["LoginHistoryLink"]
+                </a>
+                <a asp-page="/Account/Security/AuditLog" asp-route-culture="@Model.CurrentCulture"
+                   class="text-kindred-gold hover:opacity-70 transition-opacity flex items-center gap-2">
+                    @Model.Localizer["AuditLogLink"]
+                </a>
+
+                <!-- Download Data -->
+                <div class="flex items-center gap-2">
+                    <span class="text-kindred-gold">@Model.Localizer["DownloadDataLink"]:</span>
+                    <a asp-page-handler="DownloadData" asp-route-format="csv" class="text-kindred-gold hover:opacity-70 transition-opacity">
+                        [@Model.Localizer["CsvLink"]]
+                    </a>
+                    <a asp-page-handler="DownloadData" asp-route-format="txt" class="text-kindred-gold hover:opacity-70 transition-opacity">
+                        [@Model.Localizer["TxtLink"]]
+                    </a>
+                </div>
+
+                <!-- Revoke Sessions -->
+                <div id="revoke-sessions-container">
+                    <button type="button" onclick="toggleRevokeConfirm(true)" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">
+                        @Model.Localizer["RevokeOtherSessionsLink"]
+                    </button>
+                </div>
+                <div id="revoke-sessions-confirm" class="hidden">
+                    <div class="flex items-center gap-4 text-sm">
+                        <span class="text-kindred-text opacity-70">@Model.Localizer["RevokeSessionsWarning"]</span>
+                        <form asp-page-handler="RevokeOtherSessions" method="post" class="inline">
+                            <button type="submit" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity font-bold cursor-pointer font-ui text-sm">
+                                [@Model.Localizer["ConfirmLink"]]
+                            </button>
+                        </form>
+                        <button type="button" onclick="toggleRevokeConfirm(false)" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-sm">
+                            [@Model.Localizer["CancelLink"]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 mt-8 pt-8">
+                <button type="button" onclick="toggleDeleteModal(true)" class="bg-transparent border-none p-0 text-red-500 hover:opacity-70 transition-opacity font-bold cursor-pointer font-ui text-base">
+                    @Model.Localizer["DeleteAccountLink"]
+                </button>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Delete Account Modal -->
+<div id="delete-modal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-kindred-dark/90 backdrop-blur-sm" onclick="toggleDeleteModal(false)"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-6">
+        <div class="bg-kindred-dark border border-white/10 rounded-lg p-8 shadow-2xl">
+            <h2 class="text-xl font-bold text-red-500 mb-4">@Model.Localizer["DeleteAccountModalTitle"]</h2>
+            <p class="text-kindred-text opacity-70 text-sm mb-6 leading-relaxed">
+                @Model.Localizer["DeleteAccountModalWarning"]
+            </p>
+
+            <form asp-page-handler="DeleteAccount" method="post" class="space-y-6">
+                <div>
+                    <label asp-for="DeleteAccount.Password" class="block text-kindred-text text-sm font-medium mb-1">
+                        @Model.Localizer["PasswordLabel"]
+                    </label>
+                    <input asp-for="DeleteAccount.Password" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+                </div>
+                <div>
+                    <label asp-for="DeleteAccount.ConfirmPhrase" class="block text-kindred-text text-sm font-medium mb-1">
+                        @Model.Localizer["ConfirmDeleteLabel"]
+                    </label>
+                    <input asp-for="DeleteAccount.ConfirmPhrase" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+                </div>
+                <div class="flex justify-end gap-6 pt-4">
+                    <button type="button" onclick="toggleDeleteModal(false)" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">
+                        @Model.Localizer["CancelLink"]
+                    </button>
+                    <button type="submit" class="bg-transparent border-none p-0 text-red-500 hover:opacity-70 transition-opacity font-bold cursor-pointer font-ui text-base">
+                        @Model.Localizer["DeleteAccountButton"]
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@if (TempData["StatusMessage"] != null)
+{
+    <div id="statusToast" class="fixed bottom-4 end-4 z-50 bg-kindred-gold text-kindred-dark px-6 py-4 rounded shadow-lg flex items-center gap-4">
+        <span>@TempData["StatusMessage"]</span>
+        <button type="button" onclick="document.getElementById('statusToast').remove()" class="bg-transparent border-none p-0 font-bold text-xl leading-none cursor-pointer">
+            &times;
+        </button>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="errorToast" class="fixed bottom-4 end-4 z-50 bg-red-600 text-white px-6 py-4 rounded shadow-lg flex items-center gap-4">
+        <span>@TempData["ErrorMessage"]</span>
+        <button type="button" onclick="document.getElementById('errorToast').remove()" class="bg-transparent border-none p-0 font-bold text-xl leading-none cursor-pointer">
+            &times;
+        </button>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        function toggleProfileEdit(show) {
+            document.getElementById('profile-read').classList.toggle('hidden', show);
+            document.getElementById('profile-edit').classList.toggle('hidden', !show);
+        }
+
+        function togglePreferencesEdit(show) {
+            document.getElementById('preferences-read').classList.toggle('hidden', show);
+            document.getElementById('preferences-edit').classList.toggle('hidden', !show);
+        }
+
+        function toggleRevokeConfirm(show) {
+            document.getElementById('revoke-sessions-container').classList.toggle('hidden', show);
+            document.getElementById('revoke-sessions-confirm').classList.toggle('hidden', !show);
+        }
+
+        function setEmailMode(mode) {
+            document.querySelectorAll('.email-mode-container').forEach(el => el.classList.add('hidden'));
+            document.getElementById('email-' + mode).classList.remove('hidden');
+        }
+
+        function validatePrimarySelection(radio) {
+            const saveBtn = document.getElementById('save-primary-btn');
+            if (radio.checked && radio.dataset.current !== 'true') {
+                saveBtn.disabled = false;
+                saveBtn.classList.remove('opacity-30', 'cursor-not-allowed');
+                saveBtn.classList.add('hover:opacity-70');
+            } else {
+                saveBtn.disabled = true;
+                saveBtn.classList.add('opacity-30', 'cursor-not-allowed');
+                saveBtn.classList.remove('hover:opacity-70');
+            }
+        }
+
+        function toggleDeleteModal(show) {
+            const modal = document.getElementById('delete-modal');
+            modal.classList.toggle('hidden', !show);
+            if (show) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check for validation errors and show appropriate mode
+            const profileErrors = document.querySelectorAll('[data-valmsg-for^="Profile."]');
+            let hasProfileErrors = false;
+            profileErrors.forEach(err => { if (err.textContent.trim()) hasProfileErrors = true; });
+            if (hasProfileErrors) toggleProfileEdit(true);
+
+            const emailErrors = document.querySelectorAll('[data-valmsg-for="NewEmail"]');
+            let hasEmailErrors = false;
+            emailErrors.forEach(err => { if (err.textContent.trim()) hasEmailErrors = true; });
+            if (hasEmailErrors) setEmailMode('edit');
+
+            const deleteErrors = document.querySelector('.validation-summary-errors');
+            if (deleteErrors) toggleDeleteModal(true);
+
+            // Resend Countdown logic
+            const resendContainers = document.querySelectorAll('.resend-container');
+            const resendMessageTemplate = '@Model.Localizer["ResendAvailableIn"].Value';
+
+            resendContainers.forEach(container => {
+                const countdownSpan = container.querySelector('.resend-countdown');
+                const resendForm = container.querySelector('.resend-form');
+                let secondsRemaining = parseInt(countdownSpan.dataset.seconds);
+
+                const interval = setInterval(() => {
+                    secondsRemaining--;
+                    if (secondsRemaining <= 0) {
+                        clearInterval(interval);
+                        countdownSpan.classList.add('hidden');
+                        resendForm.classList.remove('hidden');
+                    } else {
+                        countdownSpan.textContent = resendMessageTemplate.replace('{0}', secondsRemaining);
+                    }
+                }, 1000);
+            });
+
+            // Toast dismissal
+            const toast = document.getElementById('statusToast') || document.getElementById('errorToast');
+            if (toast) {
+                setTimeout(() => {
+                    toast.style.transition = 'opacity 0.5s ease-out';
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 500);
+                }, 5000);
+            }
+        });
+    </script>
+}

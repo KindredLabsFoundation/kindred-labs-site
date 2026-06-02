@@ -4,11 +4,13 @@
 
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using KindredLabs.Core.Models.Identity;
+using KindredLabs.Web.Resources.Pages.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 
 namespace KindredLabs.Web.Pages.Account
@@ -17,11 +19,17 @@ namespace KindredLabs.Web.Pages.Account
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
+        private readonly IStringLocalizer<Logout> _localizer;
 
-        public LogoutModel(SignInManager<ApplicationUser> signInManager, ILogger<LogoutModel> logger)
+        public LogoutModel(
+            SignInManager<ApplicationUser> signInManager,
+            ILogger<LogoutModel> logger,
+            IStringLocalizer<Logout> localizer
+        )
         {
             _signInManager = signInManager;
             _logger = logger;
+            _localizer = localizer;
         }
 
         public async Task<IActionResult> OnPost(string returnUrl = null)

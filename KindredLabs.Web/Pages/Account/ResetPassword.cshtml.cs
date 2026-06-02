@@ -6,22 +6,29 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using KindredLabs.Core.Models.Identity;
+using KindredLabs.Web.Resources.Pages.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Localization;
 
 namespace KindredLabs.Web.Pages.Account
 {
     public class ResetPasswordModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IStringLocalizer<ResetPassword> _localizer;
 
-        public ResetPasswordModel(UserManager<ApplicationUser> userManager)
+        public ResetPasswordModel(
+            UserManager<ApplicationUser> userManager,
+            IStringLocalizer<ResetPassword> localizer
+        )
         {
             _userManager = userManager;
+            _localizer = localizer;
         }
 
         /// <summary>
@@ -50,7 +57,11 @@ namespace KindredLabs.Web.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(
+                100,
+                ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.",
+                MinimumLength = 6
+            )]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
@@ -60,7 +71,10 @@ namespace KindredLabs.Web.Pages.Account
             /// </summary>
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare(
+                "Password",
+                ErrorMessage = "The password and confirmation password do not match."
+            )]
             public string ConfirmPassword { get; set; }
 
             /// <summary>
@@ -69,7 +83,6 @@ namespace KindredLabs.Web.Pages.Account
             /// </summary>
             [Required]
             public string Code { get; set; }
-
         }
 
         public IActionResult OnGet(string code = null)
@@ -82,7 +95,7 @@ namespace KindredLabs.Web.Pages.Account
             {
                 Input = new InputModel
                 {
-                    Code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code))
+                    Code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code)),
                 };
                 return Page();
             }

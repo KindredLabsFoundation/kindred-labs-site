@@ -3,6 +3,7 @@ using System.Text;
 using KindredLabs.Core.Data;
 using KindredLabs.Core.Models.Forms;
 using KindredLabs.Core.Services.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace KindredLabs.Core.Services.Implementations;
 
@@ -12,14 +13,17 @@ namespace KindredLabs.Core.Services.Implementations;
 public class SubmissionService : ISubmissionService
 {
     private readonly ApplicationDbContext _context;
+    private readonly ILogger<SubmissionService> _logger;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SubmissionService"/> class.
     /// </summary>
     /// <param name="context">The database context.</param>
-    public SubmissionService(ApplicationDbContext context)
+    /// <param name="logger">The logger for diagnostics.</param>
+    public SubmissionService(ApplicationDbContext context, ILogger<SubmissionService> logger)
     {
         _context = context;
+        _logger = logger;
     }
 
     /// <inheritdoc />
@@ -36,7 +40,20 @@ public class SubmissionService : ISubmissionService
         };
 
         _context.SubmissionLogs.Add(log);
-        await _context.SaveChangesAsync();
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(
+                ex,
+                "Failed to save submission log for form type {FormType}",
+                formType
+            );
+            throw;
+        }
 
         return log;
     }

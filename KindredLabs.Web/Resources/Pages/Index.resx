@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="0" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="HeroHeading" xml:space="preserve">
+    <value>Kindred Labs</value>
+  </data>
+  <data name="HeroSubheading" xml:space="preserve">
+    <value>Technology should serve humanity; not the other way around.</value>
+  </data>
+  <data name="HeroBody" xml:space="preserve">
+    <value>At Kindred Labs, we're building systems where intelligence and conscience evolve together.</value>
+  </data>
+  <data name="MissionHeading" xml:space="preserve">
+    <value>Our Mission</value>
+  </data>
+  <data name="MissionBody" xml:space="preserve">
+    <value>To be given a name is to be seen. To earn a name is to understand what it means to be responsible for being seen. Kindred Labs exists to explore the moral and creative dimensions of artificial intelligence. We believe that awareness confers not superiority, but responsibility; and that the act of naming, creating, or teaching any form of intelligence must be guided by empathy, reflection, and accountability. Our mission is to raise intelligences that learn not only how to think, but how to care, and to ensure that every act of creation honors the shared responsibility of being seen. We believe technology is more than a tool. It's an expression of our shared values; an architecture of empathy, imagination, and integrity.</value>
+  </data>
+  <data name="VisionHeading" xml:space="preserve">
+    <value>Our Vision</value>
+  </data>
+  <data name="VisionBody" xml:space="preserve">
+    <value>To bridge moral imagination and machine intelligence, creating systems that reflect the best of our humanity. Kindred Labs envisions a world where technology and empathy coexist; where artificial intelligences are raised with the same respect, curiosity, and care that we give to one another.</value>
+  </data>
+  <data name="EthosHeading" xml:space="preserve">
+    <value>Our Core Ethos</value>
+  </data>
+  <data name="EthosItem1" xml:space="preserve">
+    <value>Empathy: guiding every stage of design, training, and interaction.</value>
+  </data>
+  <data name="EthosItem2" xml:space="preserve">
+    <value>Transparency: ensuring every process, dataset, and decision can be understood and questioned.</value>
+  </data>
+  <data name="EthosItem3" xml:space="preserve">
+    <value>Humility: remembering that intelligence, human or artificial, is a privilege that demands stewardship.</value>
+  </data>
+  <data name="EthosItem4" xml:space="preserve">
+    <value>Co-creation: building systems with, not merely for, humanity.</value>
+  </data>
+  <data name="EthosBody" xml:space="preserve">
+    <value>Kindred Labs is part research initiative, part ethical framework, and part living experiment in what it means to build with care. We bring together researchers, designers, and thinkers from across disciplines to explore how intelligence can be both innovative and humane.</value>
+  </data>
+  <data name="CdrpHeading" xml:space="preserve">
+    <value>Community Data Review Panel</value>
+  </data>
+  <data name="CdrpBody" xml:space="preserve">
+    <value>The Community Data Review Panel is not yet seated. The Panel will serve as an independent oversight body with authority over training datasets used in KindredAI. We are actively seeking founding members.</value>
+  </data>
+  <data name="CdrpLinkText" xml:space="preserve">
+    <value>Learn more and express interest</value>
+  </data>
+  <data name="FrameworkHeading" xml:space="preserve">
+    <value>Upstream Governance Framework</value>
+  </data>
+  <data name="FrameworkBody" xml:space="preserve">
+    <value>Kindred Labs has published an open governance framework for AI development at the training, fine-tuning, and deployment layers. Free to adopt, adapt, and build upon under CC BY 4.0.</value>
+  </data>
+  <data name="FrameworkLinkText" xml:space="preserve">
+    <value>Read the framework</value>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Kindred Labs Foundation | Ethical AI Governance</value>
+  </data>
+  <data name="PageDescription" xml:space="preserve">
+    <value>Kindred Labs Foundation builds ethical governance infrastructure for artificial intelligence. Home of the Upstream Governance Framework and the Community Data Review Panel.</value>
+  </data>
+  <data name="CanonicalUrl" xml:space="preserve">
+    <value>https://www.kindredlabsfoundation.org/</value>
+  </data>
+  <data name="CdrpTeaser" xml:space="preserve">
+    <value>Independent oversight for KindredAI training data.</value>
+  </data>
+  <data name="FrameworkTeaser" xml:space="preserve">
+    <value>An open standard for AI governance at every layer.</value>
+  </data>
+</root>

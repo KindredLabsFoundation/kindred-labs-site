@@ -2,6 +2,7 @@
 using KindredLabs.Core.Models.Forms;
 using KindredLabs.Core.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace KindredLabs.Core.Services.Implementations;
 
@@ -12,16 +13,23 @@ public class DraftService : IDraftService
 {
     private readonly ApplicationDbContext _context;
     private readonly IEncryptionService _encryptionService;
+    private readonly ILogger<DraftService> _logger;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DraftService"/> class.
     /// </summary>
     /// <param name="context">The database context.</param>
     /// <param name="encryptionService">The encryption service for sensitive form data.</param>
-    public DraftService(ApplicationDbContext context, IEncryptionService encryptionService)
+    /// <param name="logger">The logger for diagnostics.</param>
+    public DraftService(
+        ApplicationDbContext context,
+        IEncryptionService encryptionService,
+        ILogger<DraftService> logger
+    )
     {
         _context = context;
         _encryptionService = encryptionService;
+        _logger = logger;
     }
 
     /// <inheritdoc />
@@ -33,7 +41,20 @@ public class DraftService : IDraftService
 
         if (draft != null)
         {
-            draft.FormData = _encryptionService.Decrypt(draft.FormData);
+            try
+            {
+                draft.FormData = _encryptionService.Decrypt(draft.FormData);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Failed to decrypt draft {DraftId} for user {UserId}",
+                    id,
+                    userId
+                );
+                return null;
+            }
         }
 
         return draft;
@@ -107,6 +128,55 @@ public class DraftService : IDraftService
         var now = DateTime.UtcNow;
         var expiredDrafts = _context.Drafts.Where(d => d.ExpiresAt < now);
         _context.Drafts.RemoveRange(expiredDrafts);
+        await _context.SaveChangesAsync();
+    }
+
+    /// <inheritdoc />
+    public async Task<Draft?> GetDraftAsync(string userId, FormType formType)
+    {
+        var draft = await _context.Drafts.FirstOrDefaultAsync(d =>
+            d.UserId == userId && d.FormType == formType
+        );
+
+        if (draft != null)
+        {
+            try
+            {
+                draft.FormData = _encryptionService.Decrypt(draft.FormData);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Failed to decrypt draft for user {UserId} and form type {FormType}",
+                    userId,
+                    formType
+                );
+                return null;
+            }
+        }
+
+        return draft;
+    }
+
+    /// <inheritdoc />
+    public async Task DeleteDraftAsync(string userId, FormType formType)
+    {
+        var draft = await _context.Drafts.FirstOrDefaultAsync(d =>
+            d.UserId == userId && d.FormType == formType
+        );
+        if (draft != null)
+        {
+            _context.Drafts.Remove(draft);
+            await _context.SaveChangesAsync();
+        }
+    }
+
+    /// <inheritdoc />
+    public async Task DeleteDraftsByUserIdAsync(string userId)
+    {
+        var drafts = _context.Drafts.Where(d => d.UserId == userId);
+        _context.Drafts.RemoveRange(drafts);
         await _context.SaveChangesAsync();
     }
 }

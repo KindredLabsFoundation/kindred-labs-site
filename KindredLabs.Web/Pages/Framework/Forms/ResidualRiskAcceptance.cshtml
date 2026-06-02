@@ -1,0 +1,613 @@
+﻿@page
+@model KindredLabs.Web.Pages.Forms.ResidualRiskAcceptanceModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using KindredLabs.Web.Models
+@inject IViewLocalizer Localizer
+@inject IStringLocalizer<KindredLabs.Web.Resources.Pages.Forms.ResidualRiskAcceptance> FormLocalizer
+
+@{
+    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+    ViewData["Title"] = FormLocalizer["PageTitle"];
+}
+
+<div class="max-w-4xl mx-auto px-4 py-16">
+    <div id="edit-mode" class="@(Model.IsPreview ? "hidden" : "")">
+        <h1 class="text-2xl sm:text-3xl font-bold text-kindred-gold mb-8">@ViewData["Title"]</h1>
+
+    @await Html.PartialAsync("_FormActions", new FormActionsViewModel
+    {
+        MainFormId = "rrar-form",
+        DeleteFormId = "deleteForm",
+        DraftId = Model.DraftId.ToString(),
+        DeleteHandlerPage = "/Framework/Forms/ResidualRiskAcceptance",
+        Culture = currentCulture,
+        ClearLabel = FormLocalizer["ClearButton"],
+        DeleteLabel = FormLocalizer["DeleteButton"],
+        DeleteConfirmMessage = FormLocalizer["DeleteConfirmMessage"]
+    })
+
+    <form id="rrar-form" method="post" asp-page-handler="Submit">
+        <div asp-validation-summary="All" class="text-red-400 text-sm mb-6"></div>
+
+            @* Record Information *@
+            <div class="bg-white/5 p-6 rounded-lg mb-8 border border-white/10">
+                <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4">@FormLocalizer["RecordInformation"]</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label asp-for="Input.RecordId" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["RecordId"]</label>
+                        <input asp-for="Input.RecordId" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text opacity-50 cursor-not-allowed" readonly data-no-clear />
+                    </div>
+                    <div>
+                        <label asp-for="Input.InternalReference" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["InternalReferenceLabel"]</label>
+                        <input asp-for="Input.InternalReference" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" placeholder="@FormLocalizer["InternalReferencePlaceholder"]" />
+                    </div>
+                    <div>
+                        <label asp-for="Input.Date" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["Date"]</label>
+                        <input asp-for="Input.Date" type="date" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+                    </div>
+                    <div class="md:col-span-2">
+                        <label asp-for="Input.VendorName" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["VendorName"]</label>
+                        <input asp-for="Input.VendorName" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+                    </div>
+                    <div class="md:col-span-1">
+                        <label asp-for="Input.ModelNameAndVersion" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["ModelNameVersionLabel"]</label>
+                        <input asp-for="Input.ModelNameAndVersion" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+                    </div>
+                    <div class="md:col-span-2">
+                        <label asp-for="Input.PreparedByName" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["PreparedByLabel"]</label>
+                        <input asp-for="Input.PreparedByName" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text opacity-50 cursor-not-allowed" readonly data-no-clear />
+                    </div>
+                    <div class="md:col-span-1">
+                        <label asp-for="Input.PreparedByRole" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["RoleLabel"]</label>
+                        <input asp-for="Input.PreparedByRole" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+                    </div>
+                </div>
+            </div>
+
+            @* Section 1: Vendor Transparency Standards Compliance Review *@
+            <div class="mb-12">
+                <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4 mt-8">@FormLocalizer["Section1Title"]</h2>
+                
+                <h3 class="text-kindred-text font-bold mb-4 mt-6">@FormLocalizer["Subsection1_1"]</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse mb-6">
+                        <thead>
+                            <tr class="border-b border-white/10 text-xs uppercase tracking-wider text-kindred-text/60">
+                                <th class="py-3 px-4">@FormLocalizer["Requirement"]</th>
+                                <th class="py-3 px-4 w-48">@FormLocalizer["Status"]</th>
+                                <th class="py-3 px-4">@FormLocalizer["Notes"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Input.DisclosureRequirements.Count; i++)
+                            {
+                                var item = Model.Input.DisclosureRequirements[i];
+                                <tr class="border-b border-white/5 hover:bg-white/5 transition-colors compliance-row" data-id="@item.Id">
+                                    <td class="py-4 px-4 align-top">
+                                        <span class="text-sm font-medium text-kindred-text">@FormLocalizer[item.LabelKey]</span>
+                                        <input type="hidden" asp-for="Input.DisclosureRequirements[i].Id" />
+                                        <input type="hidden" asp-for="Input.DisclosureRequirements[i].LabelKey" />
+                                        <input type="hidden" asp-for="Input.DisclosureRequirements[i].UseMetNotMet" />
+                                    </td>
+                                    <td class="py-4 px-4 align-top">
+                                        <div class="flex flex-col gap-2">
+                                            <label class="inline-flex items-center text-sm">
+                                                <input type="radio" asp-for="Input.DisclosureRequirements[i].Status" value="Accepted" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                                <span class="ml-2 text-kindred-text">@FormLocalizer["Accepted"]</span>
+                                            </label>
+                                            <label class="inline-flex items-center text-sm">
+                                                <input type="radio" asp-for="Input.DisclosureRequirements[i].Status" value="Declined" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                                <span class="ml-2 text-kindred-text text-red-400">@FormLocalizer["Declined"]</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 align-top">
+                                        <textarea asp-for="Input.DisclosureRequirements[i].Notes" rows="1" class="w-full bg-white/5 border border-white/20 rounded px-2 py-1 text-sm text-kindred-text focus:outline-none focus:border-kindred-gold notes-field" placeholder="@FormLocalizer["Notes"]"></textarea>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-kindred-text font-bold mb-4 mt-6">@FormLocalizer["Subsection1_2"]</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse mb-6">
+                        <thead>
+                            <tr class="border-b border-white/10 text-xs uppercase tracking-wider text-kindred-text/60">
+                                <th class="py-3 px-4">@FormLocalizer["Requirement"]</th>
+                                <th class="py-3 px-4 w-48">@FormLocalizer["Status"]</th>
+                                <th class="py-3 px-4">@FormLocalizer["Notes"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Input.OngoingTransparency.Count; i++)
+                            {
+                                var item = Model.Input.OngoingTransparency[i];
+                                <tr class="border-b border-white/5 hover:bg-white/5 transition-colors compliance-row" data-id="@item.Id">
+                                    <td class="py-4 px-4 align-top">
+                                        <span class="text-sm font-medium text-kindred-text">@FormLocalizer[item.LabelKey]</span>
+                                        <input type="hidden" asp-for="Input.OngoingTransparency[i].Id" />
+                                        <input type="hidden" asp-for="Input.OngoingTransparency[i].LabelKey" />
+                                        <input type="hidden" asp-for="Input.OngoingTransparency[i].UseMetNotMet" />
+                                    </td>
+                                    <td class="py-4 px-4 align-top">
+                                        <div class="flex flex-col gap-2">
+                                            <label class="inline-flex items-center text-sm">
+                                                <input type="radio" asp-for="Input.OngoingTransparency[i].Status" value="Accepted" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                                <span class="ml-2 text-kindred-text">@FormLocalizer["Accepted"]</span>
+                                            </label>
+                                            <label class="inline-flex items-center text-sm">
+                                                <input type="radio" asp-for="Input.OngoingTransparency[i].Status" value="Declined" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                                <span class="ml-2 text-kindred-text text-red-400">@FormLocalizer["Declined"]</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 align-top">
+                                        <textarea asp-for="Input.OngoingTransparency[i].Notes" rows="1" class="w-full bg-white/5 border border-white/20 rounded px-2 py-1 text-sm text-kindred-text focus:outline-none focus:border-kindred-gold notes-field" placeholder="@FormLocalizer["Notes"]"></textarea>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-kindred-text font-bold mb-4 mt-6">@FormLocalizer["Subsection1_3"]</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse mb-6">
+                        <thead>
+                            <tr class="border-b border-white/10 text-xs uppercase tracking-wider text-kindred-text/60">
+                                <th class="py-3 px-4">@FormLocalizer["Requirement"]</th>
+                                <th class="py-3 px-4 w-48">@FormLocalizer["Status"]</th>
+                                <th class="py-3 px-4">@FormLocalizer["Notes"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Input.ContractualAccountability.Count; i++)
+                            {
+                                var item = Model.Input.ContractualAccountability[i];
+                                <tr class="border-b border-white/5 hover:bg-white/5 transition-colors compliance-row" data-id="@item.Id">
+                                    <td class="py-4 px-4 align-top">
+                                        <span class="text-sm font-medium text-kindred-text">@FormLocalizer[item.LabelKey]</span>
+                                        <input type="hidden" asp-for="Input.ContractualAccountability[i].Id" />
+                                        <input type="hidden" asp-for="Input.ContractualAccountability[i].LabelKey" />
+                                        <input type="hidden" asp-for="Input.ContractualAccountability[i].UseMetNotMet" />
+                                    </td>
+                                    <td class="py-4 px-4 align-top">
+                                        <div class="flex flex-col gap-2">
+                                            <label class="inline-flex items-center text-sm">
+                                                <input type="radio" asp-for="Input.ContractualAccountability[i].Status" value="Accepted" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                                <span class="ml-2 text-kindred-text">@FormLocalizer["Accepted"]</span>
+                                            </label>
+                                            <label class="inline-flex items-center text-sm">
+                                                <input type="radio" asp-for="Input.ContractualAccountability[i].Status" value="Declined" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                                <span class="ml-2 text-kindred-text text-red-400">@FormLocalizer["Declined"]</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 align-top">
+                                        <textarea asp-for="Input.ContractualAccountability[i].Notes" rows="1" class="w-full bg-white/5 border border-white/20 rounded px-2 py-1 text-sm text-kindred-text focus:outline-none focus:border-kindred-gold notes-field" placeholder="@FormLocalizer["Notes"]"></textarea>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-kindred-text font-bold mb-4 mt-6">@FormLocalizer["Subsection1_4"]</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse mb-6">
+                        <thead>
+                            <tr class="border-b border-white/10 text-xs uppercase tracking-wider text-kindred-text/60">
+                                <th class="py-3 px-4">@FormLocalizer["Requirement"]</th>
+                                <th class="py-3 px-4 w-48">@FormLocalizer["Status"]</th>
+                                <th class="py-3 px-4">@FormLocalizer["Notes"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Input.EvaluationCriteria.Count; i++)
+                            {
+                                var item = Model.Input.EvaluationCriteria[i];
+                                <tr class="border-b border-white/5 hover:bg-white/5 transition-colors compliance-row" data-id="@item.Id">
+                                    <td class="py-4 px-4 align-top">
+                                        <span class="text-sm font-medium text-kindred-text">@FormLocalizer[item.LabelKey]</span>
+                                        <input type="hidden" asp-for="Input.EvaluationCriteria[i].Id" />
+                                        <input type="hidden" asp-for="Input.EvaluationCriteria[i].LabelKey" />
+                                        <input type="hidden" asp-for="Input.EvaluationCriteria[i].UseMetNotMet" />
+                                    </td>
+                                    <td class="py-4 px-4 align-top">
+                                        <div class="flex flex-col gap-2">
+                                            <label class="inline-flex items-center text-sm">
+                                                <input type="radio" asp-for="Input.EvaluationCriteria[i].Status" value="Met" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                                <span class="ml-2 text-kindred-text">@FormLocalizer["Met"]</span>
+                                            </label>
+                                            <label class="inline-flex items-center text-sm">
+                                                <input type="radio" asp-for="Input.EvaluationCriteria[i].Status" value="Not Met" class="form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                                <span class="ml-2 text-kindred-text text-red-400">@FormLocalizer["NotMet"]</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 align-top">
+                                        <textarea asp-for="Input.EvaluationCriteria[i].Notes" rows="1" class="w-full bg-white/5 border border-white/20 rounded px-2 py-1 text-sm text-kindred-text focus:outline-none focus:border-kindred-gold notes-field" placeholder="@FormLocalizer["Notes"]"></textarea>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            @* Section 2: Governance Risk Assessment *@
+            <div id="section2-container" class="mb-12 hidden">
+                <div class="border border-kindred-gold/30 rounded-lg p-6 bg-white/5">
+                    <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4">@FormLocalizer["Section2Title"]</h2>
+                    <label asp-for="Input.GovernanceRiskAssessment" class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["GovernanceRiskAssessmentLabel"]</label>
+                    <textarea asp-for="Input.GovernanceRiskAssessment" rows="4" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold"></textarea>
+                </div>
+            </div>
+
+            @* Section 3: Compensating Controls *@
+            <div id="section3-container" class="mb-12 hidden">
+                <div class="border border-kindred-gold/30 rounded-lg p-6 bg-white/5">
+                    <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4">@FormLocalizer["Section3Title"]</h2>
+                    <label asp-for="Input.CompensatingControls" class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["CompensatingControlsLabel"]</label>
+                    <textarea asp-for="Input.CompensatingControls" rows="4" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold"></textarea>
+                </div>
+            </div>
+
+            @* Section 4: Decision *@
+            <div class="mb-12">
+                <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4 mt-8">@FormLocalizer["Section4Title"]</h2>
+                <div class="space-y-6">
+                    <div>
+                        <span class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["Decision"]</span>
+                        <div class="space-y-4">
+                            <label class="flex items-start">
+                                <input type="radio" asp-for="Input.Decision" value="Approved to proceed" class="mt-1 form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                <span class="ml-3 text-kindred-text">@FormLocalizer["ApprovedToProceed"]</span>
+                            </label>
+                            <label class="flex items-start">
+                                <input type="radio" asp-for="Input.Decision" value="Not approved" class="mt-1 form-radio text-kindred-gold bg-white/5 border-white/20 focus:ring-kindred-gold" required />
+                                <span class="ml-3 text-kindred-text text-red-400">@FormLocalizer["NotApproved"]</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label asp-for="Input.Rationale" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["Rationale"]</label>
+                        <textarea asp-for="Input.Rationale" rows="3" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required></textarea>
+                    </div>
+                    <div>
+                        <label asp-for="Input.NextReviewDate" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["NextReviewDate"]</label>
+                        <input asp-for="Input.NextReviewDate" type="date" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" required />
+                    </div>
+                </div>
+            </div>
+
+            @* Approval Section (Manual completion) *@
+            <div class="border border-white/10 rounded-lg p-6 mt-6">
+                <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4">@FormLocalizer["ApprovalTitle"]</h2>
+                <p class="text-sm text-kindred-text/60 italic mb-6">@FormLocalizer["ManualCompletionNote"]</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <div class="text-sm font-medium text-kindred-text mb-1">@FormLocalizer["PreparedByDate"]</div>
+                        <div class="border-b border-white/20 h-8"></div>
+                    </div>
+                    <div>
+                        <div class="text-sm font-medium text-kindred-text mb-1">@FormLocalizer["GovernanceAuthoritySignOff"]</div>
+                        <div class="border-b border-white/20 h-8"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 flex justify-between items-center">
+                <div id="save-status" class="text-sm text-kindred-text/60">
+                    @if (Model.LastSaved != null)
+                    {
+                        <span>@FormLocalizer["DraftSavedAt", Model.LastSaved]</span>
+                    }
+                </div>
+                <button type="submit" name="action" value="preview" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">@FormLocalizer["Preview"]</button>
+            </div>
+
+            <input type="hidden" asp-for="Input.SignatureData" id="signature-input" />
+        </form>
+    </div>
+
+    @* Preview Mode *@
+    @if (Model.IsPreview)
+    {
+        <div id="preview-mode">
+            <h1 class="text-2xl sm:text-3xl font-bold text-kindred-gold mb-8">@FormLocalizer["Preview"]</h1>
+            <div class="bg-white/5 p-8 rounded-lg border border-white/20 space-y-8">
+                <div>
+                    <h3 class="text-kindred-gold font-bold border-b border-white/10 pb-2 mb-3">@FormLocalizer["RecordHeader"]</h3>
+                    <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+                        <div>
+                            <dt class="text-xs text-kindred-text/60 uppercase">@FormLocalizer["RecordId"]</dt>
+                            <dd class="text-kindred-text">@Model.Input.RecordId</dd>
+                        </div>
+                        <div>
+                            <dt class="text-xs text-kindred-text/60 uppercase">@FormLocalizer["InternalReferenceLabel"]</dt>
+                            <dd class="text-kindred-text">@Model.Input.InternalReference</dd>
+                        </div>
+                        <div>
+                            <dt class="text-xs text-kindred-text/60 uppercase">@FormLocalizer["Date"]</dt>
+                            <dd class="text-kindred-text">@Model.Input.Date.ToShortDateString()</dd>
+                        </div>
+                        <div>
+                            <dt class="text-xs text-kindred-text/60 uppercase">@FormLocalizer["VendorName"]</dt>
+                            <dd class="text-kindred-text">@Model.Input.VendorName</dd>
+                        </div>
+                        <div>
+                            <dt class="text-xs text-kindred-text/60 uppercase">@FormLocalizer["ModelNameVersionLabel"]</dt>
+                            <dd class="text-kindred-text">@Model.Input.ModelNameAndVersion</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <div>
+                    <h3 class="text-kindred-gold font-bold border-b border-white/10 pb-2 mb-3">@FormLocalizer["Section1Title"]</h3>
+                    <div class="space-y-6">
+                        @{
+                            var subsectionsPreview = new[] {
+                                (Key: "Subsection1_1", Items: Model.Input.DisclosureRequirements),
+                                (Key: "Subsection1_2", Items: Model.Input.OngoingTransparency),
+                                (Key: "Subsection1_3", Items: Model.Input.ContractualAccountability),
+                                (Key: "Subsection1_4", Items: Model.Input.EvaluationCriteria)
+                            };
+                        }
+                        @foreach (var sub in subsectionsPreview)
+                        {
+                            <div>
+                                <h4 class="text-sm font-bold text-kindred-text mb-2">@FormLocalizer[sub.Key]</h4>
+                                <table class="w-full text-left text-sm">
+                                    <thead>
+                                        <tr class="text-kindred-text/60">
+                                            <th class="pb-2">@FormLocalizer["Requirement"]</th>
+                                            <th class="pb-2 w-24">@FormLocalizer["Status"]</th>
+                                            <th class="pb-2">@FormLocalizer["Notes"]</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in sub.Items)
+                                        {
+                                            <tr class="@(item.Status == "Declined" || item.Status == "Not Met" ? "bg-red-950/20" : "")">
+                                                <td class="py-2 pr-4">@FormLocalizer[item.LabelKey]</td>
+                                                <td class="py-2 font-medium @(item.Status == "Declined" || item.Status == "Not Met" ? "text-red-400" : "text-green-400")">@FormLocalizer[item.Status.Replace(" ", "")]</td>
+                                                <td class="py-2 italic">@item.Notes</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(Model.Input.GovernanceRiskAssessment))
+                {
+                    <div>
+                        <h3 class="text-kindred-gold font-bold border-b border-white/10 pb-2 mb-3">@FormLocalizer["Section2Title"]</h3>
+                        <p class="text-kindred-text whitespace-pre-wrap">@Model.Input.GovernanceRiskAssessment</p>
+                    </div>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.Input.CompensatingControls))
+                {
+                    <div>
+                        <h3 class="text-kindred-gold font-bold border-b border-white/10 pb-2 mb-3">@FormLocalizer["Section3Title"]</h3>
+                        <p class="text-kindred-text whitespace-pre-wrap">@Model.Input.CompensatingControls</p>
+                    </div>
+                }
+
+                <div>
+                    <h3 class="text-kindred-gold font-bold border-b border-white/10 pb-2 mb-3">@FormLocalizer["Section4Title"]</h3>
+                    <dl class="space-y-4">
+                        <div>
+                            <dt class="text-xs text-kindred-text/60 uppercase">@FormLocalizer["Decision"]</dt>
+                            <dd class="text-kindred-text font-bold">@FormLocalizer[Model.Input.Decision == "Approved to proceed" ? "ApprovedToProceed" : "NotApproved"]</dd>
+                        </div>
+                        <div>
+                            <dt class="text-xs text-kindred-text/60 uppercase">@FormLocalizer["Rationale"]</dt>
+                            <dd class="text-kindred-text whitespace-pre-wrap">@Model.Input.Rationale</dd>
+                        </div>
+                        <div>
+                            <dt class="text-xs text-kindred-text/60 uppercase">@FormLocalizer["NextReviewDate"]</dt>
+                            <dd class="text-kindred-text">@Model.Input.NextReviewDate?.ToShortDateString()</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+
+            <form method="post" asp-page-handler="Submit">
+                @* Re-bind all fields to maintain state *@
+                <input type="hidden" asp-for="Input.RecordId" />
+                <input type="hidden" asp-for="Input.InternalReference" />
+                <input type="hidden" asp-for="Input.Date" />
+                <input type="hidden" asp-for="Input.VendorName" />
+                <input type="hidden" asp-for="Input.ModelNameAndVersion" />
+                <input type="hidden" asp-for="Input.PreparedByName" />
+                <input type="hidden" asp-for="Input.PreparedByRole" />
+                <input type="hidden" asp-for="Input.PreparedByDate" />
+                <input type="hidden" asp-for="Input.GovernanceRiskAssessment" />
+                <input type="hidden" asp-for="Input.CompensatingControls" />
+                <input type="hidden" asp-for="Input.Decision" />
+                <input type="hidden" asp-for="Input.Rationale" />
+                <input type="hidden" asp-for="Input.NextReviewDate" />
+                
+                @for (int i = 0; i < Model.Input.DisclosureRequirements.Count; i++) {
+                    <input type="hidden" asp-for="Input.DisclosureRequirements[i].Id" />
+                    <input type="hidden" asp-for="Input.DisclosureRequirements[i].Status" />
+                    <input type="hidden" asp-for="Input.DisclosureRequirements[i].Notes" />
+                }
+                @for (int i = 0; i < Model.Input.OngoingTransparency.Count; i++) {
+                    <input type="hidden" asp-for="Input.OngoingTransparency[i].Id" />
+                    <input type="hidden" asp-for="Input.OngoingTransparency[i].Status" />
+                    <input type="hidden" asp-for="Input.OngoingTransparency[i].Notes" />
+                }
+                @for (int i = 0; i < Model.Input.ContractualAccountability.Count; i++) {
+                    <input type="hidden" asp-for="Input.ContractualAccountability[i].Id" />
+                    <input type="hidden" asp-for="Input.ContractualAccountability[i].Status" />
+                    <input type="hidden" asp-for="Input.ContractualAccountability[i].Notes" />
+                }
+                @for (int i = 0; i < Model.Input.EvaluationCriteria.Count; i++) {
+                    <input type="hidden" asp-for="Input.EvaluationCriteria[i].Id" />
+                    <input type="hidden" asp-for="Input.EvaluationCriteria[i].Status" />
+                    <input type="hidden" asp-for="Input.EvaluationCriteria[i].Notes" />
+                }
+
+                <div class="mt-8 border border-white/10 rounded-lg p-6">
+                    <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4">@FormLocalizer["GovernanceAuthoritySignOff"]</h2>
+                    <div class="mb-6">
+                        <canvas id="signature-pad" class="border border-white/20 bg-white/10 rounded w-full h-40"></canvas>
+                    </div>
+                    <div class="flex justify-end gap-4">
+                        <button type="button" id="clear-signature" class="text-sm text-kindred-text hover:text-kindred-gold">@FormLocalizer["ClearSignature"]</button>
+                    </div>
+                </div>
+
+                <div class="mt-12 flex justify-between">
+                    <a asp-page="./ResidualRiskAcceptance" class="btn-secondary border border-white/20 px-6 py-2 rounded text-kindred-text hover:bg-white/10">@FormLocalizer["BackToEdit"]</a>
+                    <button type="submit" id="submit-btn" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">@FormLocalizer["Submit"]</button>
+                </div>
+                <input type="hidden" asp-for="Input.SignatureData" id="signature-input" />
+            </form>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('rrar-form');
+            if (!form) return;
+
+            // Auto-save
+            let isDirty = false;
+            form.addEventListener('input', () => isDirty = true);
+            form.addEventListener('change', () => isDirty = true);
+
+            const signaturePadElement = document.getElementById('signature-pad');
+            const signatureInput = document.getElementById('signature-input');
+            const saveStatus = document.getElementById('save-status');
+
+            // Conditional Logic for Section 1 -> 2 & 3
+            function updateVisibility() {
+                const rows = document.querySelectorAll('.compliance-row');
+                let anyDeclined = false;
+                rows.forEach(row => {
+                    const status = row.querySelector('input[type="radio"]:checked')?.value;
+                    if (status === 'Declined' || status === 'Not Met') {
+                        anyDeclined = true;
+                        row.classList.add('bg-red-950/20');
+                    } else {
+                        row.classList.remove('bg-red-950/20');
+                    }
+                });
+
+                document.getElementById('section2-container').classList.toggle('hidden', !anyDeclined);
+                document.getElementById('section3-container').classList.toggle('hidden', !anyDeclined);
+                
+                const riskAssessment = document.querySelector('textarea[name="Input.GovernanceRiskAssessment"]');
+                const controls = document.querySelector('textarea[name="Input.CompensatingControls"]');
+                if (anyDeclined) {
+                    riskAssessment.setAttribute('required', 'required');
+                    controls.setAttribute('required', 'required');
+                } else {
+                    riskAssessment.removeAttribute('required');
+                    controls.removeAttribute('required');
+                }
+            }
+
+            form.addEventListener('change', updateVisibility);
+            updateVisibility();
+
+            // Auto-save
+            let autoSaveTimer = setInterval(saveDraft, 60000);
+
+            async function saveDraft() {
+                if (!isDirty) return;
+
+                const formData = new FormData(form);
+                const data = {
+                    RecordId: formData.get('Input.RecordId'),
+                    InternalReference: formData.get('Input.InternalReference'),
+                    Date: formData.get('Input.Date'),
+                    VendorName: formData.get('Input.VendorName'),
+                    ModelNameAndVersion: formData.get('Input.ModelNameAndVersion'),
+                    PreparedByName: formData.get('Input.PreparedByName'),
+                    PreparedByRole: formData.get('Input.PreparedByRole'),
+                    PreparedByDate: formData.get('Input.PreparedByDate'),
+                    GovernanceRiskAssessment: formData.get('Input.GovernanceRiskAssessment'),
+                    CompensatingControls: formData.get('Input.CompensatingControls'),
+                    Decision: formData.get('Input.Decision'),
+                    Rationale: formData.get('Input.Rationale'),
+                    NextReviewDate: formData.get('Input.NextReviewDate'),
+                    DisclosureRequirements: [],
+                    OngoingTransparency: [],
+                    ContractualAccountability: [],
+                    EvaluationCriteria: []
+                };
+
+                // Helper to extract list items
+                const extractList = (prefix, list) => {
+                    for(let i=0; i<10; i++) { // Max expected items
+                        const id = formData.get(`${prefix}[${i}].Id`);
+                        if(!id) break;
+                        list.push({
+                            Id: id,
+                            LabelKey: formData.get(`${prefix}[${i}].LabelKey`),
+                            Status: formData.get(`${prefix}[${i}].Status`),
+                            Notes: formData.get(`${prefix}[${i}].Notes`),
+                            UseMetNotMet: formData.get(`${prefix}[${i}].UseMetNotMet`) === 'true'
+                        });
+                    }
+                };
+
+                extractList('Input.DisclosureRequirements', data.DisclosureRequirements);
+                extractList('Input.OngoingTransparency', data.OngoingTransparency);
+                extractList('Input.ContractualAccountability', data.ContractualAccountability);
+                extractList('Input.EvaluationCriteria', data.EvaluationCriteria);
+
+                try {
+                    const response = await fetch('?handler=SaveDraft', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    if (response.ok) {
+                        const result = await response.json();
+                        saveStatus.textContent = `@FormLocalizer["DraftSavedAt"]`.replace('{0}', result.lastSaved);
+                        isDirty = false;
+                    }
+                } catch (e) { console.error('Auto-save failed', e); }
+            }
+        });
+
+        // Signature Pad logic
+        const signaturePadElement = document.getElementById('signature-pad');
+        if (signaturePadElement) {
+            window.signaturePad = new SignaturePad(signaturePadElement);
+            const signaturePad = window.signaturePad;
+            const signatureInput = document.getElementById('signature-input');
+            const clearBtn = document.getElementById('clear-signature');
+            const submitBtn = document.getElementById('submit-btn');
+            const finalForm = signaturePadElement.closest('form');
+
+            clearBtn.addEventListener('click', () => signaturePad.clear());
+
+            finalForm.addEventListener('submit', (e) => {
+                if (signaturePad.isEmpty()) {
+                    e.preventDefault();
+                    alert('@FormLocalizer["SignatureRequired"]');
+                    return;
+                }
+                signatureInput.value = signaturePad.toDataURL();
+            });
+        }
+    </script>
+}

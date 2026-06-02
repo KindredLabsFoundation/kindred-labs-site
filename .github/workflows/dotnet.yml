@@ -54,6 +54,7 @@ jobs:
         load: true
 
     - name: Docker Scout
+      if: github.event_name == 'push'
       uses: docker/scout-action@v1
       with:
         command: cves

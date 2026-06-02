@@ -1,0 +1,75 @@
+@page
+@model LoginModel
+@inject IStringLocalizer<KindredLabs.Web.Resources.Pages.Account.Login> Localizer
+
+@{
+    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+    ViewData["Title"] = Localizer["Log in"];
+}
+
+<div class="max-w-md mx-auto px-4 py-16">
+    <h1 class="text-xl sm:text-2xl font-bold text-kindred-gold mb-8">@ViewData["Title"]</h1>
+
+    <section>
+        <form id="account" method="post" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-red-400 text-sm mb-4" role="alert"></div>
+
+            <div class="mb-4">
+                <label asp-for="Input.Email" class="block text-sm font-medium text-kindred-text mb-1">@Localizer["Email"]</label>
+                <input asp-for="Input.Email" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" autocomplete="username" aria-required="true" placeholder="name@example.com" required type="email" />
+                <span asp-validation-for="Input.Email" class="text-red-400 text-sm mt-1 block"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Input.Password" class="block text-sm font-medium text-kindred-text mb-1">@Localizer["Password"]</label>
+                <div class="relative">
+                    <input asp-for="Input.Password" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold pr-10" autocomplete="current-password" aria-required="true" placeholder="password" required type="password" />
+                    <button type="button" class="absolute inset-y-0 right-0 flex items-center pr-3 text-white/50 hover:text-white" onclick="togglePasswordVisibility('Input_Password')">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="Input_Password_eye">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </button>
+                </div>
+                <span asp-validation-for="Input.Password" class="text-red-400 text-sm mt-1 block"></span>
+            </div>
+
+            <div class="mb-6">
+                <label asp-for="Input.RememberMe" class="inline-flex items-center text-sm font-medium text-kindred-text">
+                    <input class="rounded border-white/20 bg-white/5 text-kindred-gold focus:ring-kindred-gold mr-2" asp-for="Input.RememberMe" />
+                    @Localizer["Remember me?"]
+                </label>
+            </div>
+
+            <div class="mb-8">
+                <button id="login-submit" type="submit" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">@Localizer["Log in"]</button>
+            </div>
+
+            <div class="space-y-2 text-sm">
+                <p>
+                    <a id="forgot-password" asp-page="./ForgotPassword" asp-route-culture="@currentCulture" class="text-kindred-gold hover:underline">@Localizer["Forgot your password?"]</a>
+                </p>
+                <p>
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" asp-route-culture="@currentCulture" class="text-kindred-gold hover:underline">@Localizer["Register as a new user"]</a>
+                </p>
+                <p>
+                    <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" asp-route-culture="@currentCulture" class="text-kindred-gold hover:underline">@Localizer["Resend email confirmation"]</a>
+                </p>
+            </div>
+        </form>
+    </section>
+</div>
+
+<script>
+    function togglePasswordVisibility(inputId) {
+        const input = document.getElementById(inputId);
+        const eyeIcon = document.getElementById(inputId + '_eye');
+        if (input.type === 'password') {
+            input.type = 'text';
+            eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7 1.274-4.057 5.064-7 9.542-7 1.053 0 2.062.18 3 .512M7 7l10 10M15 12a3 3 0 11-6 0 3 3 0 016 0z" />';
+        } else {
+            input.type = 'password';
+            eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />';
+        }
+    }
+</script>

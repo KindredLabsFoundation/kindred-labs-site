@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="0" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Registro de Documentación de Consentimiento</value>
+  </data>
+  <data name="RecordInformation" xml:space="preserve">
+    <value>Información del Registro</value>
+  </data>
+  <data name="RecordId" xml:space="preserve">
+    <value>ID del Registro</value>
+  </data>
+  <data name="InternalReferenceLabel" xml:space="preserve">
+    <value>Referencia Interna</value>
+  </data>
+  <data name="InternalReferencePlaceholder" xml:space="preserve">
+    <value>Opcional — ingrese el número de referencia interno de su organización</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="DataProvenanceRecordIdLabel" xml:space="preserve">
+    <value>ID del Registro de Procedencia de Datos</value>
+  </data>
+  <data name="ModelNameVersionLabel" xml:space="preserve">
+    <value>Nombre y versión del modelo</value>
+  </data>
+  <data name="PreparedByLabel" xml:space="preserve">
+    <value>Preparado Por</value>
+  </data>
+  <data name="RoleLabel" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="PreparedByDateLabel" xml:space="preserve">
+    <value>Fecha de Preparación</value>
+  </data>
+  <data name="PreparedBy" xml:space="preserve">
+    <value>Preparado Por</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="ClearButton" xml:space="preserve">
+    <value>Limpiar Formulario</value>
+  </data>
+  <data name="DeleteButton" xml:space="preserve">
+    <value>Eliminar Borrador</value>
+  </data>
+  <data name="DeleteConfirmMessage" xml:space="preserve">
+    <value>¿Está seguro de que desea eliminar este borrador? Esta acción no se puede deshacer.</value>
+  </data>
+  <data name="ReviewedByName" xml:space="preserve">
+    <value>Revisado por (nombre)</value>
+  </data>
+  <data name="ReviewedByRole" xml:space="preserve">
+    <value>Revisado por (rol)</value>
+  </data>
+  <data name="ReviewDate" xml:space="preserve">
+    <value>Fecha de revisión</value>
+  </data>
+  <data name="Section1Title" xml:space="preserve">
+    <value>Sección 1: Clasificación de la Base de Consentimiento</value>
+  </data>
+  <data name="ConsentBasis" xml:space="preserve">
+    <value>Base de consentimiento</value>
+  </data>
+  <data name="ExplicitConsent" xml:space="preserve">
+    <value>Consentimiento explícito</value>
+  </data>
+  <data name="InformedGeneralConsent" xml:space="preserve">
+    <value>Consentimiento general informado</value>
+  </data>
+  <data name="ImpliedOrganizationalConsent" xml:space="preserve">
+    <value>Consentimiento organizacional implícito</value>
+  </data>
+  <data name="NoDocumentedConsentBasis" xml:space="preserve">
+    <value>Sin base de consentimiento documentada</value>
+  </data>
+  <data name="ClassificationRationale" xml:space="preserve">
+    <value>Justificación de la clasificación</value>
+  </data>
+  <data name="Section2Title" xml:space="preserve">
+    <value>Sección 2: Documentación de la Base de Consentimiento</value>
+  </data>
+  <data name="InstrumentEstablishingConsent" xml:space="preserve">
+    <value>Instrumento que establece el consentimiento</value>
+  </data>
+  <data name="DocumentLocation" xml:space="preserve">
+    <value>Ubicación del documento</value>
+  </data>
+  <data name="RelevantProvision" xml:space="preserve">
+    <value>Disposición pertinente</value>
+  </data>
+  <data name="NoInstrumentExists" xml:space="preserve">
+    <value>No existe ningún instrumento</value>
+  </data>
+  <data name="Section3Title" xml:space="preserve">
+    <value>Sección 3: Evaluación del Alcance del Consentimiento</value>
+  </data>
+  <data name="SpecificFineTuningUse" xml:space="preserve">
+    <value>Uso específico para ajuste fino</value>
+  </data>
+  <data name="ScopeAssessment" xml:space="preserve">
+    <value>Evaluación del alcance</value>
+  </data>
+  <data name="ScopeAssessmentRationale" xml:space="preserve">
+    <value>Justificación de la evaluación del alcance</value>
+  </data>
+  <data name="ScopeGap" xml:space="preserve">
+    <value>Brecha en el alcance</value>
+  </data>
+  <data name="Section4Title" xml:space="preserve">
+    <value>Sección 4: Revisión Elevada</value>
+  </data>
+  <data name="ElevatedReviewAuthorityName" xml:space="preserve">
+    <value>Nombre de la autoridad de revisión elevada</value>
+  </data>
+  <data name="ElevatedReviewAuthorityRole" xml:space="preserve">
+    <value>Rol de la autoridad de revisión elevada</value>
+  </data>
+  <data name="ElevatedReviewDate" xml:space="preserve">
+    <value>Fecha de revisión elevada</value>
+  </data>
+  <data name="RoutedFrom" xml:space="preserve">
+    <value>Enviado desde</value>
+  </data>
+  <data name="Section1" xml:space="preserve">
+    <value>Sección 1 (Clasificación de la Base de Consentimiento)</value>
+  </data>
+  <data name="Section2" xml:space="preserve">
+    <value>Sección 2 (Documento Ausente)</value>
+  </data>
+  <data name="Section3" xml:space="preserve">
+    <value>Sección 3 (Evaluación del Alcance del Consentimiento)</value>
+  </data>
+  <data name="Decision" xml:space="preserve">
+    <value>Decisión</value>
+  </data>
+  <data name="ApprovedForUse" xml:space="preserve">
+    <value>Aprobado para su uso</value>
+  </data>
+  <data name="ApprovedWithConditions" xml:space="preserve">
+    <value>Aprobado con condiciones</value>
+  </data>
+  <data name="NotApproved" xml:space="preserve">
+    <value>No aprobado</value>
+  </data>
+  <data name="DecisionRationale" xml:space="preserve">
+    <value>Justificación de la decisión</value>
+  </data>
+  <data name="ConditionsOnApproval" xml:space="preserve">
+    <value>Condiciones de la aprobación</value>
+  </data>
+  <data name="Section5Title" xml:space="preserve">
+    <value>Sección 5: Obligaciones de Retirada y Supresión</value>
+  </data>
+  <data name="WithdrawalProcess" xml:space="preserve">
+    <value>Proceso de retirada</value>
+  </data>
+  <data name="RemovalFromCorpus" xml:space="preserve">
+    <value>Eliminación del corpus</value>
+  </data>
+  <data name="ObligationForAlreadyTrainedModels" xml:space="preserve">
+    <value>Obligación para modelos ya entrenados</value>
+  </data>
+  <data name="DeletionRequestProcess" xml:space="preserve">
+    <value>Proceso de solicitud de supresión</value>
+  </data>
+  <data name="ApprovalTitle" xml:space="preserve">
+    <value>Aprobación</value>
+  </data>
+  <data name="ManualCompletionNote" xml:space="preserve">
+    <value>Para completar manualmente tras la generación del PDF</value>
+  </data>
+  <data name="NextReviewDate" xml:space="preserve">
+    <value>Siguiente fecha de revisión</value>
+  </data>
+  <data name="GovernanceAuthoritySignOff" xml:space="preserve">
+    <value>Firma de la autoridad de gobernanza</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Uncertain" xml:space="preserve">
+    <value>Incierto</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Vista previa</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="BackToEdit" xml:space="preserve">
+    <value>Volver a editar</value>
+  </data>
+  <data name="SaveDraft" xml:space="preserve">
+    <value>Guardar borrador</value>
+  </data>
+  <data name="DraftSavedAt" xml:space="preserve">
+    <value>Borrador guardado a las {0}</value>
+  </data>
+  <data name="SignatureRequired" xml:space="preserve">
+    <value>Por favor, firme antes de enviar.</value>
+  </data>
+  <data name="ClearSignature" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+</root>

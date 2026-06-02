@@ -1,0 +1,324 @@
+﻿@page
+@model KindredLabs.Web.Pages.Framework.Forms.MaturityAssessmentModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using KindredLabs.Web.Models
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<KindredLabs.Web.Resources.Pages.Forms.MaturityAssessment> FormLocalizer
+@{
+    ViewData["Title"] = FormLocalizer["PageTitle"];
+    var currentCulture = Model.CurrentCulture;
+}
+
+<div class="max-w-4xl mx-auto px-4 py-16">
+    <div id="edit-mode" class="@(Model.IsPreview ? "hidden" : "")">
+        <h1 class="text-2xl sm:text-3xl font-bold text-kindred-gold mb-8">@FormLocalizer["PageTitle"]</h1>
+
+        @await Html.PartialAsync("_FormActions", new FormActionsViewModel
+        {
+            MainFormId = "mainForm",
+            DeleteFormId = "deleteForm",
+            DraftId = Model.DraftId.ToString(),
+            DeleteHandlerPage = "/Framework/Forms/MaturityAssessment",
+            Culture = currentCulture,
+            ClearLabel = FormLocalizer["ClearButton"].Value,
+            DeleteLabel = FormLocalizer["DeleteButton"].Value,
+            DeleteConfirmMessage = FormLocalizer["DeleteConfirmMessage"].Value
+        })
+
+        @* Maturity Levels Reference *@
+        <div class="bg-white/5 border border-white/20 rounded-lg p-6 mb-12">
+            <h2 class="text-base md:text-lg text-kindred-gold font-bold mb-4">@FormLocalizer["MaturityLevelsReference"]</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                <div><span class="font-bold text-kindred-gold">0</span> = @FormLocalizer["Level0Label"]</div>
+                <div><span class="font-bold text-kindred-gold">1</span> = @FormLocalizer["Level1Label"]</div>
+                <div><span class="font-bold text-kindred-gold">2</span> = @FormLocalizer["Level2Label"]</div>
+                <div><span class="font-bold text-kindred-gold">3</span> = @FormLocalizer["Level3Label"]</div>
+            </div>
+        </div>
+
+        <form id="mainForm" method="post" 
+              data-layers-count="@Model.Input.Layers.Count"
+              data-draft-saved-at-template="@FormLocalizer["DraftSavedAt"].Value"
+              data-score-label="@FormLocalizer["Score"].Value"
+              data-signature-required-msg="@FormLocalizer["SignatureRequired"].Value"
+              data-record-id-label="@FormLocalizer["RecordId"].Value"
+              data-assessment-date-label="@FormLocalizer["AssessmentDate"].Value"
+              data-organization-name-label="@FormLocalizer["OrganizationName"].Value"
+              data-assessment-type-label="@FormLocalizer["AssessmentType"].Value"
+              data-assessor-name-label="@FormLocalizer["AssessorName"].Value"
+              data-assessor-role-label="@FormLocalizer["AssessorRole"].Value"
+              data-not-applicable-label="@FormLocalizer["NotApplicable"].Value"
+              data-na-documentation-label="@FormLocalizer["NADocumentation"].Value"
+              data-layer1-gap-narrative-label="@FormLocalizer["Layer1GapNarrativeLabel"].Value"
+              data-layer2-gap-narrative-label="@FormLocalizer["Layer2GapNarrativeLabel"].Value"
+              data-layer3-gap-narrative-label="@FormLocalizer["Layer3GapNarrativeLabel"].Value">
+            <div class="space-y-8">
+                @* Header Fields *@
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white/5 p-6 rounded-lg border border-white/10">
+                    <div class="md:col-span-2">
+                        <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-4">@FormLocalizer["RecordInformation"]</h2>
+                    </div>
+                    <div>
+                        <label asp-for="Input.RecordId" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["RecordId"]</label>
+                        <input asp-for="Input.RecordId" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" readonly data-no-clear />
+                        <span asp-validation-for="Input.RecordId" class="text-red-400 text-sm mt-1 block"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Input.Date" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["AssessmentDate"]</label>
+                        <input asp-for="Input.Date" type="date" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" data-no-clear />
+                        <span asp-validation-for="Input.Date" class="text-red-400 text-sm mt-1 block"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Input.FrameworkVersion" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["FrameworkVersion"]</label>
+                        <input asp-for="Input.FrameworkVersion" readonly class="w-full bg-white/10 border border-white/20 rounded px-3 py-2 text-kindred-text/60 cursor-not-allowed" data-no-clear />
+                    </div>
+                    <div>
+                        <label asp-for="Input.OrganizationName" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["OrganizationName"]</label>
+                        <input asp-for="Input.OrganizationName" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" />
+                        <span asp-validation-for="Input.OrganizationName" class="text-red-400 text-sm mt-1 block"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Input.AssessorName" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["AssessorName"]</label>
+                        <input asp-for="Input.AssessorName" readonly class="w-full bg-white/10 border border-white/20 rounded px-3 py-2 text-kindred-text/60 cursor-not-allowed" data-no-clear />
+                    </div>
+                    <div>
+                        <label asp-for="Input.AssessorRole" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["AssessorRole"]</label>
+                        <input asp-for="Input.AssessorRole" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" />
+                        <span asp-validation-for="Input.AssessorRole" class="text-red-400 text-sm mt-1 block"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Input.AssessorOrganization" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["AssessorOrganization"]</label>
+                        <input asp-for="Input.AssessorOrganization" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" />
+                        <span asp-validation-for="Input.AssessorOrganization" class="text-red-400 text-sm mt-1 block"></span>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-kindred-text mb-2">@FormLocalizer["AssessmentType"]</label>
+                        <div class="flex flex-col gap-2">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" asp-for="Input.AssessmentType" value="Self-Attested Alignment" class="text-kindred-gold focus:ring-kindred-gold bg-white/5 border-white/20" />
+                                <span class="text-sm">@FormLocalizer["SelfAttestedAlignment"]</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" asp-for="Input.AssessmentType" value="Independent Maturity Assessment" class="text-kindred-gold focus:ring-kindred-gold bg-white/5 border-white/20" />
+                                <span class="text-sm">@FormLocalizer["IndependentMaturityAssessment"]</span>
+                            </label>
+                        </div>
+                        <span asp-validation-for="Input.AssessmentType" class="text-red-400 text-sm mt-1 block"></span>
+                    </div>
+                </div>
+
+                @* Layers and Domains *@
+                @for (int l = 0; l < Model.Input.Layers.Count; l++)
+                {
+                    <div class="space-y-6">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center border-b border-white/20 pb-2 mt-12 gap-4">
+                            <h2 class="text-xl md:text-2xl text-kindred-gold font-bold">@FormLocalizer[Model.Input.Layers[l].Name]</h2>
+                            <div class="bg-kindred-gold/10 px-3 py-1 rounded border border-kindred-gold/30 self-start md:self-auto">
+                                <span class="text-[10px] md:text-xs uppercase tracking-wider text-kindred-gold font-bold">@FormLocalizer["LayerScore"]:</span>
+                                <span class="layer-score text-base md:text-lg font-bold ml-2" data-layer-index="@l">@(Model.Input.Layers[l].LayerScore ?? "0")</span>
+                            </div>
+                        </div>
+
+                        @for (int d = 0; d < Model.Input.Layers[l].Domains.Count; d++)
+                        {
+                            var domain = Model.Input.Layers[l].Domains[d];
+                            <div class="domain-card bg-white/5 rounded-lg border border-white/10 p-6 transition-opacity duration-300" 
+                                 data-domain-id="@domain.Id" data-layer-index="@l" data-domain-index="@d">
+                                
+                                <div class="flex justify-between items-start mb-6">
+                                    <div>
+                                        <h3 class="text-base md:text-lg text-kindred-gold font-bold">@domain.Id @FormLocalizer[domain.Name]</h3>
+                                    </div>
+                                    <div class="domain-score-badge bg-white/10 px-2 py-1 rounded text-[10px] md:text-sm font-bold border border-white/20">
+                                        @FormLocalizer["DomainScore"]: <span class="domain-score-value">@(domain.DomainScore ?? "0")</span>
+                                    </div>
+                                </div>
+
+                                @if (domain.CanBeNA)
+                                {
+                                    <div class="mb-6 flex items-center gap-2">
+                                        <input type="checkbox" asp-for="Input.Layers[l].Domains[d].IsNotApplicable" 
+                                               class="not-applicable-checkbox text-kindred-gold focus:ring-kindred-gold bg-white/5 border-white/20 rounded" />
+                                        <label asp-for="Input.Layers[l].Domains[d].IsNotApplicable" class="text-sm font-medium">@FormLocalizer["NotApplicable"]</label>
+                                    </div>
+                                    <div class="na-documentation-container hidden mb-6">
+                                        <label asp-for="Input.Layers[l].Domains[d].NaDocumentation" class="block text-sm font-medium text-kindred-text mb-1">@FormLocalizer["NADocumentation"]</label>
+                                        <textarea asp-for="Input.Layers[l].Domains[d].NaDocumentation" rows="2" 
+                                                  class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold text-sm"></textarea>
+                                    </div>
+                                }
+
+                                <div class="space-y-4 level-checks-container">
+                                    @for (int lv = 0; lv < domain.Levels.Count; lv++)
+                                    {
+                                        <div class="level-check-row flex flex-col md:flex-row md:items-center justify-between gap-4 p-3 rounded bg-white/5 border border-transparent transition-all duration-300 @(lv > 0 ? "hidden" : "")" 
+                                             data-level="@lv">
+                                            <div class="flex-1 text-sm">
+                                                <span class="font-bold text-kindred-gold mr-2">Level @lv:</span>
+                                                @FormLocalizer[$"Domain{domain.Id.Replace(".", "_")}_Level{lv}"]
+                                            </div>
+                                            <div class="flex gap-4">
+                                                <label class="flex items-center gap-1 cursor-pointer">
+                                                    <input type="radio" asp-for="Input.Layers[l].Domains[d].Levels[lv].Answer" value="true" 
+                                                           class="level-radio text-green-500 focus:ring-green-500 bg-white/5 border-white/20" />
+                                                    <span class="text-xs uppercase">@FormLocalizer["Yes"]</span>
+                                                </label>
+                                                <label class="flex items-center gap-1 cursor-pointer">
+                                                    <input type="radio" asp-for="Input.Layers[l].Domains[d].Levels[lv].Answer" value="false" 
+                                                           class="level-radio text-red-500 focus:ring-red-500 bg-white/5 border-white/20" />
+                                                    <span class="text-xs uppercase">@FormLocalizer["No"]</span>
+                                                </label>
+                                                @* Hidden fields for postback structure *@
+                                                <input type="hidden" asp-for="Input.Layers[l].Domains[d].Levels[lv].Level" />
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                
+                                @* Hidden domain fields *@
+                                <input type="hidden" asp-for="Input.Layers[l].Domains[d].Id" />
+                                <input type="hidden" asp-for="Input.Layers[l].Domains[d].Name" />
+                                <input type="hidden" asp-for="Input.Layers[l].Domains[d].DomainScore" class="domain-score-input" />
+                            </div>
+                        }
+                    </div>
+                }
+
+                @* Maturity Profile Summary Table *@
+                <div class="mt-16 bg-white/5 border border-white/20 rounded-lg p-6 overflow-x-auto">
+                    <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-6 text-center">@FormLocalizer["MaturityProfileSummary"]</h2>
+                    <table class="w-full text-sm text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-white/20 text-kindred-gold">
+                                <th class="py-2 px-4">@FormLocalizer["Layer"]</th>
+                                <th class="py-2 px-4">@FormLocalizer["DomainScores"]</th>
+                                <th class="py-2 px-4">@FormLocalizer["LayerScore"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int l = 0; l < Model.Input.Layers.Count; l++)
+                            {
+                                <tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
+                                    <td class="py-4 px-4 font-bold">@FormLocalizer[Model.Input.Layers[l].Name]</td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex gap-4 summary-domain-scores" data-layer-index="@l">
+                                            @for (int d = 0; d < Model.Input.Layers[l].Domains.Count; d++)
+                                            {
+                                                <div class="flex flex-col items-center">
+                                                    <span class="text-[10px] uppercase opacity-60">@Model.Input.Layers[l].Domains[d].Id</span>
+                                                    <span class="summary-domain-score font-bold" data-domain-id="@Model.Input.Layers[l].Domains[d].Id">
+                                                        @(Model.Input.Layers[l].Domains[d].IsNotApplicable ? "N/A" : Model.Input.Layers[l].Domains[d].DomainScore ?? "0")
+                                                    </span>
+                                                </div>
+                                            }
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 text-lg md:text-xl font-bold text-kindred-gold summary-layer-score" data-layer-index="@l">
+                                        @(Model.Input.Layers[l].LayerScore ?? "0")
+                                    </td>
+                                </tr>
+                                <input type="hidden" asp-for="Input.Layers[l].Name" />
+                                <input type="hidden" asp-for="Input.Layers[l].LayerScore" class="layer-score-input" />
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                @* Gap Narratives *@
+                <div class="space-y-8 mt-16">
+                    <div>
+                        <label asp-for="Input.Layer1GapNarrative" class="block text-kindred-gold font-bold mb-4">@FormLocalizer["Layer1GapNarrativeLabel"]</label>
+                        <textarea asp-for="Input.Layer1GapNarrative" rows="4" class="w-full bg-white/5 border border-white/20 rounded-lg p-4 text-kindred-text focus:outline-none focus:border-kindred-gold"></textarea>
+                        <span asp-validation-for="Input.Layer1GapNarrative" class="text-red-400 text-sm mt-1 block"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Input.Layer2GapNarrative" class="block text-kindred-gold font-bold mb-4">@FormLocalizer["Layer2GapNarrativeLabel"]</label>
+                        <textarea asp-for="Input.Layer2GapNarrative" rows="4" class="w-full bg-white/5 border border-white/20 rounded-lg p-4 text-kindred-text focus:outline-none focus:border-kindred-gold"></textarea>
+                        <span asp-validation-for="Input.Layer2GapNarrative" class="text-red-400 text-sm mt-1 block"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Input.Layer3GapNarrative" class="block text-kindred-gold font-bold mb-4">@FormLocalizer["Layer3GapNarrativeLabel"]</label>
+                        <textarea asp-for="Input.Layer3GapNarrative" rows="4" class="w-full bg-white/5 border border-white/20 rounded-lg p-4 text-kindred-text focus:outline-none focus:border-kindred-gold"></textarea>
+                        <span asp-validation-for="Input.Layer3GapNarrative" class="text-red-400 text-sm mt-1 block"></span>
+                    </div>
+                </div>
+
+                @* Sign-off placeholder for Preview *@
+                <div class="border border-white/10 rounded-lg p-6 mt-12 bg-white/5">
+                    <h2 class="text-lg md:text-xl text-kindred-gold font-bold mb-6">@FormLocalizer["AssessorSignOff"]</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 opacity-60 items-end">
+                         <div>
+                            <label class="block text-xs uppercase tracking-wider mb-1">@FormLocalizer["AssessorName"]</label>
+                            <div class="border-b border-white/40 py-1 min-h-[1.75rem]">@Model.Input.AssessorName</div>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider mb-1">@FormLocalizer["AssessorRole"]</label>
+                            <div class="sign-off-role-display border-b border-white/40 py-1 min-h-[1.75rem]">@Model.Input.AssessorRole</div>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider mb-1">@FormLocalizer["Date"]</label>
+                            <div class="border-b border-white/40 py-1 min-h-[1.75rem]">@Model.Input.Date.ToString("d")</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 flex items-center justify-between">
+                    <div id="save-status" class="text-sm text-kindred-text/60 italic">
+                        @if (!string.IsNullOrEmpty(Model.LastSaved))
+                        {
+                            <span>@FormLocalizer["DraftSavedAt", Model.LastSaved]</span>
+                        }
+                    </div>
+                    <button type="button" id="preview-btn" class="btn-primary px-8">@FormLocalizer["Preview"]</button>
+                </div>
+            </div>
+
+            <input type="hidden" asp-for="Input.SignatureData" id="signature-input" />
+        </form>
+    </div>
+
+    @* Preview Mode *@
+    <div id="preview-mode" class="@(Model.IsPreview ? "" : "hidden")">
+        <h1 class="text-2xl sm:text-3xl font-bold text-kindred-gold mb-8">@FormLocalizer["Preview"]</h1>
+        <div id="preview-content" class="bg-white/5 p-8 rounded-lg border border-white/20 space-y-8">
+            @* Will be populated via JS *@
+        </div>
+
+        <div class="mt-12 border border-kindred-gold/30 rounded-lg p-8 bg-white/5">
+            <h2 class="text-xl md:text-2xl text-kindred-gold font-bold mb-6">@FormLocalizer["AssessorSignOff"]</h2>
+            
+            <div class="mb-8 p-4 bg-white/10 rounded border border-white/10">
+                <label class="block text-sm font-medium mb-4">@FormLocalizer["DrawSignature"]</label>
+                <canvas id="signature-pad" class="border border-white/20 bg-white/5 rounded w-full h-48 cursor-crosshair"></canvas>
+                <div class="flex justify-end mt-2">
+                    <button type="button" id="clear-signature" class="text-sm text-kindred-text/60 hover:text-kindred-gold transition-colors">@FormLocalizer["ClearSignature"]</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+                <div>
+                    <span class="block text-xs uppercase opacity-60 mb-1">@FormLocalizer["AssessorName"]</span>
+                    <span class="font-bold border-b border-white/20 block pb-1">@Model.Input.AssessorName</span>
+                </div>
+                <div>
+                    <span class="block text-xs uppercase opacity-60 mb-1">@FormLocalizer["AssessorRole"]</span>
+                    <span class="sign-off-role-display font-bold border-b border-white/20 block pb-1" id="preview-assessor-role">@Model.Input.AssessorRole</span>
+                </div>
+                <div>
+                    <span class="block text-xs uppercase opacity-60 mb-1">@FormLocalizer["Date"]</span>
+                    <span class="font-bold border-b border-white/20 block pb-1">@Model.Input.Date.ToString("d")</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 flex justify-between">
+            <button type="button" id="back-to-edit" class="btn-secondary border border-white/20 px-8 py-3 rounded-lg text-kindred-text hover:bg-white/10 transition-colors">@FormLocalizer["BackToEdit"]</button>
+            <button type="button" id="submit-btn" class="btn-primary px-8">@FormLocalizer["Submit"]</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+    <script src="/js/maturity-assessment.js"></script>
+}

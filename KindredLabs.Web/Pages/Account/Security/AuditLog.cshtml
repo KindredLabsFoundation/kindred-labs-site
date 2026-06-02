@@ -1,0 +1,94 @@
+﻿@page "/Account/Security/AuditLog"
+@model KindredLabs.Web.Pages.Account.Security.AuditLogModel
+@{
+    ViewData["Title"] = Model.Localizer["PageTitle"];
+}
+
+<div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div>
+            <h1 class="text-3xl font-wordmark text-kindred-gold mb-2">@Model.Localizer["PageTitle"]</h1>
+            <a asp-page="/Account/Index" asp-route-culture="@Model.CurrentCulture" class="text-kindred-gold hover:opacity-70 transition-opacity text-sm flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                @Model.Localizer["BackToAccount"]
+            </a>
+        </div>
+        <div class="flex gap-4">
+            <a asp-page-handler="Download" asp-route-format="csv" class="text-kindred-gold hover:opacity-70 transition-opacity text-sm">
+                @Model.Localizer["DownloadCsv"]
+            </a>
+            <a asp-page-handler="Download" asp-route-format="txt" class="text-kindred-gold hover:opacity-70 transition-opacity text-sm">
+                @Model.Localizer["DownloadTxt"]
+            </a>
+        </div>
+    </div>
+
+    <div class="">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="border-b border-kindred-text/10">
+                    <th class="py-4 px-2 text-xs font-medium uppercase tracking-wider text-kindred-text/50">@Model.Localizer["DateTimeColumn"]</th>
+                    <th class="py-4 px-2 text-xs font-medium uppercase tracking-wider text-kindred-text/50">@Model.Localizer["EventColumn"]</th>
+                    <th class="py-4 px-2 text-xs font-medium uppercase tracking-wider text-kindred-text/50">@Model.Localizer["DescriptionColumn"]</th>
+                    <th class="py-4 px-2 text-xs font-medium uppercase tracking-wider text-kindred-text/50">@Model.Localizer["IpAddressColumn"]</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-kindred-text/5">
+                @if (!Model.AuditLog.Any())
+                {
+                    <tr>
+                        <td colspan="4" class="py-12 text-center text-kindred-text/50">
+                            @Model.Localizer["NoEntriesMessage"]
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model.AuditLog)
+                    {
+                        <tr>
+                            <td class="py-4 px-2 text-sm">@item.PerformedAt.ToLocalTime().ToString("g")</td>
+                            <td class="py-4 px-2 text-sm font-medium text-kindred-gold">@item.DisplayEvent</td>
+                            <td class="py-4 px-2 text-sm break-words whitespace-normal">@item.Description</td>
+                            <td class="py-4 px-2 text-sm font-mono">@item.IpAddress</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (Model.TotalPages > 1)
+    {
+        <div class="mt-8 flex items-center justify-between border-t border-kindred-text/10 pt-6">
+            <div class="text-xs text-kindred-text/50">
+                Page @Model.CurrentPage of @Model.TotalPages
+            </div>
+            <div class="flex gap-4">
+                @if (Model.CurrentPage > 1)
+                {
+                    <a asp-page="/Account/Security/AuditLog" asp-route-culture="@Model.CurrentCulture" asp-route-p="@(Model.CurrentPage - 1)" class="text-kindred-gold hover:opacity-70 transition-opacity text-sm">
+                        &larr; @Model.Localizer["Previous"]
+                    </a>
+                }
+                else
+                {
+                    <span class="text-kindred-text/30 text-sm cursor-not-allowed">&larr; @Model.Localizer["Previous"]</span>
+                }
+
+                @if (Model.CurrentPage < Model.TotalPages)
+                {
+                    <a asp-page="/Account/Security/AuditLog" asp-route-culture="@Model.CurrentCulture" asp-route-p="@(Model.CurrentPage + 1)" class="text-kindred-gold hover:opacity-70 transition-opacity text-sm">
+                        @Model.Localizer["Next"] &rarr;
+                    </a>
+                }
+                else
+                {
+                    <span class="text-kindred-text/30 text-sm cursor-not-allowed">@Model.Localizer["Next"] &rarr;</span>
+                }
+            </div>
+        </div>
+    }
+</div>

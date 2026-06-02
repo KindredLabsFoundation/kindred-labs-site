@@ -1,0 +1,17 @@
+{
+  "name": "kindredlabs-web",
+  "version": "1.0.0",
+  "scripts": {
+    "tw:build": "npx @tailwindcss/cli -i ./wwwroot/css/tailwind.src.css -o ./wwwroot/css/tailwind.css",
+    "tw:watch": "npx @tailwindcss/cli -i ./wwwroot/css/tailwind.src.css -o ./wwwroot/css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.3.0"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.0"
+  }
+}

@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Panel de Control de Cuenta</value>
+  </data>
+  <data name="PageHeading" xml:space="preserve">
+    <value>Configuración de la Cuenta</value>
+  </data>
+  <data name="ProfileSection" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="FirstNameLabel" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="LastNameLabel" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="OrganizationLabel" xml:space="preserve">
+    <value>Organización</value>
+  </data>
+  <data name="JobTitleLabel" xml:space="preserve">
+    <value>Título del Puesto</value>
+  </data>
+  <data name="SaveProfileButton" xml:space="preserve">
+    <value>Guardar Perfil</value>
+  </data>
+  <data name="EmailSection" xml:space="preserve">
+    <value>Direcciones de Correo Electrónico</value>
+  </data>
+  <data name="PrimaryBadge" xml:space="preserve">
+    <value>Principal</value>
+  </data>
+  <data name="PendingBadge" xml:space="preserve">
+    <value>Pendiente de Verificación</value>
+  </data>
+  <data name="MakePrimaryButton" xml:space="preserve">
+    <value>Hacer Principal</value>
+  </data>
+  <data name="RemoveButton" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="AddEmailLabel" xml:space="preserve">
+    <value>Añadir Correo Electrónico Adicional</value>
+  </data>
+  <data name="AddEmailButton" xml:space="preserve">
+    <value>Añadir Correo</value>
+  </data>
+  <data name="SecuritySection" xml:space="preserve">
+    <value>Seguridad</value>
+  </data>
+  <data name="ChangePasswordLink" xml:space="preserve">
+    <value>Cambia tu contraseña</value>
+  </data>
+  <data name="DeleteAccountSection" xml:space="preserve">
+    <value>Eliminar Cuenta</value>
+  </data>
+  <data name="DeleteAccountWarning" xml:space="preserve">
+    <value>La eliminación de su cuenta es permanente y no se puede deshacer. Se eliminarán todos sus borradores. Las presentaciones y las solicitudes de CDRP serán anonimizadas.</value>
+  </data>
+  <data name="PasswordLabel" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="ConfirmDeleteLabel" xml:space="preserve">
+    <value>Escriba "DELETE" para confirmar</value>
+  </data>
+  <data name="DeleteAccountButton" xml:space="preserve">
+    <value>Eliminar Mi Cuenta</value>
+  </data>
+  <data name="ProfileSavedSuccess" xml:space="preserve">
+    <value>Tu perfil ha sido actualizado con éxito.</value>
+  </data>
+  <data name="EmailAddedSuccess" xml:space="preserve">
+    <value>Se ha enviado un correo electrónico de verificación a la nueva dirección.</value>
+  </data>
+  <data name="EmailConfirmedSuccess" xml:space="preserve">
+    <value>Su dirección de correo electrónico adicional ha sido verificada.</value>
+  </data>
+  <data name="EmailConfirmationFailed" xml:space="preserve">
+    <value>Token de verificación inválido o expirado.</value>
+  </data>
+  <data name="EmailRemovedSuccess" xml:space="preserve">
+    <value>La dirección de correo electrónico ha sido eliminada.</value>
+  </data>
+  <data name="PrimaryEmailUpdatedSuccess" xml:space="preserve">
+    <value>Su correo electrónico principal ha sido actualizado. Por favor, inicie sesión con su nueva dirección de correo electrónico.</value>
+  </data>
+  <data name="EmailSectionTitle" xml:space="preserve">
+    <value>Correo electrónico</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="EditLink" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="CancelLink" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="SaveLink" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="ChangePrimaryLink" xml:space="preserve">
+    <value>Cambiar Principal</value>
+  </data>
+  <data name="TwoFactorLink" xml:space="preserve">
+    <value>Autenticación de Dos Factores</value>
+  </data>
+  <data name="LoginHistoryLink" xml:space="preserve">
+    <value>Historial de Inicio de Sesión</value>
+  </data>
+  <data name="AuditLogLink" xml:space="preserve">
+    <value>Registro de Auditoría de Seguridad</value>
+  </data>
+  <data name="DeleteAccountLink" xml:space="preserve">
+    <value>Eliminar Cuenta</value>
+  </data>
+  <data name="DeleteAccountModalWarning" xml:space="preserve">
+    <value>ADVERTENCIA: Esta acción es permanente y no se puede deshacer. Todos sus borradores serán eliminados. Las presentaciones y las solicitudes de CDRP serán anonimizadas. Perderá el acceso a esta cuenta inmediatamente.</value>
+  </data>
+  <data name="DeleteAccountModalTitle" xml:space="preserve">
+    <value>Confirmar Eliminación de Cuenta</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>Contraseña inválida.</value>
+  </data>
+  <data name="InvalidDeleteConfirmation" xml:space="preserve">
+    <value>Por favor, escriba "DELETE" exactamente para confirmar.</value>
+  </data>
+  <data name="DeleteAccountFieldsRequired" xml:space="preserve">
+    <value>Se requiere tanto la contraseña como la frase de confirmación.</value>
+  </data>
+  <data name="DeleteAccountConfirmPhraseMismatch" xml:space="preserve">
+    <value>La frase de confirmación debe ser "DELETE".</value>
+  </data>
+  <data name="ResendVerification" xml:space="preserve">
+    <value>Reenviar verificación</value>
+  </data>
+  <data name="ResendAvailableIn" xml:space="preserve">
+    <value>Reenvío disponible en {0}s</value>
+  </data>
+  <data name="VerificationResent" xml:space="preserve">
+    <value>Se ha reenviado el correo electrónico de verificación.</value>
+  </data>
+  <data name="OtherSessionsRevokedSuccess" xml:space="preserve">
+    <value>Se han revocado todas las demás sesiones activas.</value>
+  </data>
+  <data name="RevokeOtherSessionsLink" xml:space="preserve">
+    <value>Cerrar sesión en otros dispositivos</value>
+  </data>
+  <data name="RevokeSessionsWarning" xml:space="preserve">
+    <value>Esto cerrará tu sesión en todas las demás sesiones activas.</value>
+  </data>
+  <data name="ConfirmLink" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="PreferencesSection" xml:space="preserve">
+    <value>Preferencias</value>
+  </data>
+  <data name="PreferredLanguageLabel" xml:space="preserve">
+    <value>Idioma Preferido</value>
+  </data>
+  <data name="PreferencesUpdated" xml:space="preserve">
+    <value>Tus preferencias han sido actualizadas.</value>
+  </data>
+  <data name="PreferencesUpdateFailed" xml:space="preserve">
+    <value>Error al actualizar las preferencias.</value>
+  </data>
+  <data name="DownloadDataLink" xml:space="preserve">
+    <value>Descargar Mis Datos</value>
+  </data>
+  <data name="CsvLink" xml:space="preserve">
+    <value>CSV</value>
+  </data>
+  <data name="TxtLink" xml:space="preserve">
+    <value>TXT</value>
+  </data>
+</root>

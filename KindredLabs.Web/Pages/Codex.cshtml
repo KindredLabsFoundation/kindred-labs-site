@@ -1,0 +1,64 @@
+﻿@page
+@model CodexModel
+@{
+}
+
+<div class="sticky top-[var(--navbar-height)] z-40 bg-kindred-dark border-b border-white/10 px-4 py-3">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+        <div class="w-full lg:w-auto overflow-hidden">
+            <select id="codexNav" class="culture-select w-full lg:max-w-sm text-sm truncate">
+                <option value="">-- @Model.Localizer["JumpToLabel"] --</option>
+            </select>
+        </div>
+
+        <a href="/documents/kindred-labs-codex-v1.0.pdf" 
+            class="btn-primary btn-sm text-center w-full lg:w-auto" 
+            target="_blank">
+            @Model.Localizer["DownloadLinkText"]
+        </a>
+    </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 py-8 overflow-x-auto">
+    <div class="prose prose-invert prose-headings:text-kindred-gold prose-a:text-kindred-gold max-w-none min-w-0">
+        @Html.Raw(Model.CodexHtml)
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        (function () {
+            const nav = document.getElementById('codexNav');
+            const content = document.querySelector('.prose');
+            const topOption = document.createElement('option');
+            topOption.value = '#page-top';
+            topOption.text = '↑ Back to top';
+            nav.insertBefore(topOption, nav.children[1]);
+            if (!nav || !content) return;
+
+            const headings = content.querySelectorAll('h2[id], h3[id]');
+            
+            headings.forEach(function (heading) {
+                const option = document.createElement('option');
+                option.value = '#' + heading.id;
+                // Indent h3 items visually
+                option.text = (heading.tagName === 'H3' ? '\u00A0\u00A0\u00A0\u00A0' : '') + heading.textContent.trim();
+                nav.appendChild(option);
+            });
+
+            nav.addEventListener('change', function () {
+                if (!this.value) return;
+                if (this.value === '#page-top') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    const target = document.querySelector(this.value);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        history.pushState(null, null, this.value);
+                    }
+                }
+                this.value = '';
+            });
+        })();
+    </script>
+}

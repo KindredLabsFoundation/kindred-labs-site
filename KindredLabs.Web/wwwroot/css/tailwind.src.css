@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+@theme {
+    --color-kindred-dark: #16213E;
+    --color-kindred-gold: #FFD700;
+    --color-kindred-text: #F0F0F0;
+    --font-ui: 'Inter', sans-serif;
+    --font-wordmark: 'IBM Plex Sans', sans-serif;
+}

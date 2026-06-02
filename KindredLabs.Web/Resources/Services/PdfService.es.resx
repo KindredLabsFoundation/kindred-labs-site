@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="SubmissionId" xml:space="preserve">
+    <value>ID de envío</value>
+  </data>
+  <data name="ContentHash" xml:space="preserve">
+    <value>Hash de contenido (SHA-256)</value>
+  </data>
+  <data name="VerifiedEmail" xml:space="preserve">
+    <value>Correo electrónico verificado</value>
+  </data>
+  <data name="Timestamp" xml:space="preserve">
+    <value>Marca de tiempo</value>
+  </data>
+  <data name="Signature" xml:space="preserve">
+    <value>Firma</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+</root>

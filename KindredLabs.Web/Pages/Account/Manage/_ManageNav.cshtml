@@ -1,0 +1,37 @@
+@using Microsoft.AspNetCore.Identity
+@using KindredLabs.Core.Models.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject IStringLocalizer<KindredLabs.Web.Resources.Pages.Account.Manage.Index> Localizer
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+}
+<ul class="space-y-1">
+    <li>
+        <a class="block px-3 py-2 rounded-md text-sm font-medium @(ManageNavPages.IndexNavClass(ViewContext) == "active" ? "bg-kindred-gold text-kindred-bg" : "text-kindred-text hover:bg-white/10")" 
+           id="profile" asp-page="./Index" asp-route-culture="@currentCulture">@Localizer["Profile"]</a>
+    </li>
+    <li>
+        <a class="block px-3 py-2 rounded-md text-sm font-medium @(ManageNavPages.EmailNavClass(ViewContext) == "active" ? "bg-kindred-gold text-kindred-bg" : "text-kindred-text hover:bg-white/10")" 
+           id="email" asp-page="./Email" asp-route-culture="@currentCulture">@Localizer["Email"]</a>
+    </li>
+    <li>
+        <a class="block px-3 py-2 rounded-md text-sm font-medium @(ManageNavPages.ChangePasswordNavClass(ViewContext) == "active" ? "bg-kindred-gold text-kindred-bg" : "text-kindred-text hover:bg-white/10")" 
+           id="change-password" asp-page="./ChangePassword" asp-route-culture="@currentCulture">@Localizer["Password"]</a>
+    </li>
+    @if (hasExternalLogins)
+    {
+        <li>
+            <a class="block px-3 py-2 rounded-md text-sm font-medium @(ManageNavPages.ExternalLoginsNavClass(ViewContext) == "active" ? "bg-kindred-gold text-kindred-bg" : "text-kindred-text hover:bg-white/10")" 
+               id="external-login" asp-page="./ExternalLogins" asp-route-culture="@currentCulture">@Localizer["External logins"]</a>
+        </li>
+    }
+    <li>
+        <a class="block px-3 py-2 rounded-md text-sm font-medium @(ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) == "active" ? "bg-kindred-gold text-kindred-bg" : "text-kindred-text hover:bg-white/10")" 
+           id="two-factor" asp-page="./TwoFactorAuthentication" asp-route-culture="@currentCulture">@Localizer["Two-factor authentication"]</a>
+    </li>
+    <li>
+        <a class="block px-3 py-2 rounded-md text-sm font-medium @(ManageNavPages.PersonalDataNavClass(ViewContext) == "active" ? "bg-kindred-gold text-kindred-bg" : "text-kindred-text hover:bg-white/10")" 
+           id="personal-data" asp-page="./PersonalData" asp-route-culture="@currentCulture">@Localizer["Personal data"]</a>
+    </li>
+</ul>

@@ -1,0 +1,43 @@
+﻿@page
+@model KindredLabs.Web.Pages.Account.LoginWithRecoveryCodeModel
+@{
+    ViewData["Title"] = Model.Localizer["PageTitle"];
+    var currentCulture = HttpContext.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>()?.RequestCulture.Culture.TwoLetterISOLanguageName ?? "en";
+}
+
+<div class="max-w-md mx-auto px-4 py-12">
+    <h1 class="text-3xl font-wordmark text-kindred-text mb-8 text-center">@ViewData["Title"]</h1>
+
+    <div class="bg-kindred-dark/50 p-8 rounded shadow-xl border border-kindred-gold/10">
+        <p class="text-kindred-text opacity-70 mb-6 text-sm">
+            @Model.Localizer["InstructionText"]
+        </p>
+
+        <form method="post" asp-route-returnUrl="@Model.ReturnUrl">
+            <div asp-validation-summary="All" class="text-red-400 text-sm mb-4"></div>
+
+            <div class="mb-6">
+                <label asp-for="Input.RecoveryCode" class="block text-kindred-text text-sm font-bold mb-2">
+                    @Model.Localizer["RecoveryCodeLabel"]
+                </label>
+                <input asp-for="Input.RecoveryCode" class="w-full bg-kindred-dark border border-kindred-gold/30 rounded py-2 px-3 text-kindred-text focus:outline-none focus:border-kindred-gold transition-colors" autocomplete="off" />
+            </div>
+
+            <div class="bg-yellow-900/20 border border-yellow-500/50 p-4 rounded mb-6 text-yellow-400 text-xs">
+                @Model.Localizer["SupportWarning"]
+            </div>
+
+            <div class="flex flex-col gap-4 items-center">
+                <button type="submit" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">
+                    @Model.Localizer["SignInButton"]
+                </button>
+
+                <p class="text-sm text-kindred-text opacity-50">
+                    <a asp-page="./LoginWith2fa" asp-route-returnUrl="@Model.ReturnUrl" asp-route-culture="@currentCulture" class="text-kindred-gold hover:opacity-70 transition-opacity">
+                        @Model.Localizer["BackToAuthenticatorLink"]
+                    </a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>

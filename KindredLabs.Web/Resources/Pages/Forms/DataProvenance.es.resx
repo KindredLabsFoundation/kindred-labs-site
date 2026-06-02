@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="0" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Registro de Procedencia de Datos</value>
+  </data>
+  <data name="RecordHeader" xml:space="preserve">
+    <value>Información del Registro</value>
+  </data>
+  <data name="RecordId" xml:space="preserve">
+    <value>ID del Registro</value>
+  </data>
+  <data name="InternalReferenceLabel" xml:space="preserve">
+    <value>Referencia Interna</value>
+  </data>
+  <data name="InternalReferencePlaceholder" xml:space="preserve">
+    <value>Opcional — ingrese el número de referencia interno de su organización</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="ModelNameAndVersion" xml:space="preserve">
+    <value>Nombre y versión del modelo</value>
+  </data>
+  <data name="PreparedByName" xml:space="preserve">
+    <value>Preparado por</value>
+  </data>
+  <data name="PreparedByRole" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="PreparedByDate" xml:space="preserve">
+    <value>Preparado por (fecha)</value>
+  </data>
+  <data name="ReviewedByName" xml:space="preserve">
+    <value>Revisado por (nombre)</value>
+  </data>
+  <data name="ReviewedByRole" xml:space="preserve">
+    <value>Revisado por (rol)</value>
+  </data>
+  <data name="ReviewedByDate" xml:space="preserve">
+    <value>Revisado por (fecha)</value>
+  </data>
+  <data name="Section1Title" xml:space="preserve">
+    <value>Sección 1: Identificación de la Fuente</value>
+  </data>
+  <data name="DataSourceName" xml:space="preserve">
+    <value>Nombre de la fuente de datos</value>
+  </data>
+  <data name="GeneratingSystemOrProcess" xml:space="preserve">
+    <value>Sistema o proceso de generación</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Rango de fechas</value>
+  </data>
+  <data name="PopulationReflected" xml:space="preserve">
+    <value>Población reflejada</value>
+  </data>
+  <data name="KnownBiasInGeneratingProcess" xml:space="preserve">
+    <value>Sesgo conocido en el proceso de generación</value>
+  </data>
+  <data name="BiasDescription" xml:space="preserve">
+    <value>Descripción del sesgo</value>
+  </data>
+  <data name="Section2Title" xml:space="preserve">
+    <value>Sección 2: Propósito Original de la Recopilación</value>
+  </data>
+  <data name="OriginalCollectionPurpose" xml:space="preserve">
+    <value>¿Para qué se recopilaron originalmente estos datos?</value>
+  </data>
+  <data name="IsOriginalCollectionPurposeCompatible" xml:space="preserve">
+    <value>¿Es compatible el propósito original con el uso para ajuste fino (fine-tuning)?</value>
+  </data>
+  <data name="CompatibilityExplanation" xml:space="preserve">
+    <value>Base para la determinación de compatibilidad</value>
+  </data>
+  <data name="IndividualAwareness" xml:space="preserve">
+    <value>Conciencia individual</value>
+  </data>
+  <data name="Section3Title" xml:space="preserve">
+    <value>Sección 3: Alcance Representativo</value>
+  </data>
+  <data name="PopulationsRepresented" xml:space="preserve">
+    <value>Poblaciones representadas</value>
+  </data>
+  <data name="PopulationsUnderrepresented" xml:space="preserve">
+    <value>Poblaciones subrepresentadas</value>
+  </data>
+  <data name="HistoricalPatterns" xml:space="preserve">
+    <value>Patrones históricos</value>
+  </data>
+  <data name="PatternsDescription" xml:space="preserve">
+    <value>Descripción de los patrones</value>
+  </data>
+  <data name="RepresentationalAdequacyAssessment" xml:space="preserve">
+    <value>Evaluación de adecuación representativa</value>
+  </data>
+  <data name="RemediationDescription" xml:space="preserve">
+    <value>Descripción de la remediación</value>
+  </data>
+  <data name="Section4Title" xml:space="preserve">
+    <value>Sección 4: Calidad de los Datos</value>
+  </data>
+  <data name="KnownGapsOrAnomalies" xml:space="preserve">
+    <value>Brechas o anomalías conocidas</value>
+  </data>
+  <data name="GapsDescription" xml:space="preserve">
+    <value>Descripción de las brechas</value>
+  </data>
+  <data name="ConditionsOfUnreliability" xml:space="preserve">
+    <value>Condiciones de falta de fiabilidad</value>
+  </data>
+  <data name="ConditionsDescription" xml:space="preserve">
+    <value>Descripción de las condiciones</value>
+  </data>
+  <data name="QualityAssessment" xml:space="preserve">
+    <value>Evaluación de calidad</value>
+  </data>
+  <data name="Section5Title" xml:space="preserve">
+    <value>Sección 5: Historial de Uso Previo</value>
+  </data>
+  <data name="PriorFineTuningUse" xml:space="preserve">
+    <value>Uso previo en ajuste fino</value>
+  </data>
+  <data name="PriorUseDescription" xml:space="preserve">
+    <value>Descripción del uso previo</value>
+  </data>
+  <data name="CumulativeEffectAssessment" xml:space="preserve">
+    <value>Evaluación del efecto acumulativo</value>
+  </data>
+  <data name="CumulativeEffectDescription" xml:space="preserve">
+    <value>Descripción del efecto acumulativo</value>
+  </data>
+  <data name="ElevatedReviewTitle" xml:space="preserve">
+    <value>Revisión Elevada</value>
+  </data>
+  <data name="ElevatedReviewAuthorityName" xml:space="preserve">
+    <value>Nombre de la autoridad de revisión elevada</value>
+  </data>
+  <data name="ElevatedReviewAuthorityRole" xml:space="preserve">
+    <value>Rol de la autoridad de revisión elevada</value>
+  </data>
+  <data name="RoutedFrom" xml:space="preserve">
+    <value>Enviado desde</value>
+  </data>
+  <data name="Decision" xml:space="preserve">
+    <value>Decisión</value>
+  </data>
+  <data name="Rationale" xml:space="preserve">
+    <value>Justificación</value>
+  </data>
+  <data name="ConditionsOnApproval" xml:space="preserve">
+    <value>Condiciones de la aprobación</value>
+  </data>
+  <data name="ApprovalTitle" xml:space="preserve">
+    <value>Aprobación</value>
+  </data>
+  <data name="ManualCompletionNote" xml:space="preserve">
+    <value>Para completar manualmente después de generar el PDF</value>
+  </data>
+  <data name="NextReviewDate" xml:space="preserve">
+    <value>Próxima fecha de revisión</value>
+  </data>
+  <data name="GovernanceAuthoritySignOff" xml:space="preserve">
+    <value>Firma de la autoridad de gobernanza</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Desconocido</value>
+  </data>
+  <data name="RequiresElevatedReview" xml:space="preserve">
+    <value>Requiere Revisión Elevada</value>
+  </data>
+  <data name="Adequate" xml:space="preserve">
+    <value>Adecuado</value>
+  </data>
+  <data name="RequiresRemediation" xml:space="preserve">
+    <value>Requiere Remediación</value>
+  </data>
+  <data name="AdequateForGovernance" xml:space="preserve">
+    <value>Adecuado para fines de gobernanza</value>
+  </data>
+  <data name="RequiresDisclosure" xml:space="preserve">
+    <value>Requiere divulgación en el registro de ajuste fino</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Aprobado</value>
+  </data>
+  <data name="ApprovedWithConditions" xml:space="preserve">
+    <value>Aprobado con condiciones</value>
+  </data>
+  <data name="NotApproved" xml:space="preserve">
+    <value>No aprobado</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Previsualizar</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="BackToEdit" xml:space="preserve">
+    <value>Volver a editar</value>
+  </data>
+  <data name="SaveDraft" xml:space="preserve">
+    <value>Guardar borrador</value>
+  </data>
+  <data name="DraftSavedAt" xml:space="preserve">
+    <value>Borrador guardado a las {0}</value>
+  </data>
+  <data name="SignatureRequired" xml:space="preserve">
+    <value>Por favor, firme antes de enviar.</value>
+  </data>
+  <data name="ClearSignature" xml:space="preserve">
+    <value>Limpiar</value>
+  </data>
+  <data name="Section2" xml:space="preserve">
+    <value>Sección 2</value>
+  </data>
+  <data name="Section3" xml:space="preserve">
+    <value>Sección 3</value>
+  </data>
+  <data name="ClearButton" xml:space="preserve">
+    <value>Limpiar Formulario</value>
+  </data>
+  <data name="DeleteButton" xml:space="preserve">
+    <value>Eliminar Borrador</value>
+  </data>
+  <data name="DeleteConfirmMessage" xml:space="preserve">
+    <value>¿Está seguro de que desea eliminar este borrador? Esta acción no se puede deshacer.</value>
+  </data>
+</root>

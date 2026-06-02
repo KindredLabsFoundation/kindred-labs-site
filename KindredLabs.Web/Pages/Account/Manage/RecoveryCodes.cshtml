@@ -1,0 +1,86 @@
+﻿@page
+@model KindredLabs.Web.Pages.Account.Manage.RecoveryCodesModel
+@{
+    ViewData["Title"] = Model.Localizer["PageTitle"];
+}
+
+<div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="mb-8">
+        <a asp-page="/Account/Manage/TwoFactor" asp-route-culture="@(HttpContext.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>()?.RequestCulture.Culture.TwoLetterISOLanguageName ?? "en")" class="text-kindred-gold hover:opacity-70 transition-opacity flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            @Model.Localizer["BackToTwoFactor"]
+        </a>
+    </div>
+
+    <h1 class="text-3xl font-wordmark text-kindred-text mb-8">@ViewData["Title"]</h1>
+
+    @if (TempData["StatusMessage"] != null)
+    {
+        <div id="statusToast" class="fixed bottom-4 end-4 z-50 bg-kindred-gold text-kindred-dark px-6 py-4 rounded shadow-lg flex items-center gap-4">
+            <span>@TempData["StatusMessage"]</span>
+            <button onclick="document.getElementById('statusToast').remove()" class="bg-transparent border-none p-0 text-kindred-dark hover:opacity-70 cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+        <script>
+            setTimeout(() => {
+                const toast = document.getElementById('statusToast');
+                if (toast) toast.remove();
+            }, 5000);
+        </script>
+    }
+
+    <div class="space-y-8">
+        @if (Model.GeneratedCodes != null)
+        {
+            <div class="bg-red-900/20 border border-red-500/50 p-6 rounded mb-8">
+                <p class="text-red-400 font-bold mb-4">@Model.Localizer["SaveWarning"]</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 font-mono text-kindred-text">
+                    @foreach (var code in Model.GeneratedCodes)
+                    {
+                        <div class="bg-kindred-dark p-2 rounded text-center">@code</div>
+                    }
+                </div>
+            </div>
+            
+            <div>
+                <a asp-page="/Account/Manage/TwoFactor" asp-route-culture="@(HttpContext.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>()?.RequestCulture.Culture.TwoLetterISOLanguageName ?? "en")" class="text-kindred-gold hover:opacity-70 transition-opacity font-ui text-base">
+                    @Model.Localizer["DoneLink"]
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="space-y-6">
+                @if (Model.RecoveryCodeCount == 0)
+                {
+                    <div class="bg-red-900/20 border border-red-500/50 p-4 rounded text-red-400">
+                        @Model.Localizer["NoCodesRemaining"]
+                    </div>
+                }
+                else if (Model.RecoveryCodeCount < 3)
+                {
+                    <div class="bg-yellow-900/20 border border-yellow-500/50 p-4 rounded text-yellow-400">
+                        @string.Format(Model.Localizer["FewCodesRemaining"].Value, Model.RecoveryCodeCount)
+                    </div>
+                }
+
+                <div class="text-kindred-text">
+                    <p class="text-lg">@string.Format(Model.Localizer["CodesRemainingCount"].Value, Model.RecoveryCodeCount)</p>
+                </div>
+
+                <div>
+                    <form asp-page-handler="Generate" method="post">
+                        <button type="submit" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">
+                            @Model.Localizer["GenerateNewCodesLink"]
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</div>

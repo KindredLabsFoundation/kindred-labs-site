@@ -49,7 +49,7 @@ public class MaturityAssessmentModel : PageModel
 
     public string? LastSaved { get; set; }
     public bool IsPreview { get; set; }
-    public string? CurrentCulture { get; set; }
+    public string CurrentCulture { get; set; } = "en";
     public Guid DraftId { get; set; }
 
     public class InputModel

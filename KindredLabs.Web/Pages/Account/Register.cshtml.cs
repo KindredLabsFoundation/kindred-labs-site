@@ -1,6 +1,6 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
+#nullable enable
 
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using KindredLabs.Core.Models.Identity;
 using KindredLabs.Core.Services.Interfaces;
-using KindredLabs.Web.Resources.Pages.Account;
 using KindredLabs.Web.Resources.Pages.Account;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -52,6 +51,9 @@ namespace KindredLabs.Web.Pages.Account
             _logger = logger;
             _emailService = emailService;
             _localizer = localizer;
+            Input = new InputModel();
+            ExternalLogins = new List<AuthenticationScheme>();
+            ReturnUrl = string.Empty;
         }
 
         /// <summary>
@@ -81,17 +83,17 @@ namespace KindredLabs.Web.Pages.Account
         {
             [Required]
             [Display(Name = "FirstName")]
-            public string FirstName { get; set; }
+            public string FirstName { get; set; } = string.Empty;
 
             [Required]
             [Display(Name = "LastName")]
-            public string LastName { get; set; }
+            public string LastName { get; set; } = string.Empty;
 
             [Display(Name = "Organization")]
-            public string? Organization { get; set; }
+            public string Organization { get; set; } = string.Empty;
 
             [Display(Name = "JobTitle")]
-            public string? JobTitle { get; set; }
+            public string JobTitle { get; set; } = string.Empty;
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -100,7 +102,7 @@ namespace KindredLabs.Web.Pages.Account
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
-            public string Email { get; set; }
+            public string Email { get; set; } = string.Empty;
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -114,7 +116,7 @@ namespace KindredLabs.Web.Pages.Account
             )]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
-            public string Password { get; set; }
+            public string Password { get; set; } = string.Empty;
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -126,18 +128,18 @@ namespace KindredLabs.Web.Pages.Account
                 "Password",
                 ErrorMessage = "The password and confirmation password do not match."
             )]
-            public string ConfirmPassword { get; set; }
+            public string ConfirmPassword { get; set; } = string.Empty;
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task OnGetAsync(string? returnUrl = null)
         {
-            ReturnUrl = returnUrl;
+            ReturnUrl = returnUrl ?? string.Empty;
             ExternalLogins = (
                 await _signInManager.GetExternalAuthenticationSchemesAsync()
             ).ToList();
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (

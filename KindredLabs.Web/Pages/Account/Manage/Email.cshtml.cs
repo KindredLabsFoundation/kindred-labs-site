@@ -33,27 +33,27 @@ public class EmailModel : PageModel
         _localizer = localizer;
     }
 
-    public string Email { get; set; }
+    public string Email { get; set; } = string.Empty;
 
     public bool IsEmailConfirmed { get; set; }
 
     [TempData]
-    public string StatusMessage { get; set; }
+    public string? StatusMessage { get; set; }
 
     [BindProperty]
-    public InputModel Input { get; set; }
+    public InputModel Input { get; set; } = new();
 
     public class InputModel
     {
         [Required]
         [EmailAddress]
         [Display(Name = "New email")]
-        public string NewEmail { get; set; }
+        public string NewEmail { get; set; } = string.Empty;
     }
 
     private async Task LoadAsync(ApplicationUser user)
     {
-        var email = await _userManager.GetEmailAsync(user);
+        var email = await _userManager.GetEmailAsync(user) ?? string.Empty;
         Email = email;
 
         Input = new InputModel { NewEmail = email };
@@ -163,7 +163,10 @@ public class EmailModel : PageModel
 
         if (callbackUrl != null)
         {
-            await _emailService.SendRegistrationConfirmationAsync(email, callbackUrl);
+            await _emailService.SendRegistrationConfirmationAsync(
+                email ?? string.Empty,
+                callbackUrl
+            );
         }
 
         StatusMessage = _localizer["Verification email sent. Please check your email."];

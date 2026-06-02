@@ -1,0 +1,1 @@
+﻿CREATE DATABASE kindredlabs_test;

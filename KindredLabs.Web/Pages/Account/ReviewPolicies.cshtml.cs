@@ -38,7 +38,7 @@ namespace KindredLabs.Web.Pages.Account
         /// Gets or sets the return URL after successful policy acceptance.
         /// </summary>
         [BindProperty(SupportsGet = true)]
-        public string ReturnUrl { get; set; }
+        public string ReturnUrl { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the policy acceptance input.

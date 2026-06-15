@@ -4,11 +4,36 @@
 
 @{
     ViewData["Title"] = Localizer["Confirm email"];
+    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 }
 
-<div class="max-w-md mx-auto px-4 py-16">
-    <h1 class="text-2xl font-bold text-kindred-gold mb-8">@ViewData["Title"]</h1>
-    <div class="text-kindred-text">
-        <partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="min-h-[60vh] flex flex-col items-center justify-center px-4">
+    <div class="max-w-md w-full text-center">
+        <h1 class="text-2xl font-bold text-kindred-gold mb-6">@ViewData["Title"]</h1>
+        
+        @if (Model.Succeeded)
+        {
+            <div class="bg-white/5 border border-white/10 rounded-lg p-8 shadow-xl">
+                <svg class="w-16 h-16 text-kindred-gold mx-auto mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="text-kindred-text mb-8">@Localizer["Your email has been confirmed. You can now log in."]</p>
+                <a asp-page="./Login" asp-route-culture="@currentCulture" class="inline-block text-kindred-gold hover:underline font-ui">
+                    @Localizer["Return to Login"]
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="bg-white/5 border border-white/10 rounded-lg p-8 shadow-xl">
+                <svg class="w-16 h-16 text-red-500 mx-auto mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="text-kindred-text mb-8">@Localizer["This confirmation link is invalid or has expired."]</p>
+                <a asp-page="./ResendEmailConfirmation" asp-route-culture="@currentCulture" class="inline-block text-kindred-gold hover:underline font-ui">
+                    @Localizer["Resend Confirmation"]
+                </a>
+            </div>
+        }
     </div>
 </div>

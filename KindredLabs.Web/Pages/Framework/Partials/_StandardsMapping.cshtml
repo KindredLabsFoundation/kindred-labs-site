@@ -1,0 +1,163 @@
+﻿@model KindredLabs.Web.Pages.Framework.IndexModel
+
+<section class="py-16">
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-kindred-gold mb-6" id="standards-mapping-licensing-and-versioning">
+            @Model.Localizer["Standards_Heading"]
+        </h2>
+        <a href="#"
+           class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+           data-slug="standards-mapping"
+           target="_blank" rel="noopener">
+            Discuss this section
+        </a>
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="standards-mapping">
+            @Model.Localizer["Standards_Mapping_Heading"]
+        </h3>
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Standards_Mapping_Purpose_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Standards_Mapping_Purpose_Content"]
+        </p>
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Standards_NIST_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Standards_NIST_Content_P1"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Standards_NIST_Relationship"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Standards_NIST_Compatibility"]
+        </p>
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Standards_EU_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Standards_EU_Content_P1"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Standards_EU_Relationship"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Standards_EU_Compatibility"]
+        </p>
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Standards_ISO_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Standards_ISO_Content_P1"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Standards_ISO_Relationship"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Standards_ISO_Compatibility"]
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="licensing-and-attribution">
+            @Model.Localizer["Standards_Licensing_Heading"]
+        </h3>
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Standards_License_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Standards_License_Content_P1"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Standards_License_Content_P2"]
+        </p>
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Standards_Attribution_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Standards_Attribution_Intro"])
+        </p>
+        <blockquote class="border-l-4 border-kindred-gold/50 pl-4 my-4 italic text-kindred-text opacity-70">
+            @Model.Localizer["Standards_Attribution_Quote1"]
+        </blockquote>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Standards_Attribution_Adapting"])
+        </p>
+        <blockquote class="border-l-4 border-kindred-gold/50 pl-4 my-4 italic text-kindred-text opacity-70">
+            @Model.Localizer["Standards_Attribution_Quote2"]
+        </blockquote>
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Standards_Restrictions_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Standards_Restrictions_Content"]
+        </p>
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Standards_Conformance_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Standards_Conformance_Intro"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Standards_Conformance_SelfAttested_Content"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Standards_Conformance_Independent_Content"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Standards_Conformance_Certified_Content"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Standards_Conformance_Outro"]
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="document-versioning">
+            @Model.Localizer["Standards_Versioning_Heading"]
+        </h3>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Standards_Versioning_P1"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Standards_Versioning_P2"])
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="publication-location">
+            @Model.Localizer["Standards_Publication_Heading"]
+        </h3>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Standards_Publication_Content"])
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="about-kindred-labs-foundation">
+            @Model.Localizer["Standards_About_Heading"]
+        </h3>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Standards_About_Content"])
+        </p>
+    </div>
+</section>

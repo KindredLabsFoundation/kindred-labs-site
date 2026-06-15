@@ -4,7 +4,7 @@
     ViewData["Title"] = Model.Localizer["PageTitle"];
 }
 
-<div class="max-w-4xl mx-auto px-4 py-12">
+<div class="max-w-7xl mx-auto px-4 py-12">
     <div class="mb-8">
         <a asp-page="/Account/Index" asp-route-culture="@(HttpContext.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>()?.RequestCulture.Culture.TwoLetterISOLanguageName ?? "en")" class="text-kindred-gold hover:opacity-70 transition-opacity flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

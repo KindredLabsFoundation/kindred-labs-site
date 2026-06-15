@@ -38,7 +38,42 @@ public class ApplicationUser : IdentityUser
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     /// <summary>
+    /// Gets or sets a value indicating whether the user account is suspended.
+    /// </summary>
+    public bool IsSuspended { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the user account is marked for deletion.
+    /// </summary>
+    public bool IsDeleted { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets the date and time when the user account was marked for deletion.
+    /// </summary>
+    public DateTime? DeletedAt { get; set; }
+
+    /// <summary>
     /// Gets or sets the collection of additional emails associated with the user.
     /// </summary>
     public virtual ICollection<UserEmail> AdditionalEmails { get; set; } = new List<UserEmail>();
+
+    /// <summary>
+    /// Gets or sets the version of the privacy policy accepted by the user.
+    /// </summary>
+    public string? PrivacyPolicyVersion { get; set; }
+
+    /// <summary>
+    /// Gets or sets the date and time when the privacy policy was accepted.
+    /// </summary>
+    public DateTime? PrivacyPolicyAcceptedAt { get; set; }
+
+    /// <summary>
+    /// Gets or sets the version of the terms of service accepted by the user.
+    /// </summary>
+    public string? TermsOfServiceVersion { get; set; }
+
+    /// <summary>
+    /// Gets or sets the date and time when the terms of service were accepted.
+    /// </summary>
+    public DateTime? TermsOfServiceAcceptedAt { get; set; }
 }

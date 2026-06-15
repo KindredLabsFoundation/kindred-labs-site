@@ -62,7 +62,7 @@
     <value>Confirm your registration - Kindred Labs Foundation</value>
   </data>
   <data name="RegistrationConfirmation_Body" xml:space="preserve">
-    <value>Please confirm your email by clicking here: {0}</value>
+    <value>Please confirm your email by clicking here: &lt;a href="{0}"&gt;Confirm your email&lt;/a&gt;</value>
   </data>
   <data name="DraftExpiryWarning_Subject" xml:space="preserve">
     <value>Action Required: Your draft is expiring soon</value>
@@ -111,7 +111,7 @@ Message:
     <value>Your Kindred Labs Account Has Been Deleted</value>
   </data>
   <data name="AccountDeletionConfirmation_Body" xml:space="preserve">
-    <value>Your Kindred Labs account has been permanently deleted. If you did not initiate this action, please contact us immediately at security@kindredlabsfoundation.org.</value>
+    <value>Your Kindred Labs account has been permanently deleted. If you did not initiate this action, please contact us immediately at {0}.</value>
   </data>
   <data name="PasswordChanged_Subject" xml:space="preserve">
     <value>Your Password Has Been Changed</value>
@@ -130,5 +130,41 @@ Message:
   </data>
   <data name="TwoFactorDisabled_Body" xml:space="preserve">
     <value>Two-factor authentication has been disabled for your Kindred Labs account. If you did not initiate this change, please contact us immediately at {0}.</value>
+  </data>
+  <data name="TwoFactorResetByAdmin_Subject" xml:space="preserve">
+    <value>Security Alert: Two-Factor Authentication Reset</value>
+  </data>
+  <data name="TwoFactorResetByAdmin_Body" xml:space="preserve">
+    <value>Your two-factor authentication has been reset by an administrator. If you did not request this, please contact us immediately at {0}.</value>
+  </data>
+  <data name="AccountScheduledForDeletion_Subject" xml:space="preserve">
+    <value>Account Scheduled for Deletion</value>
+  </data>
+  <data name="AccountScheduledForDeletion_Body" xml:space="preserve">
+    <value>Your account has been scheduled for permanent deletion on {0}. If you believe this is an error or wish to appeal, please contact security at {1} immediately.</value>
+  </data>
+  <data name="CdrpSupplementaryRequest_Subject" xml:space="preserve">
+    <value>Questions regarding your CDRP application</value>
+  </data>
+  <data name="CdrpSupplementaryRequest_Body" xml:space="preserve">
+    <value>Our review panel has some questions regarding your CDRP expression of interest. Please follow this link to provide additional information: {0}</value>
+  </data>
+  <data name="CdrpReminder_Subject" xml:space="preserve">
+    <value>Reminder: Pending questions regarding your CDRP application</value>
+  </data>
+  <data name="CdrpReminder_Body" xml:space="preserve">
+    <value>This is a reminder that we have pending questions regarding your CDRP expression of interest. Please follow this link to respond: {0}</value>
+  </data>
+  <data name="CdrpNewLink_Subject" xml:space="preserve">
+    <value>New response link for your CDRP application</value>
+  </data>
+  <data name="CdrpNewLink_Body" xml:space="preserve">
+    <value>A new link has been generated for you to respond to our questions regarding your CDRP application. Please follow this link: {0}</value>
+  </data>
+  <data name="CdrpTermExpiryNotice_Subject" xml:space="preserve">
+    <value>Your CDRP term is expiring soon</value>
+  </data>
+  <data name="CdrpTermExpiryNotice_Body" xml:space="preserve">
+    <value>Your term as a Community Data Review Panel member is set to expire on {0}. If you wish to renew your term, please follow this link: {1}</value>
   </data>
 </root>

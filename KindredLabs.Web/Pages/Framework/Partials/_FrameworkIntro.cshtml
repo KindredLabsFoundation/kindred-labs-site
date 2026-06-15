@@ -1,0 +1,69 @@
+﻿@model KindredLabs.Web.Pages.Framework.IndexModel
+
+<section class="py-16">
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-kindred-gold" id="framework-introduction">
+            @Model.Localizer["Introduction_Heading"]
+        </h2>
+        <a href="#"
+           class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+           data-slug="framework-introduction"
+           target="_blank" rel="noopener">
+            Discuss this section
+        </a>
+    </div>
+    <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold mb-6" id="scope">
+        @Model.Localizer["Introduction_Scope_Heading"]
+    </h3>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Introduction_Scope_P1"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Introduction_Scope_P2"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Introduction_Scope_P3"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Introduction_Scope_P4"])
+        </p>
+    </div>
+    <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold mb-6" id="how-to-use-this-framework">
+        @Model.Localizer["Introduction_Usage_Heading"]
+    </h3>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Introduction_Usage_P1"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Introduction_Usage_P2"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Introduction_Usage_P3"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Introduction_Usage_P4"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Introduction_Usage_P5"])
+        </p>
+    </div>
+    <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold mb-6" id="conventions">
+        @Model.Localizer["Introduction_Conventions_Heading"]
+    </h3>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Introduction_Conventions_Intro"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Introduction_Conventions_Must"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Introduction_Conventions_Should"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Introduction_Conventions_May"])
+        </p>
+    </div>
+</section>

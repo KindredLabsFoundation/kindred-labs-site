@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var consentGiven = HttpContextAccessor.HttpContext?.Request.Cookies.ContainsKey("CookieConsentGiven") ?? false;
+}
+
+@if (!consentGiven)
+{
+    <div id="cookie-consent-banner" class="fixed bottom-0 left-0 right-0 bg-[#F5F5DC] border-t border-black/10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] p-4 z-[100] transition-transform duration-500 translate-y-0">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-[#16213E] text-sm text-center sm:text-left">
+                This site uses a cookie to remember your language preference. No tracking or analytics cookies are used.
+            </p>
+            <span id="cookie-consent-dismiss" class="text-[#16213E] underline cursor-pointer hover:opacity-70 transition-opacity font-bold text-sm whitespace-nowrap">
+                Got it
+            </span>
+        </div>
+    </div>
+}

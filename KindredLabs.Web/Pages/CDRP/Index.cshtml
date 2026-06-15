@@ -1,19 +1,191 @@
 ﻿@page
-@model KindredLabs.Web.Pages.CDRP.Index
+@model KindredLabs.Web.Pages.CDRP.IndexModel
 
 @{
-    Layout = null;
+    ViewData["Title"] = Model.Localizer["PageTitle"];
 }
 
-<!DOCTYPE html>
+<div class="max-w-7xl mx-auto px-4 py-16">
+    <h1 class="text-4xl md:text-5xl font-bold text-kindred-gold mb-12">@Model.Localizer["Heading"]</h1>
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
+    <div class="prose prose-invert prose-lg max-w-none mb-16">
+        <p class="text-xl leading-relaxed text-kindred-text">
+            @Model.Localizer["Section1"]
+        </p>
+    </div>
+
+    <div class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-kindred-gold mb-6 mt-6">@Model.Localizer["Section2Heading"]</h2>
+        <div class="prose prose-invert prose-lg max-w-none">
+            <p>@Model.Localizer["Section2Content"]</p>
+        </div>
+    </div>
+
+    <div class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-kindred-gold mb-6 mt-6">@Model.Localizer["Section3Heading"]</h2>
+        <div class="prose prose-invert prose-lg max-w-none">
+            <p>@Model.Localizer["Section3Content"]</p>
+            <p>@Model.Localizer["Section3Terms"]</p>
+        </div>
+    </div>
+
+    <div class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-kindred-gold mb-6 mt-6">@Model.Localizer["Section4Heading"]</h2>
+        <div class="prose prose-invert prose-lg max-w-none">
+            <p>@Model.Localizer["Section4Content"]</p>
+        </div>
+    </div>
+
+    <div class="mb -16 bg-white/5 p-8 rounded-xl border border-white/10 shadow-2xl" id="apply">
+        <h2 class="text-2xl md:text-3xl font-bold text-kindred-gold mb-8">@Model.Localizer["FormHeading"]</h2>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="bg-green-500/20 border border-green-500/50 text-green-200 px-6 py-4 rounded-lg mb-8 flex items-center">
+                <i class="fa-solid fa-circle-check mr-3"></i>
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        <form method="post" class="space-y-8">
+            <div asp-validation-summary="All" class="text-red-400 text-sm"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label asp-for="Input.Name" class="block text-sm font-semibold text-kindred-text mb-2">@Model.Localizer["FieldName"]</label>
+                    <input asp-for="Input.Name" class="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-kindred-text focus:outline-none focus:border-kindred-gold transition-colors" required />
+                    <span asp-validation-for="Input.Name" class="text-red-400 text-xs mt-1"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Input.Email" class="block text-sm font-semibold text-kindred-text mb-2">@Model.Localizer["FieldEmail"]</label>
+                    <input asp-for="Input.Email" type="email" class="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-kindred-text focus:outline-none focus:border-kindred-gold transition-colors" required id="EmailInput" data-prefilled="@(Model.Input.Email)" />
+                    <span asp-validation-for="Input.Email" class="text-red-400 text-xs mt-1"></span>
+                </div>
+
+                <div id="ConfirmEmailContainer">
+                    <label asp-for="Input.ConfirmEmail" class="block text-sm font-semibold text-kindred-text mb-2">@Model.Localizer["FieldConfirmEmail"]</label>
+                    <input asp-for="Input.ConfirmEmail" type="email" class="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-kindred-text focus:outline-none focus:border-kindred-gold transition-colors" />
+                    <span asp-validation-for="Input.ConfirmEmail" class="text-red-400 text-xs mt-1"></span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label asp-for="Input.Organization" class="block text-sm font-semibold text-kindred-text mb-2">@Model.Localizer["FieldOrganization"] (@Model.Localizer["Optional"])</label>
+                    <input asp-for="Input.Organization" class="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-kindred-text focus:outline-none focus:border-kindred-gold transition-colors" />
+                </div>
+
+                <div>
+                    <label asp-for="Input.JobTitle" class="block text-sm font-semibold text-kindred-text mb-2">@Model.Localizer["FieldJobTitle"] (@Model.Localizer["Optional"])</label>
+                    <input asp-for="Input.JobTitle" class="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-kindred-text focus:outline-none focus:border-kindred-gold transition-colors" />
+                </div>
+            </div>
+
+            <div>
+                <label asp-for="Input.Perspectives" class="block text-sm font-semibold text-kindred-text mb-2">@Model.Localizer["FieldPerspectives"]</label>
+                <textarea asp-for="Input.Perspectives" rows="4" class="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-kindred-text focus:outline-none focus:border-kindred-gold transition-colors" required></textarea>
+                <p class="text-xs text-kindred-text/60 mt-2 italic">@Model.Localizer["FieldPerspectivesHelper"]</p>
+                <span asp-validation-for="Input.Perspectives" class="text-red-400 text-xs mt-1"></span>
+            </div>
+
+            <div>
+                <label asp-for="Input.Background" class="block text-sm font-semibold text-kindred-text mb-2">@Model.Localizer["FieldBackground"]</label>
+                <textarea asp-for="Input.Background" rows="4" class="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-kindred-text focus:outline-none focus:border-kindred-gold transition-colors" required></textarea>
+                <span asp-validation-for="Input.Background" class="text-red-400 text-xs mt-1"></span>
+            </div>
+
+            <div>
+                <label asp-for="Input.Interest" class="block text-sm font-semibold text-kindred-text mb-2">@Model.Localizer["FieldInterest"]</label>
+                <textarea asp-for="Input.Interest" rows="4" class="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-kindred-text focus:outline-none focus:border-kindred-gold transition-colors" required></textarea>
+                <span asp-validation-for="Input.Interest" class="text-red-400 text-xs mt-1"></span>
+            </div>
+
+            <div>
+                <label asp-for="Input.ReferralSource" class="block text-sm font-semibold text-kindred-text mb-2">@Model.Localizer["FieldReferral"]</label>
+                <select asp-for="Input.ReferralSource" class="w-full bg-kindred-dark border border-white/20 rounded px-4 py-3 text-kindred-text focus:outline-none focus:border-kindred-gold transition-colors" required>
+                    <option value="" disabled selected>@Model.Localizer["SelectOption"]</option>
+                    <option value="LinkedIn">LinkedIn</option>
+                    <option value="Web search">@Model.Localizer["ReferralWebSearch"]</option>
+                    <option value="Referral">@Model.Localizer["ReferralFriend"]</option>
+                    <option value="Academic/research network">@Model.Localizer["ReferralAcademic"]</option>
+                    <option value="Other">@Model.Localizer["ReferralOther"]</option>
+                </select>
+                <span asp-validation-for="Input.ReferralSource" class="text-red-400 text-xs mt-1"></span>
+            </div>
+
+            <div>
+                <label asp-for="Input.Conflicts" class="block text-sm font-semibold text-kindred-text mb-2">@Model.Localizer["FieldConflicts"] (@Model.Localizer["Optional"])</label>
+                <textarea asp-for="Input.Conflicts" rows="3" class="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-kindred-text focus:outline-none focus:border-kindred-gold transition-colors"></textarea>
+            </div>
+
+            <div class="flex items-start gap-2">
+                <div class="flex items-center h-6">
+                    <input asp-for="Input.Acknowledgment" type="checkbox" class="h-5 w-5 rounded bg-white/10 border-white/20 text-kindred-gold focus:ring-kindred-gold" required />
+                </div>
+                <div class="text-sm">
+                    <label asp-for="Input.Acknowledgment" class="text-kindred-text">@Model.Localizer["FieldAcknowledgment"]</label>
+                    <span asp-validation-for="Input.Acknowledgment" class="block text-red-400 text-xs mt-1"></span>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="flex items-start gap-2">
+                    <div class="flex items-center h-6">
+                        <input asp-for="Input.AcceptedPrivacyPolicy" type="checkbox" class="h-5 w-5 rounded bg-white/10 border-white/20 text-kindred-gold focus:ring-kindred-gold pointer-events-none" required tabindex="-1" />
+                    </div>
+                    <div class="text-sm">
+                        <label asp-for="Input.AcceptedPrivacyPolicy" class="text-kindred-text">
+                            @Model.Localizer["PrivacyPolicyAgreementPrefix"]
+                            @if (!Model.PrivacyPolicyAlreadyAccepted)
+                            {
+                                <a href="javascript:void(0)" class="text-kindred-gold hover:underline" data-policy-trigger="PrivacyPolicy">@Model.Localizer["PrivacyPolicy"]</a>
+                            }
+                            else
+                            {
+                                <span class="text-kindred-gold">@Model.Localizer["PrivacyPolicy"]</span>
+                            }
+                        </label>
+                        <span asp-validation-for="Input.AcceptedPrivacyPolicy" class="block text-red-400 text-xs mt-1"></span>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-2">
+                    <div class="flex items-center h-6">
+                        <input asp-for="Input.AcceptedTermsOfService" type="checkbox" class="h-5 w-5 rounded bg-white/10 border-white/20 text-kindred-gold focus:ring-kindred-gold pointer-events-none" required tabindex="-1" />
+                    </div>
+                    <div class="text-sm">
+                        <label asp-for="Input.AcceptedTermsOfService" class="text-kindred-text">
+                            @Model.Localizer["TermsOfServiceAgreementPrefix"]
+                            @if (!Model.TermsOfServiceAlreadyAccepted)
+                            {
+                                <a href="javascript:void(0)" class="text-kindred-gold hover:underline" data-policy-trigger="TermsOfService">@Model.Localizer["TermsOfService"]</a>
+                            }
+                            else
+                            {
+                                <span class="text-kindred-gold">@Model.Localizer["TermsOfService"]</span>
+                            }
+                        </label>
+                        <span asp-validation-for="Input.AcceptedTermsOfService" class="block text-red-400 text-xs mt-1"></span>
+                    </div>
+                </div>
+            </div>
+
+            @{
+                var currentCulture = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            }
+            <partial name="_PolicyModal" model='("PrivacyPolicy", "Input_AcceptedPrivacyPolicy", $"/{currentCulture}/Privacy")' />
+            <partial name="_PolicyModal" model='("TermsOfService", "Input_AcceptedTermsOfService", $"/{currentCulture}/Terms")' />
+
+            <div class="pt-4">
+                <button type="submit" class="w-full bg-kindred-gold text-kindred-dark font-bold py-4 rounded-lg hover:bg-white transition-colors duration-300 shadow-xl uppercase tracking-widest">
+                    @Model.Localizer["SubmitButton"]
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
-</body>
-</html>
+
+@section Scripts {
+    <script src="~/js/cdrp.js" asp-append-version="true"></script>
+}

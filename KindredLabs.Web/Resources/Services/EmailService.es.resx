@@ -62,7 +62,7 @@
     <value>Confirme su registro - Kindred Labs Foundation</value>
   </data>
   <data name="RegistrationConfirmation_Body" xml:space="preserve">
-    <value>Confirme su correo electrónico haciendo clic aquí: {0}</value>
+    <value>Confirme su correo electrónico haciendo clic aquí: &lt;a href="{0}"&gt;Confirme su correo electrónico&lt;/a&gt;</value>
   </data>
   <data name="DraftExpiryWarning_Subject" xml:space="preserve">
     <value>Acción requerida: su borrador caducará pronto</value>
@@ -111,7 +111,7 @@ Mensaje:
     <value>Su cuenta de Kindred Labs ha sido eliminada</value>
   </data>
   <data name="AccountDeletionConfirmation_Body" xml:space="preserve">
-    <value>Su cuenta de Kindred Labs ha sido eliminada permanentemente. Si no inició esta acción, póngase en contacto con nosotros inmediatamente en security@kindredlabsfoundation.org.</value>
+    <value>Su cuenta de Kindred Labs ha sido eliminada permanentemente. Si no inició esta acción, póngase en contacto con nosotros inmediatamente en {0}.</value>
   </data>
   <data name="PasswordChanged_Subject" xml:space="preserve">
     <value>Su contraseña ha sido cambiada</value>
@@ -130,5 +130,41 @@ Mensaje:
   </data>
   <data name="TwoFactorDisabled_Body" xml:space="preserve">
     <value>La autenticación de dos factores ha sido desactivada para su cuenta de Kindred Labs. Si no inició este cambio, póngase en contacto con nosotros inmediatamente en {0}.</value>
+  </data>
+  <data name="TwoFactorResetByAdmin_Subject" xml:space="preserve">
+    <value>Alerta de seguridad: Restablecimiento de la autenticación de dos factores</value>
+  </data>
+  <data name="TwoFactorResetByAdmin_Body" xml:space="preserve">
+    <value>Su autenticación de dos factores ha sido restablecida por un administrador. Si no solicitó esto, póngase en contacto con nosotros inmediatamente en {0}.</value>
+  </data>
+  <data name="AccountScheduledForDeletion_Subject" xml:space="preserve">
+    <value>Cuenta programada para eliminación</value>
+  </data>
+  <data name="AccountScheduledForDeletion_Body" xml:space="preserve">
+    <value>Su cuenta ha sido programada para eliminación permanente el {0}. Si cree que esto es un error o desea apelar, póngase en contacto con el departamento de seguridad en {1} de inmediato.</value>
+  </data>
+  <data name="CdrpSupplementaryRequest_Subject" xml:space="preserve">
+    <value>Preguntas sobre su solicitud de CDRP</value>
+  </data>
+  <data name="CdrpSupplementaryRequest_Body" xml:space="preserve">
+    <value>Nuestro panel de revisión tiene algunas preguntas sobre su expresión de interés para el CDRP. Siga este enlace para proporcionar información adicional: {0}</value>
+  </data>
+  <data name="CdrpReminder_Subject" xml:space="preserve">
+    <value>Recordatorio: Preguntas pendientes sobre su solicitud de CDRP</value>
+  </data>
+  <data name="CdrpReminder_Body" xml:space="preserve">
+    <value>Este es un recordatorio de que tenemos preguntas pendientes sobre su expresión de interés para el CDRP. Siga este enlace para responder: {0}</value>
+  </data>
+  <data name="CdrpNewLink_Subject" xml:space="preserve">
+    <value>Nuevo enlace de respuesta para su solicitud de CDRP</value>
+  </data>
+  <data name="CdrpNewLink_Body" xml:space="preserve">
+    <value>Se ha generado un nuevo enlace para que responda a nuestras preguntas sobre su solicitud de CDRP. Siga este enlace: {0}</value>
+  </data>
+  <data name="CdrpTermExpiryNotice_Subject" xml:space="preserve">
+    <value>Su mandato en el CDRP expira pronto</value>
+  </data>
+  <data name="CdrpTermExpiryNotice_Body" xml:space="preserve">
+    <value>Su mandato como miembro del Panel de Revisión de Datos de la Comunidad expirará el {0}. Si desea renovar su mandato, siga este enlace: {1}</value>
   </data>
 </root>

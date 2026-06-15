@@ -76,6 +76,9 @@
   <data name="Email" xml:space="preserve">
     <value>Correo electrónico</value>
   </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Confirmar correo electrónico</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Contraseña</value>
   </data>
@@ -84,5 +87,17 @@
   </data>
   <data name="PrefillNote" xml:space="preserve">
     <value>Estos campos se utilizan para completar previamente los formularios de gobernanza. Puede actualizarlos más tarde en la configuración de su cuenta.</value>
+  </data>
+  <data name="PrivacyPolicyAgreementPrefix" xml:space="preserve">
+    <value>He leído y acepto la </value>
+  </data>
+  <data name="TermsOfServiceAgreementPrefix" xml:space="preserve">
+    <value>He leído y acepto los </value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Política de Privacidad</value>
+  </data>
+  <data name="TermsOfService" xml:space="preserve">
+    <value>Términos de Servicio</value>
   </data>
 </root>

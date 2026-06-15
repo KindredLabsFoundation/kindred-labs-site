@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using KindredLabs.Core.Services.Interfaces;
 
 namespace KindredLabs.Tests.E2E.Infrastructure;
 
@@ -45,6 +46,9 @@ public class KindredLabsWebApplicationFactory : WebApplicationFactory<Program>
                     options.UseNpgsql(config.GetConnectionString("TestConnection"));
                 }
             );
+
+            // Override IEmailService with NoOpEmailService
+            services.AddScoped<IEmailService, NoOpEmailService>();
 
             // Ensure database is migrated
             var sp = services.BuildServiceProvider();

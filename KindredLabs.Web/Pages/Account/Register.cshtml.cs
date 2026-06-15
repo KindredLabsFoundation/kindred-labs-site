@@ -34,6 +34,7 @@ namespace KindredLabs.Web.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailService _emailService;
         private readonly IStringLocalizer<Register> _localizer;
+        private readonly IConfiguration _configuration;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
@@ -41,7 +42,8 @@ namespace KindredLabs.Web.Pages.Account
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailService emailService,
-            IStringLocalizer<Register> localizer
+            IStringLocalizer<Register> localizer,
+            IConfiguration configuration
         )
         {
             _userManager = userManager;
@@ -51,6 +53,7 @@ namespace KindredLabs.Web.Pages.Account
             _logger = logger;
             _emailService = emailService;
             _localizer = localizer;
+            _configuration = configuration;
             Input = new InputModel();
             ExternalLogins = new List<AuthenticationScheme>();
             ReturnUrl = string.Empty;
@@ -90,10 +93,10 @@ namespace KindredLabs.Web.Pages.Account
             public string LastName { get; set; } = string.Empty;
 
             [Display(Name = "Organization")]
-            public string Organization { get; set; } = string.Empty;
+            public string? Organization { get; set; }
 
             [Display(Name = "JobTitle")]
-            public string JobTitle { get; set; } = string.Empty;
+            public string? JobTitle { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -103,6 +106,12 @@ namespace KindredLabs.Web.Pages.Account
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; } = string.Empty;
+
+            [Required]
+            [EmailAddress]
+            [Display(Name = "ConfirmEmail")]
+            [Compare("Email", ErrorMessage = "The email and confirmation email do not match.")]
+            public string ConfirmEmail { get; set; } = string.Empty;
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -129,6 +138,26 @@ namespace KindredLabs.Web.Pages.Account
                 ErrorMessage = "The password and confirmation password do not match."
             )]
             public string ConfirmPassword { get; set; } = string.Empty;
+
+            [Required]
+            [Range(
+                typeof(bool),
+                "true",
+                "true",
+                ErrorMessage = "You must agree to the Privacy Policy."
+            )]
+            [Display(Name = "AcceptedPrivacyPolicy")]
+            public bool AcceptedPrivacyPolicy { get; set; }
+
+            [Required]
+            [Range(
+                typeof(bool),
+                "true",
+                "true",
+                ErrorMessage = "You must agree to the Terms of Service."
+            )]
+            [Display(Name = "AcceptedTermsOfService")]
+            public bool AcceptedTermsOfService { get; set; }
         }
 
         public async Task OnGetAsync(string? returnUrl = null)
@@ -159,6 +188,13 @@ namespace KindredLabs.Web.Pages.Account
                     user.LastName = Input.LastName;
                     user.Organization = Input.Organization;
                     user.JobTitle = Input.JobTitle;
+
+                    // Stamp policy acceptance
+                    user.PrivacyPolicyVersion = _configuration["PolicyVersions:PrivacyPolicy"];
+                    user.PrivacyPolicyAcceptedAt = DateTime.UtcNow;
+                    user.TermsOfServiceVersion = _configuration["PolicyVersions:TermsOfService"];
+                    user.TermsOfServiceAcceptedAt = DateTime.UtcNow;
+
                     var updateResult = await _userManager.UpdateAsync(user);
                     if (!updateResult.Succeeded)
                     {

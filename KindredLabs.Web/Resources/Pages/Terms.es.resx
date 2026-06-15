@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Title" xml:space="preserve">
+    <value>Términos de Servicio</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Última actualización: 7 de junio de 2025</value>
+  </data>
+  <data name="Section1_Title" xml:space="preserve">
+    <value>1. Aceptación de los términos</value>
+  </data>
+  <data name="Section1_Text1" xml:space="preserve">
+    <value>Al acceder o utilizar kindredlabsfoundation.org (el "Sitio"), usted acepta estos Términos de Servicio ("Términos"). Si no está de acuerdo, no utilice el Sitio.</value>
+  </data>
+  <data name="Section1_Text2" xml:space="preserve">
+    <value>Kindred Labs Foundation ("nosotros", "nos" o "la Fundación") está en proceso de constituirse como una corporación sin fines de lucro de Delaware. Estos Términos forman un acuerdo vinculante entre usted y la Fundación.</value>
+  </data>
+  <data name="Section2_Title" xml:space="preserve">
+    <value>2. Uso del Sitio</value>
+  </data>
+  <data name="Section2_1_Title" xml:space="preserve">
+    <value>2.1 Uso permitido</value>
+  </data>
+  <data name="Section2_1_Text" xml:space="preserve">
+    <value>Usted puede utilizar el Sitio para fines lícitos coherentes con su misión: participar en la investigación de la gobernanza de la IA, solicitar su participación en el Panel Comunitario de Revisión de Datos (CDRP), acceder a los marcos y recursos publicados y ponerse en contacto con la Fundación.</value>
+  </data>
+  <data name="Section2_2_Title" xml:space="preserve">
+    <value>2.2 Conducta prohibida</value>
+  </data>
+  <data name="Section2_2_Intro" xml:space="preserve">
+    <value>Usted acepta no:</value>
+  </data>
+  <data name="Section2_2_Item1" xml:space="preserve">
+    <value>Utilizar el Sitio para cualquier fin ilegal o que viole cualquier ley aplicable</value>
+  </data>
+  <data name="Section2_2_Item2" xml:space="preserve">
+    <value>Intentar obtener acceso no autorizado a cualquier cuenta, sistema o datos</value>
+  </data>
+  <data name="Section2_2_Item3" xml:space="preserve">
+    <value>Interferir con o interrumpir el Sitio o su infraestructura</value>
+  </data>
+  <data name="Section2_2_Item4" xml:space="preserve">
+    <value>Extraer, recopilar o recolectar datos del Sitio de manera que sobrecargue su funcionamiento</value>
+  </data>
+  <data name="Section2_2_Item5" xml:space="preserve">
+    <value>Suplantar la identidad de otra persona o entidad</value>
+  </data>
+  <data name="Section2_2_Item6" xml:space="preserve">
+    <value>Enviar información falsa, engañosa o fraudulenta a través de cualquier formulario</value>
+  </data>
+  <data name="Section3_Title" xml:space="preserve">
+    <value>3. Cuentas</value>
+  </data>
+  <data name="Section3_1_Title" xml:space="preserve">
+    <value>3.1 Registro</value>
+  </data>
+  <data name="Section3_1_Text" xml:space="preserve">
+    <value>Para acceder a ciertas funciones, debe crear una cuenta. Usted acepta proporcionar información precisa y completa y mantenerla actualizada.</value>
+  </data>
+  <data name="Section3_2_Title" xml:space="preserve">
+    <value>3.2 Seguridad de la cuenta</value>
+  </data>
+  <data name="Section3_2_Text" xml:space="preserve">
+    <value>Usted es responsable de mantener la confidencialidad de sus credenciales y de toda la actividad que ocurra bajo su cuenta. Notifíquenos inmediatamente en security@kindredlabsfoundation.org si sospecha de un acceso no autorizado.</value>
+  </data>
+  <data name="Section3_3_Title" xml:space="preserve">
+    <value>3.3 Rescisión</value>
+  </data>
+  <data name="Section3_3_Text" xml:space="preserve">
+    <value>Podemos suspender o cerrar su cuenta a nuestra discreción si tenemos motivos para creer que ha violado estos Términos, ha proporcionado información falsa o ha participado en una conducta perjudicial para la Fundación o su comunidad.</value>
+  </data>
+  <data name="Section4_Title" xml:space="preserve">
+    <value>4. Solicitudes del CDRP</value>
+  </data>
+  <data name="Section4_Text" xml:space="preserve">
+    <value>El envío de una solicitud del CDRP no garantiza la selección, el nombramiento o cualquier relación continua con la Fundación. Nos reservamos el derecho de rechazar, aplazar o interrumpir cualquier solicitud o nombramiento en cualquier momento. Se espera que los solicitantes proporcionen divulgaciones veraces y completas, incluidos los conflictos de intereses.</value>
+  </data>
+  <data name="Section5_Title" xml:space="preserve">
+    <value>5. Propiedad intelectual</value>
+  </data>
+  <data name="Section5_1_Title" xml:space="preserve">
+    <value>5.1 Contenido del Sitio</value>
+  </data>
+  <data name="Section5_1_Text" xml:space="preserve">
+    <value>A menos que se indique lo contrario, el contenido publicado en el Sitio es propiedad de Kindred Labs Foundation y está protegido por las leyes de propiedad intelectual aplicables.</value>
+  </data>
+  <data name="Section5_2_Title" xml:space="preserve">
+    <value>5.2 Marco de gobernanza ascendente (Upstream Governance Framework)</value>
+  </data>
+  <data name="Section5_2_Text" xml:space="preserve">
+    <value>El Upstream Governance Framework se publica como un estándar abierto. Los términos de atribución y conformidad se definen en el propio documento del marco. Esos términos rigen el uso del marco y se incorporan aquí por referencia.</value>
+  </data>
+  <data name="Section5_3_Title" xml:space="preserve">
+    <value>5.3 Códice de Kindred Labs (Kindred Labs Codex)</value>
+  </data>
+  <data name="Section5_3_Text" xml:space="preserve">
+    <value>El Kindred Labs Codex se publica con fines educativos y de investigación con atribución. La reproducción comercial requiere el consentimiento por escrito de la Fundación.</value>
+  </data>
+  <data name="Section5_4_Title" xml:space="preserve">
+    <value>5.4 Sus envíos</value>
+  </data>
+  <data name="Section5_4_Text" xml:space="preserve">
+    <value>Al enviar contenido a través del Sitio (incluidos los formularios de contacto y las solicitudes del CDRP), usted otorga a la Fundación una licencia limitada y no exclusiva para utilizar ese contenido para el fin para el que fue enviado. Usted declara que tiene el derecho de enviar el contenido.</value>
+  </data>
+  <data name="Section6_Title" xml:space="preserve">
+    <value>6. Descargos de responsabilidad</value>
+  </data>
+  <data name="Section6_Text1" xml:space="preserve">
+    <value>El Sitio y su contenido se proporcionan "tal cual" sin garantía de ningún tipo, expresa o implícita. La Fundación no hace ninguna declaración con respecto a la exactitud, integridad o idoneidad para un propósito particular de cualquier contenido publicado en el Sitio.</value>
+  </data>
+  <data name="Section6_Text2" xml:space="preserve">
+    <value>Nada en el Sitio constituye asesoramiento legal, financiero o profesional.</value>
+  </data>
+  <data name="Section7_Title" xml:space="preserve">
+    <value>7. Limitación de responsabilidad</value>
+  </data>
+  <data name="Section7_Text1" xml:space="preserve">
+    <value>En la máxima medida permitida por la ley aplicable, la Fundación y sus funcionarios, directores, voluntarios y agentes no serán responsables de ningún daño indirecto, incidental, especial, consecuente o punitivo que surja de su uso o incapacidad de usar el Sitio, incluso si se nos ha advertido de la posibilidad de tales daños.</value>
+  </data>
+  <data name="Section7_Text2" xml:space="preserve">
+    <value>Nuestra responsabilidad total por cualquier reclamación que surja bajo estos Términos no excederá la cantidad que nos pagó en los doce meses anteriores a la reclamación, o $100, lo que sea mayor. (Para la mayoría de los usuarios, esto significa $0, ya que el Sitio es gratuito).</value>
+  </data>
+  <data name="Section8_Title" xml:space="preserve">
+    <value>8. Enlaces y servicios de terceros</value>
+  </data>
+  <data name="Section8_Text" xml:space="preserve">
+    <value>El Sitio puede contener enlaces a sitios web o recursos de terceros. No somos responsables del contenido, la disponibilidad o las prácticas de los sitios de terceros. Los enlaces no constituyen un respaldo.</value>
+  </data>
+  <data name="Section9_Title" xml:space="preserve">
+    <value>9. Ley aplicable y resolución de disputas</value>
+  </data>
+  <data name="Section9_Text1" xml:space="preserve">
+    <value>Estos Términos se rigen por las leyes del Estado de Delaware, sin tener en cuenta los principios de conflicto de leyes, excepto donde sean reemplazados por la ley federal aplicable.</value>
+  </data>
+  <data name="Section9_Text2" xml:space="preserve">
+    <value>Cualquier disputa que surja bajo estos Términos y que no pueda resolverse de manera informal se someterá a un arbitraje vinculante bajo las reglas de la Asociación Americana de Arbitraje, con los procedimientos realizados en inglés. Cada parte asume sus propios costos. Nada en esta sección impide que cualquiera de las partes busque medidas cautelares en un tribunal de jurisdicción competente.</value>
+  </data>
+  <data name="Section10_Title" xml:space="preserve">
+    <value>10. Cambios en estos Términos</value>
+  </data>
+  <data name="Section10_Text" xml:space="preserve">
+    <value>Podemos actualizar estos Términos a medida que el Sitio y sus servicios evolucionen. Los cambios materiales se comunicarán actualizando la fecha de "Última actualización" y, cuando corresponda, mediante notificación por correo electrónico a los usuarios registrados. El uso continuado del Sitio después de cualquier cambio constituye la aceptación de los Términos actualizados.</value>
+  </data>
+  <data name="Section11_Title" xml:space="preserve">
+    <value>11. Contacto</value>
+  </data>
+</root>

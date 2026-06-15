@@ -1,0 +1,40 @@
+﻿@model (string PolicyType, string CheckboxId, string PageUrl)
+
+<div id="policy-modal-@Model.PolicyType" 
+     class="policy-modal fixed inset-0 z-[100] hidden bg-kindred-dark/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-8"
+     data-policy-type="@Model.PolicyType"
+     data-checkbox-id="@Model.CheckboxId">
+    
+    <div class="relative w-full max-w-4xl h-[90vh] bg-kindred-dark border border-white/10 flex flex-col shadow-2xl">
+        <!-- Header -->
+        <div class="flex justify-between items-center p-4 border-b border-white/10">
+            <h3 class="text-xl font-ui text-kindred-gold">
+                @if (Model.PolicyType == "PrivacyPolicy")
+                {
+                    <text>Privacy Policy</text>
+                }
+                else
+                {
+                    <text>Terms of Service</text>
+                }
+            </h3>
+            <a href="javascript:void(0)" 
+               class="policy-modal-close text-kindred-text hover:text-kindred-gold transition-colors text-2xl font-bold"
+               data-modal-id="policy-modal-@Model.PolicyType">
+                &times;
+            </a>
+        </div>
+
+        <!-- Content (Iframe) -->
+        <div class="flex-1 overflow-hidden relative">
+            <iframe src="@Model.PageUrl?embed=true" 
+                    class="policy-iframe w-full h-full border-none bg-white"
+                    data-policy-type="@Model.PolicyType"></iframe>
+        </div>
+
+        <!-- Footer -->
+        <div class="p-4 border-t border-white/10 flex justify-center items-center bg-kindred-dark">
+            <p class="text-kindred-text opacity-70 text-sm">Please read the full document before accepting.</p>
+        </div>
+    </div>
+</div>

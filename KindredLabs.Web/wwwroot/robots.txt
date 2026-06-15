@@ -1,0 +1,8 @@
+﻿User-agent: *
+Disallow: /en/Account/
+Disallow: /es/Account/
+Disallow: /en/Admin/
+Disallow: /es/Admin/
+Disallow: /en/Framework/Forms/
+Disallow: /es/Framework/Forms/
+Sitemap: https://www.kindredlabsfoundation.org/sitemap.xml

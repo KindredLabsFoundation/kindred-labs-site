@@ -55,6 +55,12 @@ public class ContactModel : PageModel
         ViewData["Title"] = Localizer["PageTitle"];
         ViewData["Description"] = Localizer["PageDescription"];
         ViewData["CanonicalUrl"] = Localizer["CanonicalUrl"];
+        ViewData["JsonLd"] = $@"{{
+  ""@context"": ""https://schema.org"",
+  ""@type"": ""ContactPage"",
+  ""name"": ""{ViewData["Title"]}"",
+  ""url"": ""{ViewData["CanonicalUrl"]}""
+}}";
     }
 
     public async Task<IActionResult> OnPostAsync()

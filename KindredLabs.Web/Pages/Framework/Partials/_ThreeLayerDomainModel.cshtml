@@ -1,0 +1,808 @@
+﻿@model KindredLabs.Web.Pages.Framework.IndexModel
+
+<section class="py-16">
+    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-kindred-gold mb-6" id="three-layer-domain-model">
+        @Model.Localizer["DomainModel_Heading"]
+    </h2>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Intro_P1"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Intro_P2"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Intro_P3"]
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <!-- Training -->
+    <div class="flex items-center justify-between mb-6">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="training">
+            @Model.Localizer["DomainModel_Training_Heading"]
+        </h3>
+        <a href="#"
+           class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+           data-slug="training"
+           target="_blank" rel="noopener">
+            Discuss this section
+        </a>
+    </div>
+    <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+        @Model.Localizer["DomainModel_Training_Definition_Heading"]
+    </h4>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed mb-6">
+            @Model.Localizer["DomainModel_Training_Definition_Content"]
+        </p>
+    </div>
+    <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+        @Model.Localizer["DomainModel_Training_Domains_Heading"]
+    </h4>
+    <div class="space-y-4 mb-6">
+        <div class="space-y-4 mb-12">
+            <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Domain1_Heading"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Domain1_Content"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-70 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Domain1_Decisions_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain1_Decisions_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain1_Decisions_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain1_Decisions_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain1_Decisions_Item4"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain1_Decisions_Item5"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain1_Decisions_Item6"]
+                </li>
+            </ul>
+        </div>
+        <div class="space-y-4 mb-12">
+            <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Domain2_Heading"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Domain2_Content"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-70 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Domain2_Decisions_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain2_Decisions_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain2_Decisions_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain2_Decisions_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain2_Decisions_Item4"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain2_Decisions_Item5"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain2_Decisions_Item6"]
+                </li>
+            </ul>
+        </div>
+        <div class="space-y-4 mb-12">
+            <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Domain3_Heading"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Domain3_Content"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-70 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Domain3_Decisions_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain3_Decisions_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain3_Decisions_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain3_Decisions_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain3_Decisions_Item4"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain3_Decisions_Item5"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain3_Decisions_Item6"]
+                </li>
+            </ul>
+        </div>
+        <div class="space-y-4 mb-12">
+            <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Domain4_Heading"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Domain4_Content"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-70 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Domain4_Decisions_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain4_Decisions_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain4_Decisions_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain4_Decisions_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain4_Decisions_Item4"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain4_Decisions_Item5"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Training_Domain4_Decisions_Item6"]
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+        @Model.Localizer["DomainModel_Training_Controls_Heading"]
+    </h4>
+    <div class="space-y-4 mb-12">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Training_Controls_Intro"]
+        </p>
+        <ul  class="list-disc list-outside space-y-2 pl-10">
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Controls_Item1"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Controls_Item2"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Controls_Item3"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Controls_Item4"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Controls_Item5"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Controls_Item6"]
+            </li>
+        </ul>
+    </div>
+    <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+        @Model.Localizer["DomainModel_Training_Indicators_Heading"]
+    </h4>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Training_Indicators_Intro"]
+        </p>
+        <ul  class="list-disc list-outside space-y-2 pl-10">
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Indicators_Item1"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Indicators_Item2"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Indicators_Item3"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Indicators_Item4"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Indicators_Item5"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Training_Indicators_Item6"]
+            </li>
+        </ul>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <!-- Fine-tuning -->
+    <div class="flex items-center justify-between mb-6">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="fine-tuning">
+            @Model.Localizer["DomainModel_FineTuning_Heading"]
+        </h3>
+        <a href="#"
+           class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+           data-slug="fine-tuning"
+           target="_blank" rel="noopener">
+            Discuss this section
+        </a>
+    </div>
+    <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+        @Model.Localizer["DomainModel_FineTuning_Definition_Heading"]
+    </h4>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed mb-6">
+            @Model.Localizer["DomainModel_FineTuning_Definition_P1"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed mb-6">
+            @Model.Localizer["DomainModel_FineTuning_Definition_P2"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed mb-6">
+            @Model.Localizer["DomainModel_FineTuning_Definition_P3"]
+        </p>
+    </div>
+    <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+        @Model.Localizer["DomainModel_FineTuning_Domains_Heading"]
+    </h4>
+    <div class="space-y-4 mb-6">
+        <div class="space-y-4 mb-12">
+            <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Domain1_Heading"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Domain1_Content"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-70 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Domain1_Decisions_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain1_Decisions_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain1_Decisions_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain1_Decisions_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain1_Decisions_Item4"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain1_Decisions_Item5"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain1_Decisions_Item6"]
+                </li>
+            </ul>
+        </div>
+        <div class="space-y-4 mb-12">
+            <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Domain2_Heading"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Domain2_Content"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-70 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Domain2_Decisions_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain2_Decisions_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain2_Decisions_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain2_Decisions_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain2_Decisions_Item4"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain2_Decisions_Item5"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain2_Decisions_Item6"]
+                </li>
+            </ul>
+        </div>
+        <div class="space-y-4 mb-12">
+            <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Domain3_Heading"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Domain3_Content"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-70 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Domain3_Decisions_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain3_Decisions_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain3_Decisions_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain3_Decisions_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain3_Decisions_Item4"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain3_Decisions_Item5"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain3_Decisions_Item6"]
+                </li>
+            </ul>
+        </div>
+        <div class="space-y-4 mb-12">
+            <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Domain4_Heading"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Domain4_Content"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-70 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Domain4_Decisions_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain4_Decisions_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain4_Decisions_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain4_Decisions_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain4_Decisions_Item4"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain4_Decisions_Item5"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_FineTuning_Domain4_Decisions_Item6"]
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+        @Model.Localizer["DomainModel_FineTuning_Controls_Heading"]
+    </h4>
+    <div class="space-y-4 mb-12">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_FineTuning_Controls_Intro"]
+        </p>
+        <ul  class="list-disc list-outside space-y-2 pl-10">
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Controls_Item1"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Controls_Item2"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Controls_Item3"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Controls_Item4"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Controls_Item5"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Controls_Item6"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Controls_Item7"]
+            </li>
+        </ul>
+    </div>
+    <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+        @Model.Localizer["DomainModel_FineTuning_Indicators_Heading"]
+    </h4>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_FineTuning_Indicators_Intro"]
+        </p>
+        <ul  class="list-disc list-outside space-y-2 pl-10">
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Indicators_Item1"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Indicators_Item2"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Indicators_Item3"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Indicators_Item4"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Indicators_Item5"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Indicators_Item6"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_FineTuning_Indicators_Item7"]
+            </li>
+        </ul>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <!-- Deployment -->
+    <div class="flex items-center justify-between mb-6">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="deployment">
+            @Model.Localizer["DomainModel_Deployment_Heading"]
+        </h3>
+        <a href="#"
+           class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+           data-slug="deployment"
+           target="_blank" rel="noopener">
+            Discuss this section
+        </a>
+    </div>
+    <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+        @Model.Localizer["DomainModel_Deployment_Definition_Heading"]
+    </h4>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed mb-6">
+            @Model.Localizer["DomainModel_Deployment_Definition_Content"]
+        </p>
+    </div>
+    <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+        @Model.Localizer["DomainModel_Deployment_Domains_Heading"]
+    </h4>
+    <div class="space-y-4 mb-6">
+        <div class="space-y-4 mb-12">
+            <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Domain1_Heading"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Domain1_Content"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-70 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Domain1_Decisions_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain1_Decisions_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain1_Decisions_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain1_Decisions_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain1_Decisions_Item4"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain1_Decisions_Item5"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain1_Decisions_Item6"]
+                </li>
+            </ul>
+        </div>
+        <div class="space-y-4 mb-12">
+            <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Domain2_Heading"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Domain2_Content"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-70 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Domain2_Decisions_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain2_Decisions_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain2_Decisions_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain2_Decisions_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain2_Decisions_Item4"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain2_Decisions_Item5"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain2_Decisions_Item6"]
+                </li>
+            </ul>
+        </div>
+        <div class="space-y-4 mb-12">
+            <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Domain3_Heading"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Domain3_Content"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-70 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Domain3_Decisions_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain3_Decisions_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain3_Decisions_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain3_Decisions_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain3_Decisions_Item4"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain3_Decisions_Item5"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain3_Decisions_Item6"]
+                </li>
+            </ul>
+        </div>
+        <div class="space-y-4 mb-12">
+            <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Domain4_Heading"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Domain4_Content"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-70 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Domain4_Decisions_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain4_Decisions_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain4_Decisions_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain4_Decisions_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain4_Decisions_Item4"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain4_Decisions_Item5"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["DomainModel_Deployment_Domain4_Decisions_Item6"]
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+        @Model.Localizer["DomainModel_Deployment_Controls_Heading"]
+    </h4>
+    <div class="space-y-4 mb-12">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Deployment_Controls_Intro"]
+        </p>
+        <ul  class="list-disc list-outside space-y-2 pl-10">
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Controls_Item1"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Controls_Item2"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Controls_Item3"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Controls_Item4"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Controls_Item5"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Controls_Item6"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Controls_Item7"]
+            </li>
+        </ul>
+    </div>
+    <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+        @Model.Localizer["DomainModel_Deployment_Indicators_Heading"]
+    </h4>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Deployment_Indicators_Intro"]
+        </p>
+        <ul  class="list-disc list-outside space-y-2 pl-10">
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Indicators_Item1"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Indicators_Item2"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Indicators_Item3"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Indicators_Item4"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Indicators_Item5"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Indicators_Item6"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["DomainModel_Deployment_Indicators_Item7"]
+            </li>
+        </ul>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <!-- Layer Integration -->
+    <div class="flex items-center justify-between mb-6">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="layer-integration">
+            @Model.Localizer["DomainModel_Integration_Heading"]
+        </h3>
+        <a href="#"
+           class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+           data-slug="layer-integration"
+           target="_blank" rel="noopener">
+            Discuss this section
+        </a>
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["DomainModel_Integration_Purpose_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Purpose_Content"]
+        </p>
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["DomainModel_Integration_Handoffs_Heading"]
+        </h4>
+        <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Handoffs_TtoFT_Heading"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Handoffs_TtoFT_P1"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Handoffs_TtoFT_P2"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Handoffs_TtoFT_P3"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["DomainModel_Integration_Handoffs_TtoFT_Requirement"])
+        </p>
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Handoffs_FTtoD_Heading"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Handoffs_FTtoD_P1"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Handoffs_FTtoD_P2"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["DomainModel_Integration_Handoffs_FTtoD_Requirement"])
+        </p>
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <p class="text-base sm:text-lg md:text-xl font-bold text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Handoffs_DtoU_Heading"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Handoffs_DtoU_P1"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Handoffs_DtoU_P2"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["DomainModel_Integration_Handoffs_DtoU_Requirement"])
+        </p>
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["DomainModel_Integration_VendorSurface_Heading"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_VendorSurface_P1"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_VendorSurface_P2"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_VendorSurface_P3"]
+        </p>
+        <ul  class="list-disc list-outside space-y-2 pl-10">
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Html.Raw(Model.Localizer["DomainModel_Integration_VendorSurface_Mechanism1"])
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Html.Raw(Model.Localizer["DomainModel_Integration_VendorSurface_Mechanism2"])
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Html.Raw(Model.Localizer["DomainModel_Integration_VendorSurface_Mechanism3"])
+            </li>
+        </ul>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_VendorSurface_P4"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_VendorSurface_P5"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_VendorSurface_P6"]
+        </p>
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["DomainModel_Integration_Temporal_Heading"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Temporal_P1"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Temporal_Intro"]
+        </p>
+        <ul  class="list-disc list-outside space-y-2 pl-10">
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Html.Raw(Model.Localizer["DomainModel_Integration_Temporal_Item1"])
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Html.Raw(Model.Localizer["DomainModel_Integration_Temporal_Item2"])
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Html.Raw(Model.Localizer["DomainModel_Integration_Temporal_Item2"])
+            </li>
+        </ul>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Temporal_P2"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["DomainModel_Integration_Temporal_P3"]
+        </p>
+    </div>
+
+</section>

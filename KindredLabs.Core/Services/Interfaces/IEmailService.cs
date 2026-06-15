@@ -115,6 +115,14 @@ public interface IEmailService
     Task SendAccountDeletionConfirmationAsync(string toEmail);
 
     /// <summary>
+    /// Sends a supplementary data request to a CDRP candidate.
+    /// </summary>
+    /// <param name="toEmail">Recipient email address.</param>
+    /// <param name="respondUrl">The unique URL where the candidate can respond.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    Task SendCdrpSupplementaryRequestAsync(string toEmail, string respondUrl);
+
+    /// <summary>
     /// Sends a notification that the user's password has been changed.
     /// </summary>
     /// <param name="toEmail">Recipient email address.</param>
@@ -137,4 +145,50 @@ public interface IEmailService
     /// <param name="securityEmail">The security contact email.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
     Task SendTwoFactorDisabledNotificationAsync(string toEmail, string securityEmail);
+
+    /// <summary>
+    /// Sends a notification that an administrator has reset the user's two-factor authentication.
+    /// </summary>
+    /// <param name="toEmail">Recipient email address.</param>
+    /// <param name="securityEmail">The security contact email.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    Task SendTwoFactorResetByAdminAsync(string toEmail, string securityEmail);
+
+    /// <summary>
+    /// Sends a notification that the account has been scheduled for permanent deletion.
+    /// </summary>
+    /// <param name="toEmail">Recipient email address.</param>
+    /// <param name="securityEmail">The security contact email for appeals.</param>
+    /// <param name="deletionDate">The date when the account will be permanently deleted.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    Task SendAccountScheduledForDeletionAsync(
+        string toEmail,
+        string securityEmail,
+        DateTime deletionDate
+    );
+
+    /// <summary>
+    /// Sends a reminder to a CDRP candidate about pending questions.
+    /// </summary>
+    /// <param name="toEmail">The recipient's email address.</param>
+    /// <param name="respondUrl">The unique URL where the candidate can respond.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    Task SendCdrpReminderAsync(string toEmail, string respondUrl);
+
+    /// <summary>
+    /// Sends a notification to a CDRP candidate with a new response link.
+    /// </summary>
+    /// <param name="toEmail">The recipient's email address.</param>
+    /// <param name="respondUrl">The unique URL where the candidate can respond.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    Task SendCdrpNewLinkAsync(string toEmail, string respondUrl);
+
+    /// <summary>
+    /// Sends a notice to an active CDRP member that their term is expiring soon.
+    /// </summary>
+    /// <param name="toEmail">The recipient's email address.</param>
+    /// <param name="expiresAt">The date when the term expires.</param>
+    /// <param name="renewUrl">The URL where the member can request renewal.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    Task SendCdrpTermExpiryNoticeAsync(string toEmail, DateTime expiresAt, string renewUrl);
 }

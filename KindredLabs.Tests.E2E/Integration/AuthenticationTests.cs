@@ -7,29 +7,25 @@ using KindredLabs.Tests.E2E.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Xunit;
-using Xunit.Categories;
-using Assert = Xunit.Assert;
-using CategoryAttribute = Xunit.Categories.CategoryAttribute;
+using NUnit.Framework;
+using Assert = NUnit.Framework.Assert;
 
 namespace KindredLabs.Tests.E2E.Integration;
 
+[TestFixture]
 [Category("Integration")]
 public class AuthenticationTests : IntegrationTestBase
 {
-    public AuthenticationTests(KindredLabsWebApplicationFactory factory)
-        : base(factory) { }
-
-    [Fact]
+    [Test]
     public async Task CultureRouting_ReturnsCorrectStatusAndRedirects()
     {
         // GET /en/Account/Login returns 200
         var enResponse = await Client.GetAsync("/en/Account/Login");
-        Assert.Equal(HttpStatusCode.OK, enResponse.StatusCode);
+        Assert.That(enResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
         // GET /es/Account/Login returns 200
         var esResponse = await Client.GetAsync("/es/Account/Login");
-        Assert.Equal(HttpStatusCode.OK, esResponse.StatusCode);
+        Assert.That(esResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
         // GET /Account/Login (no culture) redirects to /en/Account/Login
         var clientNoAutoRedirect = Factory.CreateClient(
@@ -40,11 +36,11 @@ public class AuthenticationTests : IntegrationTestBase
         );
         var noCultureResponse = await clientNoAutoRedirect.GetAsync("/");
         // It should be 301 or 302, Redirect is 302
-        Assert.Equal(HttpStatusCode.Redirect, noCultureResponse.StatusCode);
-        Assert.EndsWith("/en", noCultureResponse.Headers.Location?.OriginalString.TrimEnd('/'));
+        Assert.That(noCultureResponse.StatusCode, Is.EqualTo(HttpStatusCode.Redirect));
+        Assert.That(noCultureResponse.Headers.Location?.OriginalString.TrimEnd('/'), Does.EndWith("/en"));
     }
 
-    [Fact]
+    [Test]
     public async Task RegistrationFlow_PersistsUserData()
     {
         var email = "newuser@example.com";
@@ -67,20 +63,20 @@ public class AuthenticationTests : IntegrationTestBase
         var response = await Client.PostAsync("/en/Account/Register", content);
 
         // Assert redirect or success (Register page redirects after success)
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode); // It might return OK if it shows "Confirmation sent" page
+        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK)); // It might return OK if it shows "Confirmation sent" page
 
         using var scope = Factory.Services.CreateScope();
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
         var user = await userManager.FindByEmailAsync(email);
 
-        Assert.NotNull(user);
-        Assert.Equal("John", user.FirstName);
-        Assert.Equal("Doe", user.LastName);
-        Assert.Equal("Kindred Labs", user.Organization);
-        Assert.Equal("Developer", user.JobTitle);
+        Assert.That(user, Is.Not.Null);
+        Assert.That(user.FirstName, Is.EqualTo("John"));
+        Assert.That(user.LastName, Is.EqualTo("Doe"));
+        Assert.That(user.Organization, Is.EqualTo("Kindred Labs"));
+        Assert.That(user.JobTitle, Is.EqualTo("Developer"));
     }
 
-    [Fact]
+    [Test]
     public async Task LoginRedirectsTo2FA_WhenEnabled()
     {
         var email = $"user2fa-{Guid.NewGuid()}@example.com";
@@ -140,10 +136,10 @@ public class AuthenticationTests : IntegrationTestBase
         }
 
         var location = response.Headers.Location?.OriginalString;
-        Assert.Contains("/en/Account/LoginWith2fa", location);
+        Assert.That(location, Does.Contain("/en/Account/LoginWith2fa"));
     }
 
-    [Fact]
+    [Test]
     public async Task UserEmailsUniqueConstraint_ThrowsViolation()
     {
         var email = "duplicate@example.com";
@@ -162,10 +158,10 @@ public class AuthenticationTests : IntegrationTestBase
 
         context.UserEmails.Add(new UserEmail { UserId = user2.Id, Email = email });
 
-        await Assert.ThrowsAsync<DbUpdateException>(() => context.SaveChangesAsync());
+        Assert.That(async () => await context.SaveChangesAsync(), Throws.InstanceOf<DbUpdateException>());
     }
 
-    [Fact]
+    [Test]
     public async Task AccountDeletionCascade_CleansUpData()
     {
         var email = $"delete-{Guid.NewGuid()}@integration.test";
@@ -243,20 +239,20 @@ public class AuthenticationTests : IntegrationTestBase
 
             // Check existence
             var userFound = await db.Users.AnyAsync(u => u.Id == userId);
-            Assert.False(userFound);
+            Assert.That(userFound, Is.False);
 
             var draftsCount = await db.Drafts.CountAsync(d => d.UserId == userId);
-            Assert.Equal(0, draftsCount);
+            Assert.That(draftsCount, Is.EqualTo(0));
 
             var submissionLog = await db
                 .SubmissionLogs.IgnoreQueryFilters()
                 .FirstOrDefaultAsync(s => s.ContentHash == "hash-to-delete");
-            Assert.NotNull(submissionLog);
-            Assert.Null(submissionLog.UserId);
+            Assert.That(submissionLog, Is.Not.Null);
+            Assert.That(submissionLog.UserId, Is.Null);
         }
     }
 
-    [Fact]
+    [Test]
     public async Task CookieAuthenticationRedirect_UsesCorrectCulture()
     {
         var clientNoAutoRedirect = Factory.CreateClient(
@@ -269,13 +265,13 @@ public class AuthenticationTests : IntegrationTestBase
         // GET /en/Account/Index while unauthenticated
         var response = await clientNoAutoRedirect.GetAsync("/en/Account/Index");
 
-        Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Redirect));
         var location = response.Headers.Location?.OriginalString;
-        Assert.Contains("/en/Account/Login", location);
+        Assert.That(location, Does.Contain("/en/Account/Login"));
 
         // GET /es/Account/Index while unauthenticated
         var esResponse = await clientNoAutoRedirect.GetAsync("/es/Account/Index");
-        Assert.Equal(HttpStatusCode.Redirect, esResponse.StatusCode);
-        Assert.Contains("/es/Account/Login", esResponse.Headers.Location?.OriginalString);
+        Assert.That(esResponse.StatusCode, Is.EqualTo(HttpStatusCode.Redirect));
+        Assert.That(esResponse.Headers.Location?.OriginalString, Does.Contain("/es/Account/Login"));
     }
 }

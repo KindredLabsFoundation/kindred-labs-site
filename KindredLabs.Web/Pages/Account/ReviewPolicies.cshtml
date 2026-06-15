@@ -1,0 +1,121 @@
+﻿@page
+@model KindredLabs.Web.Pages.Account.ReviewPoliciesModel
+@{
+    ViewData["Title"] = Model.Localizer["PageTitle"];
+    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+}
+
+<div class="min-h-screen bg-kindred-dark flex flex-col items-center justify-center px-4 py-12">
+    <div class="max-w-2xl w-full bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10 shadow-2xl">
+        <h1 class="text-3xl font-bold text-kindred-gold mb-6">@Model.Localizer["Header"]</h1>
+        
+        <p class="text-kindred-text mb-8 leading-relaxed">
+            @Model.Localizer["ExplanationText"]
+        </p>
+
+        <form method="post" id="policyForm">
+            <input type="hidden" asp-for="ReturnUrl" />
+            <div asp-validation-summary="ModelOnly" class="mb-6 text-red-400 text-sm list-none p-0"></div>
+
+            <div class="space-y-6 mb-10">
+                @if (Model.RequiresPrivacyPolicy)
+                {
+                    <div class="flex items-start gap-3 group">
+                        <div class="flex items-center h-6">
+                            <input asp-for="Input.AcceptedPrivacyPolicy" type="checkbox" 
+                                   class="h-5 w-5 rounded bg-white/10 border-white/20 text-kindred-gold focus:ring-kindred-gold pointer-events-none" 
+                                   required tabindex="-1" />
+                        </div>
+                        <div class="text-sm">
+                            <label asp-for="Input.AcceptedPrivacyPolicy" class="text-kindred-text cursor-default">
+                                @Model.Localizer["PrivacyPolicyAgreementPrefix"]
+                                <a href="javascript:void(0)" class="text-kindred-gold hover:underline font-semibold" data-policy-trigger="PrivacyPolicy">@Model.Localizer["PrivacyPolicy"]</a>
+                            </label>
+                            <span asp-validation-for="Input.AcceptedPrivacyPolicy" class="block text-red-400 text-xs mt-1"></span>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <input type="hidden" asp-for="Input.AcceptedPrivacyPolicy" value="true" />
+                }
+
+                @if (Model.RequiresTermsOfService)
+                {
+                    <div class="flex items-start gap-3 group">
+                        <div class="flex items-center h-6">
+                            <input asp-for="Input.AcceptedTermsOfService" type="checkbox" 
+                                   class="h-5 w-5 rounded bg-white/10 border-white/20 text-kindred-gold focus:ring-kindred-gold pointer-events-none" 
+                                   required tabindex="-1" />
+                        </div>
+                        <div class="text-sm">
+                            <label asp-for="Input.AcceptedTermsOfService" class="text-kindred-text cursor-default">
+                                @Model.Localizer["TermsOfServiceAgreementPrefix"]
+                                <a href="javascript:void(0)" class="text-kindred-gold hover:underline font-semibold" data-policy-trigger="TermsOfService">@Model.Localizer["TermsOfService"]</a>
+                            </label>
+                            <span asp-validation-for="Input.AcceptedTermsOfService" class="block text-red-400 text-xs mt-1"></span>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <input type="hidden" asp-for="Input.AcceptedTermsOfService" value="true" />
+                }
+            </div>
+
+            <button type="submit" id="submitBtn" disabled
+                    class="w-full bg-kindred-gold text-kindred-dark font-bold py-4 rounded-lg transition-all duration-300 shadow-xl uppercase tracking-widest opacity-50 pointer-events-none enabled:opacity-100 enabled:pointer-events-auto enabled:hover:bg-white">
+                @Model.Localizer["ContinueButton"]
+            </button>
+        </form>
+    </div>
+</div>
+
+@if (Model.RequiresPrivacyPolicy)
+{
+    <partial name="_PolicyModal" model='("PrivacyPolicy", "Input_AcceptedPrivacyPolicy", $"/{currentCulture}/Privacy")' />
+}
+
+@if (Model.RequiresTermsOfService)
+{
+    <partial name="_PolicyModal" model='("TermsOfService", "Input_AcceptedTermsOfService", $"/{currentCulture}/Terms")' />
+}
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('policyForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+
+            function checkFormValidity() {
+                let allChecked = true;
+                checkboxes.forEach(cb => {
+                    if (!cb.checked) allChecked = false;
+                });
+                submitBtn.disabled = !allChecked;
+            }
+
+            // Monitor checkboxes for changes (triggered by modal accept)
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'checked') {
+                        checkFormValidity();
+                    }
+                });
+            });
+
+            checkboxes.forEach(cb => {
+                // Also check on click in case pointer-events-none is bypassed or if we need standard event
+                cb.addEventListener('change', checkFormValidity);
+                
+                // Mutation observer because modal sets .checked = true property which doesn't always fire 'change'
+                // However, our policy-modal.js calls .click() or just sets .checked
+                // Let's use a simple interval or just trust the manual trigger we can add to policy-modal.js if needed
+            });
+
+            // Re-check every 500ms to be safe since JS-driven checkbox changes are tricky to observe
+            setInterval(checkFormValidity, 500);
+        });
+    </script>
+}

@@ -1,0 +1,95 @@
+﻿@model KindredLabs.Web.Pages.Framework.IndexModel
+
+<section class="py-16">
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-kindred-gold" id="executive-summary">
+            @Model.Localizer["ExecutiveSummary_Heading"]
+        </h2>
+        <a href="#"
+           class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+           data-slug="executive-summary"
+           target="_blank" rel="noopener">
+            Discuss this section
+        </a>
+    </div>
+    <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold mb-6" id="the-problem">
+        @Model.Localizer["ExecutiveSummary_Problem_Heading"]
+    </h3>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["ExecutiveSummary_Problem_P1"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["ExecutiveSummary_Problem_P2"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["ExecutiveSummary_Problem_P3"]
+        </p>
+    </div>
+    <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold mb-6" id="the-three-layer-model">
+        @Model.Localizer["ExecutiveSummary_ThreeLayerModel_Heading"]
+    </h3>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["ExecutiveSummary_ThreeLayerModel_Intro"]
+        </p>
+        <ul  class="list-disc list-outside space-y-6 pl-6">
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["ExecutiveSummary_ThreeLayerModel_Training"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["ExecutiveSummary_ThreeLayerModel_FineTuning"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["ExecutiveSummary_ThreeLayerModel_Deployment"]
+            </li>
+        </ul>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["ExecutiveSummary_ThreeLayerModel_Outro"]
+        </p>
+    </div>
+    <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold mb-6" id="what-the-framework-contains">
+        @Model.Localizer["ExecutiveSummary_Components_Heading"]
+    </h3>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["ExecutiveSummary_Components_Intro"]
+        </p>
+        <ol class="list-decimal list-outside space-y-6 pl-6">
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["ExecutiveSummary_Components_Item1"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["ExecutiveSummary_Components_Item2"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["ExecutiveSummary_Components_Item3"]
+            </li>
+            <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["ExecutiveSummary_Components_Item4"]
+            </li>
+        </ol>
+    </div>
+    <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold mb-6" id="how-this-framework-relates-to-existing-standards">
+        @Model.Localizer["ExecutiveSummary_Standards_Heading"]
+    </h3>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["ExecutiveSummary_Standards_NIST"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["ExecutiveSummary_Standards_EU"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["ExecutiveSummary_Standards_ISO"])
+        </p>
+    </div>
+    <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold mb-6" id="licensing">
+        @Model.Localizer["ExecutiveSummary_Licensing_Heading"]
+    </h3>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["ExecutiveSummary_Licensing_Content"])
+        </p>
+    </div>
+</section>

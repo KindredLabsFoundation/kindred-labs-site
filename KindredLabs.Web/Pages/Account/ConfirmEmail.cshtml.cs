@@ -38,6 +38,8 @@ namespace KindredLabs.Web.Pages.Account
         [TempData]
         public string StatusMessage { get; set; }
 
+        public bool Succeeded { get; set; }
+
         public async Task<IActionResult> OnGetAsync(string userId, string code)
         {
             if (userId == null || code == null)
@@ -53,7 +55,8 @@ namespace KindredLabs.Web.Pages.Account
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
-            StatusMessage = result.Succeeded
+            Succeeded = result.Succeeded;
+            StatusMessage = Succeeded
                 ? _localizer["Thank you for confirming your email."]
                 : _localizer["Error confirming your email."];
             return Page();

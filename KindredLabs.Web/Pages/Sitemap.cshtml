@@ -1,0 +1,17 @@
+﻿@page
+@model KindredLabs.Web.Pages.SitemapModel
+@{
+    Layout = null;
+    Response.ContentType = "application/xml";
+}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    @foreach (var url in Model.SitemapUrls)
+    {
+        <url>
+            <loc>@url</loc>
+            <lastmod>@DateTime.UtcNow.ToString("yyyy-MM-dd")</lastmod>
+            <changefreq>weekly</changefreq>
+        </url>
+    }
+</urlset>

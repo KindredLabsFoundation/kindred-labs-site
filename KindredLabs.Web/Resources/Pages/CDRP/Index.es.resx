@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Panel de Revisión de Datos Comunitarios | Kindred Labs</value>
+  </data>
+  <data name="Heading" xml:space="preserve">
+    <value>Panel de Revisión de Datos Comunitarios</value>
+  </data>
+  <data name="Section1" xml:space="preserve">
+    <value>El Panel de Revisión de Datos Comunitarios es la conciencia ética de Kindred Labs. Establecido bajo el Codex de Kindred Labs, el Panel tiene autoridad independiente para revisar y aprobar cada conjunto de datos utilizado en el entrenamiento y desarrollo de KindredAI. Sin la aprobación del CDRP, no se puede utilizar ningún conjunto de datos. Esa autoridad no es asesora, es vinculante.</value>
+  </data>
+  <data name="Section2Heading" xml:space="preserve">
+    <value>Qué hace el CDRP</value>
+  </data>
+  <data name="Section2Content" xml:space="preserve">
+    <value>El Panel revisa los conjuntos de datos de entrenamiento para verificar su procedencia, documentación de consentimiento, diversidad representativa y alineación con la doctrina del Codex de Pluralismo Empático. Participa en las revisiones de las enmiendas del Codex y tiene poder de veto sobre los conjuntos de datos que no cumplen con los estándares éticos de la Fundación. Se requiere un voto de dos tercios de la Junta Directiva para anular un veto del CDRP, y solo bajo condiciones estrechamente definidas.</value>
+  </data>
+  <data name="Section3Heading" xml:space="preserve">
+    <value>A quién buscamos</value>
+  </data>
+  <data name="Section3Content" xml:space="preserve">
+    <value>El Panel está diseñado para reflejar toda la amplitud de la experiencia humana. Buscamos personas que representen a comunidades que históricamente han estado subrepresentadas o perjudicadas por los sistemas automatizados, no solo investigadores o tecnólogos, aunque esas perspectivas también importan. Lo que más importa es la capacidad de evaluar los datos a través del lente de la experiencia vivida, el pensamiento crítico y un compromiso genuino con la equidad.</value>
+  </data>
+  <data name="Section3Terms" xml:space="preserve">
+    <value>Los miembros sirven términos renovables de un año. El servicio es voluntario. Los miembros no pueden ocupar puestos remunerados en Kindred Labs durante su mandato.</value>
+  </data>
+  <data name="Section4Heading" xml:space="preserve">
+    <value>El Panel aún no está constituido</value>
+  </data>
+  <data name="Section4Content" xml:space="preserve">
+    <value>Kindred Labs busca actualmente miembros fundadores para el CDRP. Los miembros fundadores ayudarán a dar forma no solo a los conjuntos de datos que entrenan a KindredAI, sino también a los procesos y estándares mediante los cuales se evaluarán los futuros conjuntos de datos. Este es un papel significativo con autoridad real en una estructura de gobernanza diseñada para durar.</value>
+  </data>
+  <data name="FormHeading" xml:space="preserve">
+    <value>Expresar Interés</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="FieldEmail" xml:space="preserve">
+    <value>Correo electrónico</value>
+  </data>
+  <data name="FieldOrganization" xml:space="preserve">
+    <value>Organización</value>
+  </data>
+  <data name="FieldJobTitle" xml:space="preserve">
+    <value>Cargo / Título actual</value>
+  </data>
+  <data name="FieldPerspectives" xml:space="preserve">
+    <value>¿Qué perspectivas o experiencias vividas aportaría a este papel?</value>
+  </data>
+  <data name="FieldPerspectivesHelper" xml:space="preserve">
+    <value>Esto puede incluir experiencia profesional, experiencia vivida, trasfondo cultural, discapacidad, identidad de género o cualquier otra perspectiva que considere subrepresentada en el desarrollo de la IA.</value>
+  </data>
+  <data name="FieldBackground" xml:space="preserve">
+    <value>Describa su trasfondo y experiencia relevantes</value>
+  </data>
+  <data name="FieldInterest" xml:space="preserve">
+    <value>¿Por qué le interesa servir en el Panel de Revisión de Datos Comunitarios?</value>
+  </data>
+  <data name="FieldReferral" xml:space="preserve">
+    <value>¿Cómo se enteró de nosotros?</value>
+  </data>
+  <data name="SelectOption" xml:space="preserve">
+    <value>Seleccionar...</value>
+  </data>
+  <data name="ReferralWebSearch" xml:space="preserve">
+    <value>Búsqueda web</value>
+  </data>
+  <data name="ReferralFriend" xml:space="preserve">
+    <value>Referencia</value>
+  </data>
+  <data name="ReferralAcademic" xml:space="preserve">
+    <value>Red académica/de investigación</value>
+  </data>
+  <data name="ReferralOther" xml:space="preserve">
+    <value>Otro</value>
+  </data>
+  <data name="FieldConflicts" xml:space="preserve">
+    <value>Por favor, revele cualquier conflicto de interés potencial, incluyendo cualquier relación actual o pasada con Kindred Labs</value>
+  </data>
+  <data name="FieldAcknowledgment" xml:space="preserve">
+    <value>Entiendo que el servicio en el CDRP es voluntario, que los miembros no pueden ocupar puestos remunerados en Kindred Labs durante su mandato y que no tengo conflictos de interés no revelados que me impidan servir de manera imparcial</value>
+  </data>
+  <data name="SubmitButton" xml:space="preserve">
+    <value>Enviar solicitud</value>
+  </data>
+  <data name="SuccessMessage" xml:space="preserve">
+    <value>¡Gracias por su interés! Su expresión de interés ha sido recibida y hemos enviado un correo electrónico de confirmación a su bandeja de entrada.</value>
+  </data>
+  <data name="Optional" xml:space="preserve">
+    <value>opcional</value>
+  </data>
+  <data name="FieldConfirmEmail" xml:space="preserve">
+    <value>Confirmar correo electrónico</value>
+  </data>
+  <data name="ErrorConfirmEmailRequired" xml:space="preserve">
+    <value>Por favor, confirme su dirección de correo electrónico.</value>
+  </data>
+  <data name="ErrorEmailMismatch" xml:space="preserve">
+    <value>El correo electrónico y su confirmación no coinciden.</value>
+  </data>
+  <data name="ErrorDeniedRecently" xml:space="preserve">
+    <value>Puede volver a presentar su solicitud después del {0}.</value>
+  </data>
+  <data name="SuccessFollowUp" xml:space="preserve">
+    <value>Es posible que reciba preguntas de seguimiento sobre su solicitud. Por favor, esté atento a su carpeta de correo no deseado.</value>
+  </data>
+  <data name="ErrorDuplicateEmail" xml:space="preserve">
+    <value>Ya se ha recibido una solicitud de esta dirección de correo electrónico.</value>
+  </data>
+  <data name="PrivacyPolicyAgreementPrefix" xml:space="preserve">
+    <value>He leído y acepto la </value>
+  </data>
+  <data name="TermsOfServiceAgreementPrefix" xml:space="preserve">
+    <value>He leído y acepto los </value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Política de Privacidad</value>
+  </data>
+  <data name="TermsOfService" xml:space="preserve">
+    <value>Términos de Servicio</value>
+  </data>
+</root>

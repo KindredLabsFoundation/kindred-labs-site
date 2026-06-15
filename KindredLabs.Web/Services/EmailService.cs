@@ -14,6 +14,9 @@ public class EmailService : IEmailService
 {
     private readonly PostmarkClient _client;
     private readonly string _senderAddress;
+    private readonly string _securityEmail;
+    private readonly string _privacyEmail;
+    private readonly string _generalEmail;
     private readonly IStringLocalizer<Resources.Services.EmailService> _localizer;
     private readonly ILogger<EmailService> _logger;
 
@@ -35,6 +38,12 @@ public class EmailService : IEmailService
         _senderAddress =
             configuration["Postmark:SenderAddress"]
             ?? throw new InvalidOperationException("Postmark sender address not configured.");
+        _securityEmail =
+            configuration["Contact:SecurityEmail"] ?? "security@kindredlabsfoundation.org";
+        _privacyEmail =
+            configuration["Contact:PrivacyEmail"] ?? "privacy@kindredlabsfoundation.org";
+        _generalEmail =
+            configuration["Contact:GeneralEmail"] ?? "contact@kindredlabsfoundation.org";
         _localizer = localizer;
         _logger = logger;
     }
@@ -48,7 +57,7 @@ public class EmailService : IEmailService
             confirmationLink
         );
 
-        await SendEmailAsync(toEmail, subject, body);
+        await SendEmailInternalAsync(toEmail, subject, body, true);
     }
 
     /// <inheritdoc />
@@ -67,7 +76,7 @@ public class EmailService : IEmailService
             expiresAt
         );
 
-        await SendEmailAsync(toEmail, subject, body);
+        await SendEmailInternalAsync(toEmail, subject, body, true);
     }
 
     /// <inheritdoc />
@@ -121,7 +130,7 @@ public class EmailService : IEmailService
         var subject = _localizer["CdrpConfirmation_Subject"].Value;
         var body = _localizer["CdrpConfirmation_Body"].Value;
 
-        await SendEmailInternalAsync(toEmail, subject, body);
+        await SendEmailInternalAsync(toEmail, subject, body, true);
     }
 
     /// <inheritdoc />
@@ -130,7 +139,7 @@ public class EmailService : IEmailService
         var subject = _localizer["ContactConfirmation_Subject"].Value;
         var body = _localizer["ContactConfirmation_Body"].Value;
 
-        await SendEmailInternalAsync(toEmail, subject, body);
+        await SendEmailInternalAsync(toEmail, subject, body, true);
     }
 
     /// <inheritdoc />
@@ -241,7 +250,7 @@ public class EmailService : IEmailService
             confirmationLink
         );
 
-        await SendEmailInternalAsync(toEmail, subject, body);
+        await SendEmailInternalAsync(toEmail, subject, body, true);
     }
 
     /// <inheritdoc />
@@ -266,7 +275,19 @@ public class EmailService : IEmailService
     public async Task SendAccountDeletionConfirmationAsync(string toEmail)
     {
         var subject = _localizer["AccountDeletionConfirmation_Subject"].Value;
-        var body = _localizer["AccountDeletionConfirmation_Body"].Value;
+        var body = string.Format(
+            _localizer["AccountDeletionConfirmation_Body"].Value,
+            _securityEmail
+        );
+
+        await SendEmailInternalAsync(toEmail, subject, body);
+    }
+
+    /// <inheritdoc />
+    public async Task SendCdrpSupplementaryRequestAsync(string toEmail, string respondUrl)
+    {
+        var subject = _localizer["CdrpSupplementaryRequest_Subject"].Value;
+        var body = string.Format(_localizer["CdrpSupplementaryRequest_Body"].Value, respondUrl);
 
         await SendEmailInternalAsync(toEmail, subject, body);
     }
@@ -294,6 +315,67 @@ public class EmailService : IEmailService
     {
         var subject = _localizer["TwoFactorDisabled_Subject"].Value;
         var body = string.Format(_localizer["TwoFactorDisabled_Body"].Value, securityEmail);
+
+        await SendEmailInternalAsync(toEmail, subject, body);
+    }
+
+    /// <inheritdoc />
+    public async Task SendTwoFactorResetByAdminAsync(string toEmail, string securityEmail)
+    {
+        var subject = _localizer["TwoFactorResetByAdmin_Subject"].Value;
+        var body = string.Format(_localizer["TwoFactorResetByAdmin_Body"].Value, securityEmail);
+
+        await SendEmailInternalAsync(toEmail, subject, body);
+    }
+
+    /// <inheritdoc />
+    public async Task SendAccountScheduledForDeletionAsync(
+        string toEmail,
+        string securityEmail,
+        DateTime deletionDate
+    )
+    {
+        var subject = _localizer["AccountScheduledForDeletion_Subject"].Value;
+        var body = string.Format(
+            _localizer["AccountScheduledForDeletion_Body"].Value,
+            deletionDate.ToShortDateString(),
+            securityEmail
+        );
+
+        await SendEmailInternalAsync(toEmail, subject, body);
+    }
+
+    /// <inheritdoc />
+    public async Task SendCdrpReminderAsync(string toEmail, string respondUrl)
+    {
+        var subject = _localizer["CdrpReminder_Subject"].Value;
+        var body = string.Format(_localizer["CdrpReminder_Body"].Value, respondUrl);
+
+        await SendEmailInternalAsync(toEmail, subject, body);
+    }
+
+    /// <inheritdoc />
+    public async Task SendCdrpNewLinkAsync(string toEmail, string respondUrl)
+    {
+        var subject = _localizer["CdrpNewLink_Subject"].Value;
+        var body = string.Format(_localizer["CdrpNewLink_Body"].Value, respondUrl);
+
+        await SendEmailInternalAsync(toEmail, subject, body);
+    }
+
+    /// <inheritdoc />
+    public async Task SendCdrpTermExpiryNoticeAsync(
+        string toEmail,
+        DateTime expiresAt,
+        string renewUrl
+    )
+    {
+        var subject = _localizer["CdrpTermExpiryNotice_Subject"].Value;
+        var body = string.Format(
+            _localizer["CdrpTermExpiryNotice_Body"].Value,
+            expiresAt.ToShortDateString(),
+            renewUrl
+        );
 
         await SendEmailInternalAsync(toEmail, subject, body);
     }

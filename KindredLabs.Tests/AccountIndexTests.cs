@@ -238,7 +238,7 @@ public class AccountIndexTests : IDisposable
             }
         );
         _context.SubmissionLogs.Add(new SubmissionLog { UserId = "user1", ContentHash = "hash" });
-        _context.CdrpCandidates.Add(new CdrpCandidate { UserId = "user1", FormData = "data" });
+        _context.CdrpCandidates.Add(new CdrpCandidate { UserId = "user1", FormData = "data", Email = "test@example.com" });
         await _context.SaveChangesAsync();
 
         // Act

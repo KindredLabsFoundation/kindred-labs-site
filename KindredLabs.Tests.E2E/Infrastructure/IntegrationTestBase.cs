@@ -1,24 +1,20 @@
-﻿using System.ComponentModel;
-using System.Net;
+﻿using System.Net;
 using System.Text.RegularExpressions;
-using Microsoft.Extensions.DependencyInjection;
-using Xunit;
-using Xunit.Categories;
+using NUnit.Framework;
 
 namespace KindredLabs.Tests.E2E.Infrastructure;
 
-[IntegrationTest]
+[TestFixture]
 public abstract class IntegrationTestBase
-    : IClassFixture<KindredLabsWebApplicationFactory>,
-        IAsyncLifetime
 {
-    protected readonly KindredLabsWebApplicationFactory Factory;
-    protected readonly HttpClient Client;
+    protected KindredLabsWebApplicationFactory Factory = null!;
+    protected HttpClient Client = null!;
 
-    protected IntegrationTestBase(KindredLabsWebApplicationFactory factory)
+    [OneTimeSetUp]
+    public void OneTimeSetUp()
     {
-        Factory = factory;
-        Client = factory.CreateClient(
+        Factory = new KindredLabsWebApplicationFactory();
+        Client = Factory.CreateClient(
             new Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions
             {
                 AllowAutoRedirect = true,
@@ -26,14 +22,17 @@ public abstract class IntegrationTestBase
         );
     }
 
-    public virtual async Task InitializeAsync()
-    {
-        // Initialization if needed
-    }
-
-    public virtual async Task DisposeAsync()
+    [TearDown]
+    public virtual async Task TearDown()
     {
         await Factory.CleanDatabaseAsync();
+    }
+
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
+    {
+        Client.Dispose();
+        Factory.Dispose();
     }
 
     protected async Task LoginAsTestUserAsync(

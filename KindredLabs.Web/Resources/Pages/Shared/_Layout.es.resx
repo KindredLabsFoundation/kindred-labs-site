@@ -100,4 +100,10 @@
   <data name="Manage Profile" xml:space="preserve">
     <value>Gestionar Perfil</value>
   </data>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Política de Privacidad</value>
+  </data>
+  <data name="Terms of Service" xml:space="preserve">
+    <value>Términos de Servicio</value>
+  </data>
 </root>

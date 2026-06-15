@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -24,6 +25,7 @@ public class RegisterTests
     private readonly Mock<SignInManager<ApplicationUser>> _mockSignInManager;
     private readonly Mock<ILogger<RegisterModel>> _mockLogger;
     private readonly Mock<IEmailService> _mockEmailService;
+    private readonly Mock<IConfiguration> _mockConfiguration;
     private readonly Mock<
         IStringLocalizer<KindredLabs.Web.Resources.Pages.Account.Register>
     > _mockLocalizer;
@@ -70,8 +72,12 @@ public class RegisterTests
 
         _mockLogger = new Mock<ILogger<RegisterModel>>();
         _mockEmailService = new Mock<IEmailService>();
+        _mockConfiguration = new Mock<IConfiguration>();
         _mockLocalizer =
             new Mock<IStringLocalizer<KindredLabs.Web.Resources.Pages.Account.Register>>();
+
+        _mockConfiguration.Setup(c => c["PolicyVersions:PrivacyPolicy"]).Returns("1.0");
+        _mockConfiguration.Setup(c => c["PolicyVersions:TermsOfService"]).Returns("1.0");
 
         _mockLocalizer
             .Setup(l => l[It.IsAny<string>()])
@@ -83,7 +89,8 @@ public class RegisterTests
             _mockSignInManager.Object,
             _mockLogger.Object,
             _mockEmailService.Object,
-            _mockLocalizer.Object
+            _mockLocalizer.Object,
+            _mockConfiguration.Object
         );
 
         _model.PageContext = new PageContext { HttpContext = httpContext };
@@ -124,6 +131,8 @@ public class RegisterTests
             LastName = "Wonder",
             Organization = "Wonderland",
             JobTitle = "Explorer",
+            AcceptedPrivacyPolicy = true,
+            AcceptedTermsOfService = true,
         };
 
         var emailStoreMock = _mockUserStore.As<IUserEmailStore<ApplicationUser>>();
@@ -180,6 +189,10 @@ public class RegisterTests
                         && u.LastName == "Wonder"
                         && u.Organization == "Wonderland"
                         && u.JobTitle == "Explorer"
+                        && u.PrivacyPolicyVersion == "1.0"
+                        && u.PrivacyPolicyAcceptedAt != null
+                        && u.TermsOfServiceVersion == "1.0"
+                        && u.TermsOfServiceAcceptedAt != null
                     )
                 ),
             Times.Once

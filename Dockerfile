@@ -14,6 +14,7 @@ RUN dotnet publish KindredLabs.Web/KindredLabs.Web.csproj -c Release -o /app/pub
 # Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 WORKDIR /app
+RUN apt-get update && apt-get install -y libgssapi-krb5-2 && rm -rf /var/lib/apt/lists/*
 COPY --from=build /app/publish .
 
 # Cloud Run requires listening on PORT env variable

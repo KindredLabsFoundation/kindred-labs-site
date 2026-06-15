@@ -1,0 +1,921 @@
+﻿@model KindredLabs.Web.Pages.Framework.IndexModel
+
+<section class="py-16">
+    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-kindred-gold mb-6" id="maturity-assessment-rubric">
+        @Model.Localizer["Maturity_Heading"]
+    </h2>
+
+    <div class="space-y-4 mb-6">
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Maturity_Purpose_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Maturity_Purpose_P1"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Maturity_Purpose_P2"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["Maturity_Purpose_P3"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Maturity_Purpose_P4"]
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <!-- Maturity Levels -->
+    <div class="flex items-center justify-between mb-6">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="maturity-levels">
+            @Model.Localizer["Maturity_Levels_Heading"]
+        </h3>
+        <a href="#"
+           class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+           data-slug="maturity-levels"
+           target="_blank" rel="noopener">
+            Discuss this section
+        </a>
+    </div>
+    <div class="space-y-4 mb-6">
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Maturity_Levels_Level0_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed mb-6">
+            @Model.Localizer["Maturity_Levels_Level0_Content"]
+        </p>
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Maturity_Levels_Level1_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed mb-6">
+            @Model.Localizer["Maturity_Levels_Level1_Content"]
+        </p>
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Maturity_Levels_Level2_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed mb-6">
+            @Model.Localizer["Maturity_Levels_Level2_Content"]
+        </p>
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Maturity_Levels_Level3_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed mb-6">
+            @Model.Localizer["Maturity_Levels_Level3_Content"]
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <!-- Scoring Architecture -->
+    <div class="flex items-center justify-between mb-6">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="scoring-architecture">
+            @Model.Localizer["Maturity_Scoring_Heading"]
+        </h3>
+        <a href="#"
+           class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+           data-slug="scoring-architecture"
+           target="_blank" rel="noopener">
+            Discuss this section
+        </a>
+    </div>
+    <div class="space-y-4 mb-6">
+        <div class="space-y-4 mb-12">
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Scoring_P1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Scoring_P2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Html.Raw(Model.Localizer["Maturity_Scoring_P3"])
+            </p>
+        </div>
+
+        <div class="flex justify-center my-8">
+            <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+        </div>
+
+        <!-- Assessment Instrument -->
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="assessment-instrument">
+                @Model.Localizer["Maturity_Instrument_Heading"]
+            </h3>
+            <a href="#"
+               class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+               data-slug="assessment-instrument"
+               target="_blank" rel="noopener">
+                Discuss this section
+            </a>
+        </div>
+        <div class="space-y-4 mb-12">
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Intro"]
+            </p>
+        </div>
+
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_Training_Heading"]
+            </h4>
+            <p class="text-base md:text-lg italic text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Training_Intro"]
+            </p>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_Domain1_1_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_1_L0_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_1_L1_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_1_L2_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level3"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_1_L3_Check_Intro"]
+            </p>
+            <div class="space-y-4 mb-12">
+                <ul  class="list-disc list-outside ml-4 space-y-2 pl-10">
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_1_L3_Check_Item1"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_1_L3_Check_Item2"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_1_L3_Check_Item3"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_1_L3_Check_Item4"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_1_L3_Check_Item5"]
+                    </li>
+                </ul>
+                <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                    @Model.Localizer["Maturity_No_Level3"]
+                </p>
+            </div>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_Domain1_2_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_2_L0_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_2_L1_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_2_L2_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level3"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_2_L3_Check_Intro"]
+            </p>
+            <div class="space-y-4 mb-12">
+                <ul  class="list-disc list-outside ml-4 space-y-2 pl-10">
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_2_L3_Check_Item1"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_2_L3_Check_Item2"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_2_L3_Check_Item3"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_2_L3_Check_Item4"]
+                    </li>
+                </ul>
+                <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                    @Model.Localizer["Maturity_No_Level3"]
+                </p>
+            </div>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_Domain1_3_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_3_L0_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_3_L1_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_3_L2_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level3"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_3_L3_Check_Intro"]
+            </p>
+            <div class="space-y-4 mb-12">
+                <ul  class="list-disc list-outside ml-4 space-y-2 pl-10">
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_3_L3_Check_Item1"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_3_L3_Check_Item2"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_3_L3_Check_Item3"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_3_L3_Check_Item4"]
+                    </li>
+                </ul>
+                <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                    @Model.Localizer["Maturity_No_Level3"]
+                </p>
+            </div>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_Domain1_4_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_4_L0_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_4_L1_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_4_L2_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level3"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain1_4_L3_Check_Intro"]
+            </p>
+            <div class="space-y-4 mb-12">
+                <ul  class="list-disc list-outside ml-4 space-y-2 pl-10">
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_4_L3_Check_Item1"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_4_L3_Check_Item2"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_4_L3_Check_Item3"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain1_4_L3_Check_Item4"]
+                    </li>
+                </ul>
+                <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                    @Model.Localizer["Maturity_No_Level3"]
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-center my-8">
+            <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+        </div>
+
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_FineTuning_Heading"]
+            </h4>
+            <p class="text-base md:text-lg italic text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_FineTuning_Intro"]
+            </p>
+        </div>
+
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_Domain2_1_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_1_L0_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_1_L1_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_1_L2_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level3"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_1_L3_Check_Intro"]
+            </p>
+            <div class="space-y-4 mb-12">
+                <ul  class="list-disc list-outside ml-4 space-y-2 pl-10">
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_1_L3_Check_Item1"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_1_L3_Check_Item2"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_1_L3_Check_Item3"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_1_L3_Check_Item4"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_1_L3_Check_Item5"]
+                    </li>
+                </ul>
+                <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                    @Model.Localizer["Maturity_No_Level3"]
+                </p>
+            </div>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_Domain2_2_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_2_L0_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_2_L1_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_2_L2_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level3"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_2_L3_Check_Intro"]
+            </p>
+            <div class="space-y-4 mb-12">
+                <ul  class="list-disc list-outside ml-4 space-y-2 pl-10">
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_2_L3_Check_Item1"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_2_L3_Check_Item2"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_2_L3_Check_Item3"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_2_L3_Check_Item4"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_2_L3_Check_Item5"]
+                    </li>
+                </ul>
+                <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                    @Model.Localizer["Maturity_No_Level3"]
+                </p>
+            </div>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_Domain2_3_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_3_L0_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_3_L1_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_3_L2_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level3"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_3_L3_Check_Intro"]
+            </p>
+            <div class="space-y-4 mb-12">
+                <ul  class="list-disc list-outside ml-4 space-y-2 pl-10">
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_3_L3_Check_Item1"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_3_L3_Check_Item2"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_3_L3_Check_Item3"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_3_L3_Check_Item4"]
+                    </li>
+                </ul>
+                <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                    @Model.Localizer["Maturity_No_Level3"]
+                </p>
+            </div>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_Domain2_4_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_4_L0_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_4_L1_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_4_L2_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level3"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain2_4_L3_Check_Intro"]
+            </p>
+            <div class="space-y-4 mb-12">
+                <ul  class="list-disc list-outside ml-4 space-y-2 pl-10">
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_4_L3_Check_Item1"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_4_L3_Check_Item2"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_4_L3_Check_Item3"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain2_4_L3_Check_Item4"]
+                    </li>
+                </ul>
+                <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                    @Model.Localizer["Maturity_No_Level3"]
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-center my-8">
+            <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+        </div>
+
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_Deployment_Heading"]
+            </h4>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_Domain3_1_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_1_L0_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_1_L1_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_1_L2_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level3"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_1_L3_Check_Intro"]
+            </p>
+            <div class="space-y-4 mb-12">
+                <ul  class="list-disc list-outside ml-4 space-y-2 pl-10">
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_1_L3_Check_Item1"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_1_L3_Check_Item2"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_1_L3_Check_Item3"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_1_L3_Check_Item4"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_1_L3_Check_Item5"]
+                    </li>
+                </ul>
+                <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                    @Model.Localizer["Maturity_No_Level3"]
+                </p>
+            </div>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_Domain3_2_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_2_L0_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_2_L1_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_2_L2_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level3"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_2_L3_Check_Intro"]
+            </p>
+            <div class="space-y-4 mb-12">
+                <ul  class="list-disc list-outside ml-4 space-y-2 pl-10">
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_2_L3_Check_Item1"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_2_L3_Check_Item2"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_2_L3_Check_Item3"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_2_L3_Check_Item4"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_2_L3_Check_Item5"]
+                    </li>
+                </ul>
+                <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                    @Model.Localizer["Maturity_No_Level3"]
+                </p>
+            </div>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_Domain3_3_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_3_L0_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_3_L1_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_3_L2_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level3"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_3_L3_Check_Intro"]
+            </p>
+            <div class="space-y-4 mb-12">
+                <ul  class="list-disc list-outside ml-4 space-y-2 pl-10">
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_3_L3_Check_Item1"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_3_L3_Check_Item2"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_3_L3_Check_Item3"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_3_L3_Check_Item4"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_3_L3_Check_Item5"]
+                    </li>
+                </ul>
+                <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                    @Model.Localizer["Maturity_No_Level3"]
+                </p>
+            </div>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Instrument_Domain3_4_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_4_L0_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level0"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_4_L1_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_4_L2_Check"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_No_Level2"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text font-extrabold opacity-80 leading-relaxed">
+                @Model.Localizer["Maturity_Instrument_Level3"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text italic opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Instrument_Domain3_4_L3_Check_Intro"]
+            </p>
+            <div class="space-y-4 mb-12">
+                <ul  class="list-disc list-outside ml-4 space-y-2 pl-10">
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_4_L3_Check_Item1"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_4_L3_Check_Item2"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_4_L3_Check_Item3"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_4_L3_Check_Item4"]
+                    </li>
+                    <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                        @Model.Localizer["Maturity_Instrument_Domain3_4_L3_Check_Item5"]
+                    </li>
+                </ul>
+                <p class="text-base md:text-lg text-kindred-gold opacity-80 leading-relaxed ml-4">
+                    @Model.Localizer["Maturity_No_Level3"]
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-center my-8">
+            <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+        </div>
+
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_ScoringOutput_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_ScoringOutput_Intro"]
+            </p>
+            <ul  class="list-disc list-outside ml-4 space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Maturity_ScoringOutput_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Maturity_ScoringOutput_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Maturity_ScoringOutput_Item3"]
+                </li>
+            </ul>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_ScoringOutput_Outro_1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed ml-4">
+                @Html.Raw(Model.Localizer["Maturity_ScoringOutput_Outro_2"])
+            </p>
+        </div>
+
+        <div class="flex justify-center my-8">
+            <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+        </div>
+
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Maturity_Revision_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Revision_P1"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Revision_Triggers_Heading"]
+            </p>
+            <ul  class="list-disc list-outside ml-4 space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Maturity_Revision_Triggers_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Maturity_Revision_Triggers_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Maturity_Revision_Triggers_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Maturity_Revision_Triggers_Item4"]
+                </li>
+            </ul>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed ml-4">
+                @Model.Localizer["Maturity_Revision_Process_Outro"]
+            </p>
+        </div>
+    </div>
+</section>

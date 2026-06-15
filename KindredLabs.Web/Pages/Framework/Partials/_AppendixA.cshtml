@@ -1,0 +1,184 @@
+﻿@model KindredLabs.Web.Pages.Framework.IndexModel
+
+<section class="py-16">
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-kindred-gold mb-6" id="appendix-a">
+            @Model.Localizer["AppendixA_Heading"]
+        </h2>
+        <a href="#"
+           class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+           data-slug="appendix-a"
+           target="_blank" rel="noopener">
+            Discuss this section
+        </a>
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["AppendixA_Intro"]
+        </p>
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["AppendixA_Header_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Header_RecordID_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Header_Model_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Header_PreparedBy_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Header_ReviewedBy_Definition"])
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["AppendixA_Section1_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section1_Name_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section1_System_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section1_DateRange_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section1_KnownBias_Definition"])
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["AppendixA_Section2_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section2_Purpose_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section2_Compatibility_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section2_Awareness_Definition"])
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["AppendixA_Section3_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section3_Represented_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section3_Underrepresented_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section3_Patterns_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section3_Adequacy_Definition"])
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["AppendixA_Section4_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section4_Gaps_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section4_Unreliability_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section4_Quality_Definition"])
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["AppendixA_Section5_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section5_PriorUse_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section5_Description_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Section5_Cumulative_Definition"])
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["AppendixA_ElevatedReview_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["AppendixA_ElevatedReview_Intro"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_ElevatedReview_Authority_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_ElevatedReview_RoutedFrom_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["AppendixA_ElevatedReview_Decision_Term"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_ElevatedReview_Decision_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_ElevatedReview_Rationale_Definition"])
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <div class="space-y-4 mb-12">
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["AppendixA_Approval_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Approval_Conditions_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Approval_NextReview_Definition"])
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Html.Raw(Model.Localizer["AppendixA_Approval_SignOff_Definition"])
+        </p>
+    </div>
+</section>

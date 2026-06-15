@@ -76,6 +76,9 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Confirm Email</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -84,5 +87,17 @@
   </data>
   <data name="PrefillNote" xml:space="preserve">
     <value>These fields are used to prefill governance forms. You can update them later in your account settings.</value>
+  </data>
+  <data name="PrivacyPolicyAgreementPrefix" xml:space="preserve">
+    <value>I have read and agree to the </value>
+  </data>
+  <data name="TermsOfServiceAgreementPrefix" xml:space="preserve">
+    <value>I have read and agree to the </value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="TermsOfService" xml:space="preserve">
+    <value>Terms of Service</value>
   </data>
 </root>

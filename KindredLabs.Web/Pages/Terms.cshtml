@@ -1,0 +1,153 @@
+﻿@page
+@{
+    if (Request.Query["embed"] == "true")
+    {
+        Layout = null;
+    }
+}
+@model TermsModel
+@{
+    ViewData["Title"] = Model.Localizer["Title"];
+}
+
+<div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-wordmark text-kindred-gold mb-2">@Model.Localizer["Title"]</h1>
+    <p class="text-kindred-text/60 mb-8">@Model.Localizer["LastUpdated"]</p>
+
+    <div class="prose prose-invert max-w-none text-kindred-text space-y-12">
+        <section>
+            <h2 class="text-2xl font-ui text-kindred-gold mb-4 border-b border-white/10 pb-2">@Model.Localizer["Section1_Title"]</h2>
+            <div class="space-y-4">
+                <p>@Model.Localizer["Section1_Text1"]</p>
+                <p>@Model.Localizer["Section1_Text2"]</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-ui text-kindred-gold mb-4 border-b border-white/10 pb-2">@Model.Localizer["Section2_Title"]</h2>
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-ui text-kindred-gold/80 mb-2">@Model.Localizer["Section2_1_Title"]</h3>
+                    <p>@Model.Localizer["Section2_1_Text"]</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-ui text-kindred-gold/80 mb-2">@Model.Localizer["Section2_2_Title"]</h3>
+                    <p>@Model.Localizer["Section2_2_Intro"]</p>
+                    <ul class="list-disc pl-6 space-y-2 mt-4">
+                        <li>@Model.Localizer["Section2_2_Item1"]</li>
+                        <li>@Model.Localizer["Section2_2_Item2"]</li>
+                        <li>@Model.Localizer["Section2_2_Item3"]</li>
+                        <li>@Model.Localizer["Section2_2_Item4"]</li>
+                        <li>@Model.Localizer["Section2_2_Item5"]</li>
+                        <li>@Model.Localizer["Section2_2_Item6"]</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-ui text-kindred-gold mb-4 border-b border-white/10 pb-2">@Model.Localizer["Section3_Title"]</h2>
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-ui text-kindred-gold/80 mb-2">@Model.Localizer["Section3_1_Title"]</h3>
+                    <p>@Model.Localizer["Section3_1_Text"]</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-ui text-kindred-gold/80 mb-2">@Model.Localizer["Section3_2_Title"]</h3>
+                    <p>@Model.Localizer["Section3_2_Text"]</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-ui text-kindred-gold/80 mb-2">@Model.Localizer["Section3_3_Title"]</h3>
+                    <p>@Model.Localizer["Section3_3_Text"]</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-ui text-kindred-gold mb-4 border-b border-white/10 pb-2">@Model.Localizer["Section4_Title"]</h2>
+            <div class="space-y-4">
+                <p>@Model.Localizer["Section4_Text"]</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-ui text-kindred-gold mb-4 border-b border-white/10 pb-2">@Model.Localizer["Section5_Title"]</h2>
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-ui text-kindred-gold/80 mb-2">@Model.Localizer["Section5_1_Title"]</h3>
+                    <p>@Model.Localizer["Section5_1_Text"]</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-ui text-kindred-gold/80 mb-2">@Model.Localizer["Section5_2_Title"]</h3>
+                    <p>@Model.Localizer["Section5_2_Text"]</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-ui text-kindred-gold/80 mb-2">@Model.Localizer["Section5_3_Title"]</h3>
+                    <p>@Model.Localizer["Section5_3_Text"]</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-ui text-kindred-gold/80 mb-2">@Model.Localizer["Section5_4_Title"]</h3>
+                    <p>@Model.Localizer["Section5_4_Text"]</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-ui text-kindred-gold mb-4 border-b border-white/10 pb-2">@Model.Localizer["Section6_Title"]</h2>
+            <div class="space-y-4">
+                <p>@Model.Localizer["Section6_Text1"]</p>
+                <p>@Model.Localizer["Section6_Text2"]</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-ui text-kindred-gold mb-4 border-b border-white/10 pb-2">@Model.Localizer["Section7_Title"]</h2>
+            <div class="space-y-4">
+                <p>@Model.Localizer["Section7_Text1"]</p>
+                <p>@Model.Localizer["Section7_Text2"]</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-ui text-kindred-gold mb-4 border-b border-white/10 pb-2">@Model.Localizer["Section8_Title"]</h2>
+            <div class="space-y-4">
+                <p>@Model.Localizer["Section8_Text"]</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-ui text-kindred-gold mb-4 border-b border-white/10 pb-2">@Model.Localizer["Section9_Title"]</h2>
+            <div class="space-y-4">
+                <p>@Model.Localizer["Section9_Text1"]</p>
+                <p>@Model.Localizer["Section9_Text2"]</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-ui text-kindred-gold mb-4 border-b border-white/10 pb-2">@Model.Localizer["Section10_Title"]</h2>
+            <div class="space-y-4">
+                <p>@Model.Localizer["Section10_Text"]</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-ui text-kindred-gold mb-4 border-b border-white/10 pb-2">@Model.Localizer["Section11_Title"]</h2>
+            <div class="space-y-4">
+                <p class="font-bold">Kindred Labs Foundation</p>
+                <p><a href="mailto:legal@@kindredlabsfoundation.org" class="text-kindred-gold hover:underline">legal@@kindredlabsfoundation.org</a></p>
+                <p>kindredlabsfoundation.org</p>
+            </div>
+        </section>
+
+        @if (Request.Query["embed"] == "true")
+        {
+            <div class="mt-12 py-8 border-t border-white/10 flex justify-center">
+                <a href="javascript:void(0)" 
+                   onclick="window.parent.acceptPolicy('TermsOfService', 'Input_AcceptedTermsOfService')"
+                   class="text-kindred-gold font-bold underline text-xl hover:opacity-70 transition-opacity">
+                    I Accept the Terms of Service
+                </a>
+            </div>
+        }
+    </div>
+</div>

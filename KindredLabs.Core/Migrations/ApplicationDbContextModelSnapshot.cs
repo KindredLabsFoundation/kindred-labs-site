@@ -31,9 +31,34 @@ namespace KindredLabs.Core.Migrations
                     b.Property<string>("AdminNotes")
                         .HasColumnType("text");
 
+                    b.Property<DateTime?>("ApprovedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeniedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("FormData")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime?>("LastReminderSentAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("RenewalRequested")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ResponseToken")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("ResponseTokenExpiry")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("RetiredAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -45,10 +70,18 @@ namespace KindredLabs.Core.Migrations
                     b.Property<DateTime>("SubmittedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("SupplementaryData")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("TermExpiresAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("UserId")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email");
 
                     b.HasIndex("Status");
 
@@ -148,6 +181,42 @@ namespace KindredLabs.Core.Migrations
                     b.ToTable("SubmissionLogs");
                 });
 
+            modelBuilder.Entity("KindredLabs.Core.Models.Identity.AdminActivityLog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("AdminUserId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("IpAddress")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("PerformedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("TargetUserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdminUserId");
+
+                    b.HasIndex("PerformedAt");
+
+                    b.HasIndex("TargetUserId");
+
+                    b.ToTable("AdminActivityLogs");
+                });
+
             modelBuilder.Entity("KindredLabs.Core.Models.Identity.AdminAuditLog", b =>
                 {
                     b.Property<Guid>("Id")
@@ -199,6 +268,9 @@ namespace KindredLabs.Core.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
@@ -208,6 +280,12 @@ namespace KindredLabs.Core.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsSuspended")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("JobTitle")
                         .HasColumnType("text");
@@ -244,7 +322,19 @@ namespace KindredLabs.Core.Migrations
                     b.Property<string>("PreferredLocale")
                         .HasColumnType("text");
 
+                    b.Property<DateTime?>("PrivacyPolicyAcceptedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("PrivacyPolicyVersion")
+                        .HasColumnType("text");
+
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("TermsOfServiceAcceptedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("TermsOfServiceVersion")
                         .HasColumnType("text");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -546,6 +636,23 @@ namespace KindredLabs.Core.Migrations
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("KindredLabs.Core.Models.Identity.AdminActivityLog", b =>
+                {
+                    b.HasOne("KindredLabs.Core.Models.Identity.ApplicationUser", "AdminUser")
+                        .WithMany()
+                        .HasForeignKey("AdminUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("KindredLabs.Core.Models.Identity.ApplicationUser", "TargetUser")
+                        .WithMany()
+                        .HasForeignKey("TargetUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("AdminUser");
+
+                    b.Navigation("TargetUser");
                 });
 
             modelBuilder.Entity("KindredLabs.Core.Models.Identity.AdminAuditLog", b =>

@@ -1,19 +1,151 @@
 ﻿@page
-@model KindredLabs.Web.Pages.Framework.Index
+@model KindredLabs.Web.Pages.Framework.IndexModel
 
 @{
-    Layout = null;
 }
 
-<!DOCTYPE html>
+<div class="sticky top-[var(--navbar-height)] z-40 bg-kindred-dark border-b border-white/10 px-4 py-3">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center gap-3">
+        <div class="flex-1 overflow-hidden flex flex-col sm:flex-row sm:items-center gap-3">
+            @{
+                var currentCulture = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            }
+            <select id="frameworkNav" class="culture-select w-full lg:max-w-sm text-sm truncate">
+                <option value="">-- @Model.Localizer["JumpToLabel"] --</option>
+            </select>
+        </div>
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
+        <div class="flex-1 flex justify-center">
+            <div class="relative" id="forms-dropdown-container">
+                <a href="#" id="forms-dropdown-trigger" class="text-kindred-text hover:text-kindred-gold transition-colors text-sm flex items-center gap-1">
+                    @Model.Localizer["FormsDropdownLabel"] ▾
+                </a>
+                <div id="forms-dropdown-menu" class="hidden absolute left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0 top-full mt-2 bg-kindred-dark border border-kindred-gold/30 rounded z-50 min-w-max shadow-xl">
+                    <a href="/@currentCulture/Framework/Forms/DataProvenance" target="_blank" class="block px-4 py-2 text-sm text-kindred-text hover:text-kindred-gold hover:bg-white/5">@Model.Localizer["Form_DataProvenance_Label"]</a>
+                    <a href="/@currentCulture/Framework/Forms/ConsentDocumentation" target="_blank" class="block px-4 py-2 text-sm text-kindred-text hover:text-kindred-gold hover:bg-white/5">@Model.Localizer["Form_ConsentDocumentation_Label"]</a>
+                    <a href="/@currentCulture/Framework/Forms/ResidualRiskAcceptance" target="_blank" class="block px-4 py-2 text-sm text-kindred-text hover:text-kindred-gold hover:bg-white/5">@Model.Localizer["Form_ResidualRisk_Label"]</a>
+                    <a href="/@currentCulture/Framework/Forms/MaturityAssessment" target="_blank" class="block px-4 py-2 text-sm text-kindred-text hover:text-kindred-gold hover:bg-white/5">@Model.Localizer["Form_MaturityAssessment_Label"]</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-1 flex justify-end">
+            <a href="/documents/upstream_governance_framework_v1_0_0.pdf"
+               class="btn-primary btn-sm text-center w-full lg:w-auto"
+               target="_blank">
+                @Model.Localizer["DownloadLinkText"]
+            </a>
+        </div>
+    </div>
 </div>
-</body>
-</html>
+
+<div id="framework-content" class="max-w-7xl mx-auto px-4 py-8">
+    @if (Model.ActiveCommentPeriod != null)
+    {
+        <div class="text-center py-3 px-4 mb-6 border border-kindred-gold/40 rounded bg-kindred-gold/10">
+            <p class="text-kindred-gold text-sm font-semibold">
+                @Model.Localizer["CommentPeriodBannerText", Model.ActiveCommentPeriod.ClosesAt.ToString("MMMM d, yyyy")]
+            </p>
+        </div>
+    }
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-kindred-gold mb-4 text-center">@Model.Localizer["PageTitle"]</h1>
+    <p class="text-lg md:text-xl italic font-bold opacity-85  text-center mb-4">
+        @Model.Localizer["Subtitle"]
+    </p>
+
+    <partial name="Partials/_ExecutiveSummary" model="Model" />
+
+    <hr class="border-kindred-gold/30 my-8">
+
+    <partial name="Partials/_FrameworkIntro" model="Model" />
+
+    <hr class="border-kindred-gold/30 my-8">
+
+    <partial name="Partials/_ThreeLayerDomainModel" model="Model" />
+
+    <hr class="border-kindred-gold/30 my-8">
+
+    <partial name="Partials/_VendorTransparency" model="Model" />
+
+    <hr class="border-kindred-gold/30 my-8">
+
+    <partial name="Partials/_FineTuningGovernance" model="Model" />
+
+    <hr class="border-kindred-gold/30 my-8">
+
+    <partial name="Partials/_MaturityAssessmentRubric" model="Model" />
+
+    <hr class="border-kindred-gold/30 my-8">
+
+    <partial name="Partials/_StandardsMapping" model="Model" />
+
+    <hr class="border-kindred-gold/30 my-8">
+
+    <partial name="Partials/_AppendixA" model="Model" />
+
+    <hr class="border-kindred-gold/30 my-8">
+
+    <partial name="Partials/_AppendixB" model="Model" />
+
+    <hr class="border-kindred-gold/30 my-8">
+
+    <partial name="Partials/_AppendixC" model="Model" />
+</div>
+
+@section Scripts {
+    <script src="/js/framework.js"></script>
+    <script>
+        (function () {
+            const nav = document.getElementById('frameworkNav');
+            const content = document.getElementById('framework-content');
+
+            if (!nav || !content) return;
+
+            const topOption = document.createElement('option');
+            topOption.value = '#page-top';
+            topOption.text = '↑ Back to top';
+            nav.insertBefore(topOption, nav.children[1]);
+
+            const headings = content.querySelectorAll('h2[id], h3[id]');
+
+            headings.forEach(function (heading) {
+                const option = document.createElement('option');
+                option.value = '#' + heading.id;
+                option.text = (heading.tagName === 'H3' ? '\u00A0\u00A0\u00A0\u00A0' : '') + heading.textContent.trim();
+                nav.appendChild(option);
+            });
+
+            nav.addEventListener('change', function () {
+                if (!this.value) return;
+                if (this.value === '#page-top') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    const target = document.querySelector(this.value);
+                    if (target) {
+                        const navbarHeight = document.querySelector('header')?.offsetHeight ?? 0;
+                        const stickyBarHeight = document.querySelector('.sticky')?.offsetHeight ?? 0;
+                        const offset = navbarHeight + stickyBarHeight + 16;
+                        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                        history.pushState(null, null, this.value);
+                    }
+                }
+                this.value = '';
+            });
+        })();
+        // Discussion URLs -- fetches after page load
+        (function () {
+            fetch('?handler=DiscussionUrls')
+                .then(r => r.json())
+                .then(urls => {
+                    document.querySelectorAll('.discuss-link').forEach(link => {
+                        const slug = link.getAttribute('data-slug');
+                        if (urls[slug] && urls[slug] !== '#') {
+                            link.href = urls[slug];
+                            link.classList.remove('opacity-50', 'pointer-events-none');
+                        }
+                    });
+                });
+        })();
+    </script>
+}

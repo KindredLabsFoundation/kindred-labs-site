@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using KindredLabs.Core.Constants
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject IStringLocalizer<Resources.Pages.Shared._Layout> Localizer
@@ -26,8 +27,9 @@
     <link rel="alternate" hreflang="en" href="https://www.kindredlabsfoundation.org/" />
     <link rel="alternate" hreflang="es" href="https://www.kindredlabsfoundation.org/es/" />
     <link rel="alternate" hreflang="x-default" href="https://www.kindredlabsfoundation.org/" />
+    @await Html.PartialAsync("_JsonLd")
 </head>
-<body id="page-top">
+<body id="page-top" class="min-h-screen flex flex-col">
     @{
         var currentCulture = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
     }
@@ -138,37 +140,48 @@
 
             <div class="border-t border-white/10 pt-8">
                 <h3 class="text-sm uppercase tracking-wider text-kindred-text opacity-50 mb-4">@Localizer["Account"]</h3>
-                @if (SignInManager.IsSignedIn(User))
-                {
-                    var user = await UserManager.GetUserAsync(User);
-                    var fullName = user != null && (!string.IsNullOrEmpty(user.FirstName) || !string.IsNullOrEmpty(user.LastName))
-                        ? $"{user.FirstName} {user.LastName}".Trim()
-                        : User.Identity?.Name;
-                    <div class="mb-4">
-                        <p class="text-kindred-text text-sm mb-1 opacity-70">@Localizer["Signed in as"]</p>
-                        <p class="text-kindred-gold font-semibold break-all">@fullName</p>
-                    </div>
-                    <ul class="space-y-4">
-                        <li>
-                            <a class="text-kindred-text no-underline hover:text-kindred-gold transition-colors flex items-center" asp-page="/Account/Index" asp-route-culture="@currentCulture">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                </svg>
-                                @Localizer["Manage Profile"]
-                            </a>
-                        </li>
-                        <li>
-                            <form asp-page="/Account/Logout" asp-route-culture="@currentCulture" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" id="logoutFormDrawer">
-                                <a href="javascript:document.getElementById('logoutFormDrawer').submit();" class="text-kindred-text no-underline hover:text-kindred-gold transition-colors flex items-center">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                                    </svg>
-                                    @Localizer["Logout"]
-                                </a>
-                            </form>
-                        </li>
-                    </ul>
-                }
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var user = await UserManager.GetUserAsync(User);
+                            var fullName = user != null && (!string.IsNullOrEmpty(user.FirstName) || !string.IsNullOrEmpty(user.LastName))
+                                ? $"{user.FirstName} {user.LastName}".Trim()
+                                : User.Identity?.Name;
+                            <div class="mb-4">
+                                <p class="text-kindred-text text-sm mb-1 opacity-70">@Localizer["Signed in as"]</p>
+                                <p class="text-kindred-gold font-semibold break-all">@fullName</p>
+                            </div>
+                            <ul class="space-y-4">
+                                @if (User.IsInRole(AppRoles.OwnerRole) || User.IsInRole(AppRoles.AdminRole))
+                                {
+                                    <li>
+                                        <a class="text-kindred-text no-underline hover:text-kindred-gold transition-colors flex items-center" asp-page="/Admin/Index" asp-route-culture="@currentCulture">
+                                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                            </svg>
+                                            @Localizer["Admin Dashboard"]
+                                        </a>
+                                    </li>
+                                }
+                                <li>
+                                    <a class="text-kindred-text no-underline hover:text-kindred-gold transition-colors flex items-center" asp-page="/Account/Index" asp-route-culture="@currentCulture">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                        </svg>
+                                        @Localizer["Manage Profile"]
+                                    </a>
+                                </li>
+                                <li>
+                                    <form asp-page="/Account/Logout" asp-route-culture="@currentCulture" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" id="logoutFormDrawer">
+                                        <a href="javascript:document.getElementById('logoutFormDrawer').submit();" class="text-kindred-text no-underline hover:text-kindred-gold transition-colors flex items-center">
+                                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                            </svg>
+                                            @Localizer["Logout"]
+                                        </a>
+                                    </form>
+                                </li>
+                            </ul>
+                        }
                 else
                 {
                     <ul class="space-y-4">
@@ -193,17 +206,23 @@
             </div>
         </div>
     </div>
-    <main role="main" class="container codex-main">
+    <main role="main" class="max-w-7xl mx-auto px-4 codex-main flex-grow">
         @RenderBody()
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            &copy; @DateTime.Now.Year - Kindred Labs Foundation
+    <footer class="footer mt-auto py-8">
+        <div class="max-w-7xl mx-auto px-4 text-kindred-text/60 text-sm">
+            <div>&copy; @DateTime.Now.Year - Kindred Labs Foundation</div>
+            <div class="mt-2 space-x-4">
+                <a asp-page="/Privacy" asp-route-culture="@currentCulture" class="hover:text-kindred-gold transition-colors">@Localizer["Privacy Policy"]</a>
+                <a asp-page="/Terms" asp-route-culture="@currentCulture" class="hover:text-kindred-gold transition-colors">@Localizer["Terms of Service"]</a>
+            </div>
         </div>
     </footer>
 
     <script src="~/js/form-actions.js" asp-append-version="true"></script>
+    <script src="~/js/cookie-consent.js" asp-append-version="true"></script>
+    <script src="~/js/policy-modal.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <script>
         const menuToggle = document.getElementById('menuToggle');
@@ -278,5 +297,6 @@
             });
         });
     </script>
+    <partial name="_CookieConsent" />
 </body>
 </html>

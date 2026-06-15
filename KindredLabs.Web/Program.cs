@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Database
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+    options.UseNpgsql(builder.Configuration.GetConnectionString("ApplicationDbContextConnection"))
 );
 
 // Data Protection -- keys persisted to PostgreSQL
@@ -41,6 +41,7 @@ builder
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/en/Account/Login";
+    options.AccessDeniedPath = "/en/Error/403";
     options.Events.OnRedirectToLogin = context =>
     {
         var segments = context.Request.Path.Value?.Split(
@@ -58,9 +59,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 // Localization
-builder.Services.AddLocalization( /*options => options.ResourcesPath = "Resources"*/
-);
-
+builder.Services.AddLocalization();
+builder.Services.AddMemoryCache();
 builder
     .Services.AddRazorPages(options =>
     {
@@ -78,6 +78,7 @@ builder
                 }
             }
         );
+        options.Conventions.AddPageRoute("/Sitemap", "sitemap.xml");
     })
     .AddViewLocalization()
     .AddDataAnnotationsLocalization();
@@ -95,9 +96,12 @@ builder.Services.AddScoped<IPdfService, PdfService>();
 builder.Services.AddScoped<ICdrpCandidateService, CdrpCandidateService>();
 builder.Services.AddScoped<ICommentPeriodService, CommentPeriodService>();
 builder.Services.AddScoped<IAdminRoleService, AdminRoleService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<ISecurityService, SecurityService>();
 builder.Services.AddHttpClient<IGitHubDiscussionsService, GitHubDiscussionsService>();
 builder.Services.AddHostedService<DraftExpiryBackgroundService>();
+builder.Services.AddHostedService<AccountDeletionBackgroundService>();
+builder.Services.AddHostedService<CdrpReminderBackgroundService>();
 
 // Postmark
 builder.Services.AddSingleton<PostmarkClient>(_ => new PostmarkClient(
@@ -210,7 +214,5 @@ app.MapGet(
         return Results.Redirect($"/{culture}");
     }
 );
-app.MapRazorPages() /*.WithStaticAssets()*/
-;
-
+app.MapRazorPages();
 app.Run();

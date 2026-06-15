@@ -6,7 +6,7 @@
     var hasMultipleVerified = Model.AdditionalEmails.Count(e => e.IsVerified) > 0;
 }
 
-<div class="max-w-4xl mx-auto px-4 py-16">
+<div class="max-w-7xl mx-auto px-4 py-16">
     <h1 class="text-2xl sm:text-3xl font-bold text-kindred-gold mb-12 text-center">
         @Model.Localizer["PageHeading"]
     </h1>
@@ -141,6 +141,18 @@
                         <span class="ml-2 px-2 py-0.5 text-[10px] font-bold bg-kindred-gold text-kindred-dark rounded uppercase tracking-tighter">
                             @Model.Localizer["PrimaryBadge"]
                         </span>
+                        @if (Model.CurrentUser?.EmailConfirmed == true)
+                        {
+                            <span class="ml-2 px-2 py-0.5 text-[10px] font-bold bg-green-500/20 text-green-500 border border-green-500/30 rounded uppercase tracking-tighter">
+                                @Model.Localizer["VerifiedBadge"]
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="ml-2 px-2 py-0.5 text-[10px] font-bold bg-red-500/20 text-red-500 border border-red-500/30 rounded uppercase tracking-tighter">
+                                @Model.Localizer["UnverifiedBadge"]
+                            </span>
+                        }
                     </div>
                 </div>
 

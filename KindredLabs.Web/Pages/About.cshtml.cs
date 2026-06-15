@@ -30,5 +30,16 @@ public class AboutModel : PageModel
         ViewData["Title"] = Localizer["PageTitle"];
         ViewData["Description"] = Localizer["PageDescription"];
         ViewData["CanonicalUrl"] = Localizer["CanonicalUrl"];
+        ViewData["JsonLd"] = $@"{{
+  ""@context"": ""https://schema.org"",
+  ""@type"": ""WebPage"",
+  ""name"": ""{ViewData["Title"]}"",
+  ""url"": ""{ViewData["CanonicalUrl"]}"",
+  ""publisher"": {{
+    ""@type"": ""Organization"",
+    ""name"": ""Kindred Labs Foundation"",
+    ""url"": ""https://www.kindredlabsfoundation.org""
+  }}
+}}";
     }
 }

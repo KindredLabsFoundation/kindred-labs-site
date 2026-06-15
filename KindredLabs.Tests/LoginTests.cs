@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -20,6 +21,7 @@ public class LoginTests
     private readonly Mock<SignInManager<ApplicationUser>> _mockSignInManager;
     private readonly Mock<UserManager<ApplicationUser>> _mockUserManager;
     private readonly Mock<ISecurityService> _mockSecurityService;
+    private readonly Mock<IConfiguration> _mockConfiguration;
     private readonly Mock<ILogger<LoginModel>> _mockLogger;
     private readonly Mock<
         IStringLocalizer<KindredLabs.Web.Resources.Pages.Account.Login>
@@ -54,6 +56,7 @@ public class LoginTests
         );
 
         _mockSecurityService = new Mock<ISecurityService>();
+        _mockConfiguration = new Mock<IConfiguration>();
         _mockLogger = new Mock<ILogger<LoginModel>>();
         _mockLocalizer =
             new Mock<IStringLocalizer<KindredLabs.Web.Resources.Pages.Account.Login>>();
@@ -66,6 +69,7 @@ public class LoginTests
             _mockSignInManager.Object,
             _mockUserManager.Object,
             _mockSecurityService.Object,
+            _mockConfiguration.Object,
             _mockLogger.Object,
             _mockLocalizer.Object
         );
@@ -95,12 +99,18 @@ public class LoginTests
             Id = "user1",
             Email = "test@test.com",
             EmailConfirmed = true,
+            PrivacyPolicyVersion = "1.0",
+            TermsOfServiceVersion = "1.0",
         };
         _mockUserManager.Setup(m => m.FindByEmailAsync("test@test.com")).ReturnsAsync(user);
+        _mockUserManager.Setup(m => m.CheckPasswordAsync(user, "Password123!")).ReturnsAsync(true);
 
         _mockSignInManager
             .Setup(s => s.PasswordSignInAsync("test@test.com", "Password123!", false, false))
             .ReturnsAsync(Microsoft.AspNetCore.Identity.SignInResult.Success);
+
+        _mockConfiguration.Setup(c => c["PolicyVersions:PrivacyPolicy"]).Returns("1.0");
+        _mockConfiguration.Setup(c => c["PolicyVersions:TermsOfService"]).Returns("1.0");
 
         var mockCultureFeature = new Mock<IRequestCultureFeature>();
         mockCultureFeature.Setup(f => f.RequestCulture).Returns(new RequestCulture("en"));
@@ -125,6 +135,46 @@ public class LoginTests
     }
 
     [Fact]
+    public async Task OnPostAsync_SuccessfulLogin_RedirectsToReviewPolicies_WhenVersionsMismatch()
+    {
+        // Arrange
+        var user = new ApplicationUser
+        {
+            Id = "user1",
+            Email = "test@test.com",
+            EmailConfirmed = true,
+            PrivacyPolicyVersion = "0.9",
+            TermsOfServiceVersion = "1.0",
+        };
+        _mockUserManager.Setup(m => m.FindByEmailAsync("test@test.com")).ReturnsAsync(user);
+        _mockUserManager.Setup(m => m.CheckPasswordAsync(user, "Password123!")).ReturnsAsync(true);
+
+        _mockSignInManager
+            .Setup(s => s.PasswordSignInAsync("test@test.com", "Password123!", false, false))
+            .ReturnsAsync(Microsoft.AspNetCore.Identity.SignInResult.Success);
+
+        _mockConfiguration.Setup(c => c["PolicyVersions:PrivacyPolicy"]).Returns("1.0");
+        _mockConfiguration.Setup(c => c["PolicyVersions:TermsOfService"]).Returns("1.0");
+
+        var mockCultureFeature = new Mock<IRequestCultureFeature>();
+        mockCultureFeature.Setup(f => f.RequestCulture).Returns(new RequestCulture("en"));
+        _model.HttpContext.Features.Set<IRequestCultureFeature>(mockCultureFeature.Object);
+
+        _model.Input = new LoginModel.InputModel
+        {
+            Email = "test@test.com",
+            Password = "Password123!",
+        };
+
+        // Act
+        var result = await _model.OnPostAsync("/");
+
+        // Assert
+        var redirectResult = Assert.IsType<RedirectToPageResult>(result);
+        Assert.Equal("./ReviewPolicies", redirectResult.PageName);
+    }
+
+    [Fact]
     public async Task OnPostAsync_RequiresTwoFactor_RedirectsToLoginWith2fa()
     {
         // Arrange
@@ -135,6 +185,7 @@ public class LoginTests
             EmailConfirmed = true,
         };
         _mockUserManager.Setup(m => m.FindByEmailAsync("test@test.com")).ReturnsAsync(user);
+        _mockUserManager.Setup(m => m.CheckPasswordAsync(user, "Password123!")).ReturnsAsync(true);
 
         var mockCultureFeature = new Mock<IRequestCultureFeature>();
         mockCultureFeature.Setup(f => f.RequestCulture).Returns(new RequestCulture("en"));
@@ -194,6 +245,8 @@ public class LoginTests
         // Arrange
         var user = new ApplicationUser { Id = "user1", Email = "locked@test.com" };
         _mockUserManager.Setup(m => m.FindByEmailAsync("locked@test.com")).ReturnsAsync(user);
+        _mockUserManager.Setup(m => m.CheckPasswordAsync(user, "any")).ReturnsAsync(true);
+
         _mockSignInManager
             .Setup(s => s.PasswordSignInAsync("locked@test.com", "any", false, false))
             .ReturnsAsync(Microsoft.AspNetCore.Identity.SignInResult.LockedOut);
@@ -224,6 +277,7 @@ public class LoginTests
             EmailConfirmed = false,
         };
         _mockUserManager.Setup(m => m.FindByEmailAsync("unconfirmed@test.com")).ReturnsAsync(user);
+        _mockUserManager.Setup(m => m.CheckPasswordAsync(user, "Password123!")).ReturnsAsync(true);
 
         // Even if PasswordSignInAsync would succeed, the handler should check EmailConfirmed
         _mockSignInManager
@@ -249,6 +303,50 @@ public class LoginTests
         Assert.Contains(
             _model.ModelState[string.Empty]!.Errors,
             e => e.ErrorMessage == "EmailNotConfirmed"
+        );
+    }
+
+    [Fact]
+    public async Task OnPostAsync_SuspendedUser_ReturnsPageWithSuspendedError()
+    {
+        // Arrange
+        var user = new ApplicationUser
+        {
+            Id = "user1",
+            Email = "suspended@test.com",
+            IsSuspended = true,
+        };
+        _mockUserManager.Setup(m => m.FindByEmailAsync("suspended@test.com")).ReturnsAsync(user);
+
+        _model.Input = new LoginModel.InputModel
+        {
+            Email = "suspended@test.com",
+            Password = "Password123!",
+        };
+
+        var mockCultureFeature = new Mock<IRequestCultureFeature>();
+        mockCultureFeature.Setup(f => f.RequestCulture).Returns(new RequestCulture("en"));
+        _model.HttpContext.Features.Set<IRequestCultureFeature>(mockCultureFeature.Object);
+
+        // Act
+        var result = await _model.OnPostAsync("/");
+
+        // Assert
+        Assert.IsType<PageResult>(result);
+        Assert.False(_model.ModelState.IsValid);
+        Assert.Contains(
+            _model.ModelState[string.Empty]!.Errors,
+            e => e.ErrorMessage == "AccountSuspended"
+        );
+        _mockSignInManager.Verify(
+            s =>
+                s.PasswordSignInAsync(
+                    It.IsAny<string>(),
+                    It.IsAny<string>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<bool>()
+                ),
+            Times.Never
         );
     }
 }

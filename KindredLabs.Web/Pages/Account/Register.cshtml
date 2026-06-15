@@ -47,6 +47,12 @@
             </div>
 
             <div class="mb-4">
+                <label asp-for="Input.ConfirmEmail" class="block text-sm font-medium text-kindred-text mb-1">@Localizer["ConfirmEmail"]<span class="text-red-400 ml-0.5">*</span></label>
+                <input asp-for="Input.ConfirmEmail" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold" aria-required="true" placeholder="name@example.com" required type="email" />
+                <span asp-validation-for="Input.ConfirmEmail" class="text-red-400 text-sm mt-1 block"></span>
+            </div>
+
+            <div class="mb-4">
                 <label asp-for="Input.Password" class="block text-sm font-medium text-kindred-text mb-1">@Localizer["Password"]<span class="text-red-400 ml-0.5">*</span></label>
                 <div class="relative">
                     <input asp-for="Input.Password" class="w-full bg-white/5 border border-white/20 rounded px-3 py-2 text-kindred-text focus:outline-none focus:border-kindred-gold pr-10" autocomplete="new-password" aria-required="true" placeholder="password" required type="password" minlength="6" />
@@ -73,6 +79,37 @@
                 </div>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-red-400 text-sm mt-1 block"></span>
             </div>
+
+            <div class="mb-6 space-y-4">
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                        <input asp-for="Input.AcceptedPrivacyPolicy" type="checkbox" class="w-4 h-4 bg-white/5 border border-white/20 rounded text-kindred-gold focus:ring-kindred-gold focus:ring-offset-0 pointer-events-none" required tabindex="-1" />
+                    </div>
+                    <div class="ml-3 text-sm">
+                        <label asp-for="Input.AcceptedPrivacyPolicy" class="text-kindred-text">
+                            @Localizer["PrivacyPolicyAgreementPrefix"]
+                            <a href="javascript:void(0)" class="text-kindred-gold hover:underline" data-policy-trigger="PrivacyPolicy">@Localizer["PrivacyPolicy"]</a>
+                        </label>
+                        <span asp-validation-for="Input.AcceptedPrivacyPolicy" class="text-red-400 text-sm mt-1 block"></span>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                        <input asp-for="Input.AcceptedTermsOfService" type="checkbox" class="w-4 h-4 bg-white/5 border border-white/20 rounded text-kindred-gold focus:ring-kindred-gold focus:ring-offset-0 pointer-events-none" required tabindex="-1" />
+                    </div>
+                    <div class="ml-3 text-sm">
+                        <label asp-for="Input.AcceptedTermsOfService" class="text-kindred-text">
+                            @Localizer["TermsOfServiceAgreementPrefix"]
+                            <a href="javascript:void(0)" class="text-kindred-gold hover:underline" data-policy-trigger="TermsOfService">@Localizer["TermsOfService"]</a>
+                        </label>
+                        <span asp-validation-for="Input.AcceptedTermsOfService" class="text-red-400 text-sm mt-1 block"></span>
+                    </div>
+                </div>
+            </div>
+
+            <partial name="_PolicyModal" model='("PrivacyPolicy", "Input_AcceptedPrivacyPolicy", $"/{currentCulture}/Privacy")' />
+            <partial name="_PolicyModal" model='("TermsOfService", "Input_AcceptedTermsOfService", $"/{currentCulture}/Terms")' />
 
             <div class="mb-8">
                 <button id="registerSubmit" type="submit" class="bg-transparent border-none p-0 text-kindred-gold hover:opacity-70 transition-opacity cursor-pointer font-ui text-base">@Localizer["Register"]</button>

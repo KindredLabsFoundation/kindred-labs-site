@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Community Data Review Panel | Kindred Labs</value>
+  </data>
+  <data name="Heading" xml:space="preserve">
+    <value>Community Data Review Panel</value>
+  </data>
+  <data name="Section1" xml:space="preserve">
+    <value>The Community Data Review Panel is the ethical conscience of Kindred Labs. Established under the Kindred Labs Codex, the Panel holds independent authority to review and approve every dataset used in the training and development of KindredAI. Without CDRP approval, no dataset may be used. That authority is not advisory — it is binding.</value>
+  </data>
+  <data name="Section2Heading" xml:space="preserve">
+    <value>What the CDRP Does</value>
+  </data>
+  <data name="Section2Content" xml:space="preserve">
+    <value>The Panel reviews training datasets for provenance, consent documentation, representational diversity, and alignment with the Codex doctrine of Empathetic Pluralism. It participates in Codex amendment reviews and holds veto power over datasets that fail to meet the Foundation's ethical standards. A two-thirds vote of the Board of Directors is required to override a CDRP veto — and only under narrowly defined conditions.</value>
+  </data>
+  <data name="Section3Heading" xml:space="preserve">
+    <value>Who We're Looking For</value>
+  </data>
+  <data name="Section3Content" xml:space="preserve">
+    <value>The Panel is designed to reflect the full breadth of human experience. We are looking for people who represent communities that have historically been underrepresented or harmed by automated systems — not just researchers or technologists, though those perspectives matter too. What matters most is the ability to evaluate data through the lens of lived experience, critical thinking, and a genuine commitment to fairness.</value>
+  </data>
+  <data name="Section3Terms" xml:space="preserve">
+    <value>Members serve one-year renewable terms. Service is voluntary. Members may not hold paid positions at Kindred Labs during their tenure.</value>
+  </data>
+  <data name="Section4Heading" xml:space="preserve">
+    <value>The Panel Is Not Yet Seated</value>
+  </data>
+  <data name="Section4Content" xml:space="preserve">
+    <value>Kindred Labs is currently seeking founding members of the CDRP. Founding members will help shape not only the datasets that train KindredAI, but the processes and standards by which future datasets are evaluated. This is a meaningful role with real authority in a governance structure designed to last.</value>
+  </data>
+  <data name="FormHeading" xml:space="preserve">
+    <value>Express Interest</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FieldEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="FieldOrganization" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="FieldJobTitle" xml:space="preserve">
+    <value>Current Role / Title</value>
+  </data>
+  <data name="FieldPerspectives" xml:space="preserve">
+    <value>What perspectives or lived experiences would you bring to this role?</value>
+  </data>
+  <data name="FieldPerspectivesHelper" xml:space="preserve">
+    <value>This may include professional expertise, lived experience, cultural background, disability, gender identity, or any other perspective you feel is underrepresented in AI development.</value>
+  </data>
+  <data name="FieldBackground" xml:space="preserve">
+    <value>Describe your relevant background and experience</value>
+  </data>
+  <data name="FieldInterest" xml:space="preserve">
+    <value>Why are you interested in serving on the Community Data Review Panel?</value>
+  </data>
+  <data name="FieldReferral" xml:space="preserve">
+    <value>How did you hear about us?</value>
+  </data>
+  <data name="SelectOption" xml:space="preserve">
+    <value>Select...</value>
+  </data>
+  <data name="ReferralWebSearch" xml:space="preserve">
+    <value>Web search</value>
+  </data>
+  <data name="ReferralFriend" xml:space="preserve">
+    <value>Referral</value>
+  </data>
+  <data name="ReferralAcademic" xml:space="preserve">
+    <value>Academic/research network</value>
+  </data>
+  <data name="ReferralOther" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="FieldConflicts" xml:space="preserve">
+    <value>Please disclose any potential conflicts of interest, including any current or past relationship with Kindred Labs</value>
+  </data>
+  <data name="FieldAcknowledgment" xml:space="preserve">
+    <value>I understand that CDRP service is voluntary, that members may not hold paid positions at Kindred Labs during their tenure, and that I have no undisclosed conflicts of interest that would prevent me from serving impartially</value>
+  </data>
+  <data name="SubmitButton" xml:space="preserve">
+    <value>Submit Application</value>
+  </data>
+  <data name="SuccessMessage" xml:space="preserve">
+    <value>Thank you for your interest! Your expression of interest has been received, and we've sent a confirmation email to your inbox.</value>
+  </data>
+  <data name="Optional" xml:space="preserve">
+    <value>optional</value>
+  </data>
+  <data name="FieldConfirmEmail" xml:space="preserve">
+    <value>Confirm Email</value>
+  </data>
+  <data name="ErrorConfirmEmailRequired" xml:space="preserve">
+    <value>Please confirm your email address.</value>
+  </data>
+  <data name="ErrorEmailMismatch" xml:space="preserve">
+    <value>Email and Confirm Email do not match.</value>
+  </data>
+  <data name="ErrorDeniedRecently" xml:space="preserve">
+    <value>You may reapply after {0}.</value>
+  </data>
+  <data name="SuccessFollowUp" xml:space="preserve">
+    <value>You may receive follow-up questions about your application. Please keep an eye on your spam folder.</value>
+  </data>
+  <data name="ErrorDuplicateEmail" xml:space="preserve">
+    <value>An application from this email address has already been received.</value>
+  </data>
+  <data name="PrivacyPolicyAgreementPrefix" xml:space="preserve">
+    <value>I have read and agree to the </value>
+  </data>
+  <data name="TermsOfServiceAgreementPrefix" xml:space="preserve">
+    <value>I have read and agree to the </value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="TermsOfService" xml:space="preserve">
+    <value>Terms of Service</value>
+  </data>
+</root>

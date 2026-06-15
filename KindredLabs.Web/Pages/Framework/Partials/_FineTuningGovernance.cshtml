@@ -1,0 +1,394 @@
+﻿@model KindredLabs.Web.Pages.Framework.IndexModel
+
+<section class="py-16">
+    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-kindred-gold mb-6" id="vendor-transparency-standards">
+        @Model.Localizer["Protocol_Heading"]
+    </h2>
+
+    <div class="space-y-4 mb-6">
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Protocol_Purpose_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Protocol_Purpose_P1"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Protocol_Purpose_P2"]
+        </p>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+            @Model.Localizer["Protocol_Purpose_P3"]
+        </p>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <!-- Data Provenance -->
+    <div class="flex items-center justify-between mb-6">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="data-provenance-requirements">
+            @Model.Localizer["Protocol_DataProvenance_Heading"]
+        </h3>
+        <a href="#"
+           class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+           data-slug="data-provenance-requirements"
+           target="_blank" rel="noopener">
+            Discuss this section
+        </a>
+    </div>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed mb-6">
+            @Model.Localizer["Protocol_DataProvenance_Intro"]
+        </p>
+        <p class="text-sm italic text-kindred-text opacity-60 ml-4 pl-4 border-l border-kindred-gold/30">
+            @Html.Raw(Model.Localizer["Protocol_DataProvenance_Intro_Sub"])
+        </p>
+    </div>
+    <div class="space-y-4 mb-6">
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_DataProvenance_1_1_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_DataProvenance_1_1_Content"]
+            </p>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_DataProvenance_1_2_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_DataProvenance_1_2_Content"]
+            </p>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_DataProvenance_1_3_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_DataProvenance_1_3_Content"]
+            </p>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_DataProvenance_1_4_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_DataProvenance_1_4_Content"]
+            </p>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_DataProvenance_1_5_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_DataProvenance_1_5_Content"]
+            </p>
+        </div>
+        <div class="space-y-4 mb-12">
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["VendorTransparency_Selection_1_5_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["VendorTransparency_Selection_1_5_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["VendorTransparency_Selection_1_5_Item3"]
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <!-- Consent Documentation -->
+    <div class="flex items-center justify-between mb-6">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="consent-documentation-standards">
+            @Model.Localizer["Protocol_Consent_Heading"]
+        </h3>
+        <a href="#"
+           class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+           data-slug="consent-documentation-standards"
+           target="_blank" rel="noopener">
+            Discuss this section
+        </a>
+    </div>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed mb-6">
+            @Model.Localizer["Protocol_Consent_Intro"]
+        </p>
+        <p class="text-sm italic text-kindred-text opacity-60 ml-4 pl-4 border-l border-kindred-gold/30">
+            @Html.Raw(Model.Localizer["Protocol_Consent_Intro_Sub"])
+        </p>
+    </div>
+    <div class="space-y-4 mb-6">
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_Consent_2_1_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_Consent_2_1_Intro"]
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Html.Raw(Model.Localizer["Protocol_Consent_2_1_Explicit"])
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Html.Raw(Model.Localizer["Protocol_Consent_2_1_Informed"])
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Html.Raw(Model.Localizer["Protocol_Consent_2_1_Implied"])
+            </p>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Html.Raw(Model.Localizer["Protocol_Consent_2_1_NoBasis"])
+            </p>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_Consent_2_2_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_Consent_2_2_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_Consent_2_2_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_Consent_2_2_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_Consent_2_2_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_Consent_2_2_Item4"]
+                </li>
+            </ul>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_Consent_2_2_Outro"]
+            </p>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_Consent_2_3_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_Consent_2_3_Content"]
+            </p>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_Consent_2_4_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_Consent_2_4_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_Consent_2_4_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_Consent_2_4_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_Consent_2_4_Item3"]
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <!-- Consent Documentation -->
+    <div class="flex items-center justify-between mb-6">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="category-review-process">
+            @Model.Localizer["Protocol_CategoryReview_Heading"]
+        </h3>
+        <a href="#"
+           class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+           data-slug="category-review-process"
+           target="_blank" rel="noopener">
+            Discuss this section
+        </a>
+    </div>
+    <div class="space-y-4 mb-6">
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed mb-6">
+            @Model.Localizer["Protocol_CategoryReview_Intro"]
+        </p>
+    </div>
+    <div class="space-y-4 mb-6">
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_CategoryReview_3_1_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_CategoryReview_3_1_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_CategoryReview_3_1_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_CategoryReview_3_1_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_CategoryReview_3_1_Item3"]
+                </li>
+            </ul>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_CategoryReview_3_1_Outro"]
+            </p>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_CategoryReview_3_2_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_CategoryReview_3_2_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_CategoryReview_3_2_Origin1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_CategoryReview_3_2_Origin2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_CategoryReview_3_2_Origin3"]
+                </li>
+            </ul>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_CategoryReview_3_3_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_CategoryReview_3_3_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_CategoryReview_3_3_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_CategoryReview_3_3_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_CategoryReview_3_3_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_CategoryReview_3_3_Item4"]
+                </li>
+            </ul>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_CategoryReview_3_4_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_CategoryReview_3_4_Content"]
+            </p>
+        </div>
+    </div>
+
+    <div class="flex justify-center my-8">
+        <hr class="border-t border-kindred-gold/30 w-1/6 my-8">
+    </div>
+
+    <!-- Ongoing Audit -->
+    <div class="flex items-center justify-between mb-6">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-kindred-gold" id="ongoing-audit-requirements">
+            @Model.Localizer["Protocol_OngoingAudit_Heading"]
+        </h3>
+        <a href="#"
+           class="discuss-link opacity-50 pointer-events-none text-sm self-center shrink-0 ml-4"
+           data-slug="ongoing-audit-requirements"
+           target="_blank" rel="noopener">
+            Discuss this section
+        </a>
+    </div>
+    <div class="space-y-4 mb-6">
+        <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+            @Model.Localizer["Protocol_OngoingAudit_Purpose_Heading"]
+        </h4>
+        <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed mb-6">
+            @Model.Localizer["Protocol_OngoingAudit_Purpose_Content"]
+        </p>
+    </div>
+    <div class="space-y-4 mb-6">
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_OngoingAudit_4_1_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_OngoingAudit_4_1_Content"]
+            </p>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_OngoingAudit_4_2_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_OngoingAudit_4_2_Content"]
+            </p>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_OngoingAudit_4_3_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_OngoingAudit_4_3_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_OngoingAudit_4_3_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_OngoingAudit_4_3_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_OngoingAudit_4_3_Item3"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_OngoingAudit_4_3_Item4"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_OngoingAudit_4_3_Item5"]
+                </li>
+            </ul>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_OngoingAudit_4_4_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_OngoingAudit_4_4_Content"]
+            </p>
+        </div>
+        <div class="space-y-4 mb-12">
+            <h4 class="text-base sm:text-lg md:text-xl font-bold text-kindred-gold mb-6">
+                @Model.Localizer["Protocol_OngoingAudit_4_5_Heading"]
+            </h4>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_OngoingAudit_4_5_Intro"]
+            </p>
+            <ul  class="list-disc list-outside space-y-2 pl-10">
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_OngoingAudit_4_5_Item1"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_OngoingAudit_4_5_Item2"]
+                </li>
+                <li class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                    @Model.Localizer["Protocol_OngoingAudit_4_5_Item3"]
+                </li>
+            </ul>
+            <p class="text-base md:text-lg text-kindred-text opacity-80 leading-relaxed">
+                @Model.Localizer["Protocol_OngoingAudit_4_5_Outro"]
+            </p>
+        </div>
+    </div>
+</section>

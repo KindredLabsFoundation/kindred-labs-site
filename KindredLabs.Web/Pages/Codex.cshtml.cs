@@ -44,6 +44,12 @@ public class CodexModel : PageModel
         ViewData["Title"] = Localizer["PageTitle"];
         ViewData["Description"] = Localizer["PageDescription"];
         ViewData["CanonicalUrl"] = Localizer["CanonicalUrl"];
+        ViewData["JsonLd"] = $@"{{
+  ""@context"": ""https://schema.org"",
+  ""@type"": ""WebPage"",
+  ""name"": ""{ViewData["Title"]}"",
+  ""url"": ""{ViewData["CanonicalUrl"]}""
+}}";
 
         var culture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
         var culturePath = Path.Combine(_environment.WebRootPath, "content", $"codex.{culture}.md");

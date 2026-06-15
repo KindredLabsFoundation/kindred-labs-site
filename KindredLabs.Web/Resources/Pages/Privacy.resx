@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Title" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Last updated: June 7, 2025</value>
+  </data>
+  <data name="Section1_Title" xml:space="preserve">
+    <value>1. About This Policy</value>
+  </data>
+  <data name="Section1_Text1" xml:space="preserve">
+    <value>This policy describes how Kindred Labs Foundation ("we," "us," or "the Foundation") collects, uses, and protects information when you use kindredlabsfoundation.org (the "Site"). The Foundation is in the process of incorporating as a Delaware nonprofit corporation.</value>
+  </data>
+  <data name="Section1_Text2" xml:space="preserve">
+    <value>We designed this policy to say what it means. If you have questions, contact us at privacy@kindredlabsfoundation.org.</value>
+  </data>
+  <data name="Section2_Title" xml:space="preserve">
+    <value>2. What We Collect</value>
+  </data>
+  <data name="Section2_1_Title" xml:space="preserve">
+    <value>2.1 Account Registration</value>
+  </data>
+  <data name="Section2_1_Text" xml:space="preserve">
+    <value>When you create an account, we collect your name, email address, and a hashed password. We also log email verification status, account creation date, and login history for security purposes.</value>
+  </data>
+  <data name="Section2_2_Title" xml:space="preserve">
+    <value>2.2 CDRP Applications</value>
+  </data>
+  <data name="Section2_2_Text" xml:space="preserve">
+    <value>If you apply to serve on the Community Data Review Panel, we collect the information you submit in the application form, including professional background, perspectives, areas of expertise, and any conflict-of-interest disclosures. Application data is encrypted at rest.</value>
+  </data>
+  <data name="Section2_3_Title" xml:space="preserve">
+    <value>2.3 Contact Form Submissions</value>
+  </data>
+  <data name="Section2_3_Text" xml:space="preserve">
+    <value>If you contact us through the Site, we collect your name, email address, and the content of your message. We route messages to the appropriate team based on inquiry type.</value>
+  </data>
+  <data name="Section2_4_Title" xml:space="preserve">
+    <value>2.4 Analytics</value>
+  </data>
+  <data name="Section2_4_Text" xml:space="preserve">
+    <value>We use Plausible Analytics, a privacy-respecting analytics service, to understand how visitors use the Site. Plausible collects no personally identifiable information, uses no cookies, and does not track users across sites or sessions. Aggregate usage data (page views, referrers, browser type) is used solely to improve the Site.</value>
+  </data>
+  <data name="Section2_5_Title" xml:space="preserve">
+    <value>2.5 Cookies</value>
+  </data>
+  <data name="Section2_5_Text" xml:space="preserve">
+    <value>The Site uses a single cookie to remember your language preference (English or Spanish). This cookie contains no personal information and is not used for tracking or advertising.</value>
+  </data>
+  <data name="Section3_Title" xml:space="preserve">
+    <value>3. How We Use Your Information</value>
+  </data>
+  <data name="Section3_Intro" xml:space="preserve">
+    <value>We use the information we collect to:</value>
+  </data>
+  <data name="Section3_Item1" xml:space="preserve">
+    <value>Operate and secure your account</value>
+  </data>
+  <data name="Section3_Item2" xml:space="preserve">
+    <value>Process and administer CDRP applications</value>
+  </data>
+  <data name="Section3_Item3" xml:space="preserve">
+    <value>Respond to contact form inquiries</value>
+  </data>
+  <data name="Section3_Item4" xml:space="preserve">
+    <value>Send transactional emails (account confirmation, security notices, application status updates)</value>
+  </data>
+  <data name="Section3_Item5" xml:space="preserve">
+    <value>Understand aggregate Site usage through anonymized analytics</value>
+  </data>
+  <data name="Section3_Outro" xml:space="preserve">
+    <value>We do not use your information for advertising. We do not sell your data. We do not share your data with third parties except as described in Section 5.</value>
+  </data>
+  <data name="Section4_Title" xml:space="preserve">
+    <value>4. Legal Basis for Processing</value>
+  </data>
+  <data name="Section4_Intro" xml:space="preserve">
+    <value>Where applicable, we process your information on the following grounds:</value>
+  </data>
+  <data name="Section4_Item1" xml:space="preserve">
+    <value>&lt;strong&gt;Contract:&lt;/strong&gt; Processing necessary to provide services you have requested (account management, CDRP application processing).</value>
+  </data>
+  <data name="Section4_Item2" xml:space="preserve">
+    <value>&lt;strong&gt;Legitimate interests:&lt;/strong&gt; Security logging, fraud prevention, and anonymized analytics used to improve the Site.</value>
+  </data>
+  <data name="Section4_Item3" xml:space="preserve">
+    <value>&lt;strong&gt;Legal obligation:&lt;/strong&gt; Retention of records required by law.</value>
+  </data>
+  <data name="Section5_Title" xml:space="preserve">
+    <value>5. Third-Party Services</value>
+  </data>
+  <data name="Section5_Intro" xml:space="preserve">
+    <value>We use a limited set of third-party services to operate the Site:</value>
+  </data>
+  <data name="Section5_Col1" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="Section5_Col2" xml:space="preserve">
+    <value>Purpose</value>
+  </data>
+  <data name="Section5_Col3" xml:space="preserve">
+    <value>Data Shared</value>
+  </data>
+  <data name="Section5_Supabase_Purpose" xml:space="preserve">
+    <value>Database hosting</value>
+  </data>
+  <data name="Section5_Supabase_Data" xml:space="preserve">
+    <value>Account, application, and submission data</value>
+  </data>
+  <data name="Section5_Postmark_Purpose" xml:space="preserve">
+    <value>Transactional email</value>
+  </data>
+  <data name="Section5_Postmark_Data" xml:space="preserve">
+    <value>Email address, email content</value>
+  </data>
+  <data name="Section5_Plausible_Purpose" xml:space="preserve">
+    <value>Anonymized site analytics</value>
+  </data>
+  <data name="Section5_Plausible_Data" xml:space="preserve">
+    <value>None (no personal data collected)</value>
+  </data>
+  <data name="Section5_Google_Purpose" xml:space="preserve">
+    <value>Application hosting</value>
+  </data>
+  <data name="Section5_Google_Data" xml:space="preserve">
+    <value>None (infrastructure only)</value>
+  </data>
+  <data name="Section5_Outro" xml:space="preserve">
+    <value>All third-party providers are contractually bound to process data only as directed and to maintain appropriate security standards.</value>
+  </data>
+  <data name="Section6_Title" xml:space="preserve">
+    <value>6. Data Retention</value>
+  </data>
+  <data name="Section6_Intro" xml:space="preserve">
+    <value>We retain data as follows:</value>
+  </data>
+  <data name="Section6_Item1" xml:space="preserve">
+    <value>&lt;strong&gt;Account data:&lt;/strong&gt; For the life of the account, plus 90 days after deletion request</value>
+  </data>
+  <data name="Section6_Item2" xml:space="preserve">
+    <value>&lt;strong&gt;CDRP application data:&lt;/strong&gt; For the duration of any applicable panel term, plus 3 years</value>
+  </data>
+  <data name="Section6_Item3" xml:space="preserve">
+    <value>&lt;strong&gt;Contact form submissions:&lt;/strong&gt; 2 years from date of submission</value>
+  </data>
+  <data name="Section6_Item4" xml:space="preserve">
+    <value>&lt;strong&gt;Security and login logs:&lt;/strong&gt; 1 year on a rolling basis</value>
+  </data>
+  <data name="Section6_Item5" xml:space="preserve">
+    <value>&lt;strong&gt;Anonymized analytics:&lt;/strong&gt; Indefinitely (no personal data retained)</value>
+  </data>
+  <data name="Section7_Title" xml:space="preserve">
+    <value>7. Security</value>
+  </data>
+  <data name="Section7_Text" xml:space="preserve">
+    <value>We use industry-standard measures to protect your data, including encrypted storage of application data, HTTPS for all connections, hashed passwords, and multi-factor authentication support. No security measure is absolute. If you have reason to believe your account has been compromised, contact us immediately.</value>
+  </data>
+  <data name="Section8_Title" xml:space="preserve">
+    <value>8. Your Rights</value>
+  </data>
+  <data name="Section8_Intro" xml:space="preserve">
+    <value>You may, at any time:</value>
+  </data>
+  <data name="Section8_Item1" xml:space="preserve">
+    <value>Access the personal data we hold about you</value>
+  </data>
+  <data name="Section8_Item2" xml:space="preserve">
+    <value>Request correction of inaccurate data</value>
+  </data>
+  <data name="Section8_Item3" xml:space="preserve">
+    <value>Request deletion of your account and associated data</value>
+  </data>
+  <data name="Section8_Item4" xml:space="preserve">
+    <value>Export your account data</value>
+  </data>
+  <data name="Section8_Item5" xml:space="preserve">
+    <value>Withdraw consent where processing is consent-based</value>
+  </data>
+  <data name="Section8_Text1" xml:space="preserve">
+    <value>To exercise any of these rights, use the account management tools in your dashboard or contact us at privacy@kindredlabsfoundation.org. We will respond within 30 days.</value>
+  </data>
+  <data name="Section8_Text2" xml:space="preserve">
+    <value>If you are located in the European Economic Area or the United Kingdom, you may also have the right to lodge a complaint with your local data protection authority.</value>
+  </data>
+  <data name="Section9_Title" xml:space="preserve">
+    <value>9. Children</value>
+  </data>
+  <data name="Section9_Text" xml:space="preserve">
+    <value>The Site is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If we learn we have done so, we will delete it promptly.</value>
+  </data>
+  <data name="Section10_Title" xml:space="preserve">
+    <value>10. Changes to This Policy</value>
+  </data>
+  <data name="Section10_Text" xml:space="preserve">
+    <value>We may update this policy as the Site and its services evolve. Material changes will be communicated by updating the "Last updated" date and, where appropriate, by email notification to registered users. Continued use of the Site after any change constitutes acceptance of the updated policy.</value>
+  </data>
+  <data name="Section11_Title" xml:space="preserve">
+    <value>11. Contact</value>
+  </data>
+</root>

@@ -1,0 +1,6 @@
+﻿@if (ViewData["JsonLd"] != null)
+{
+    <script type="application/ld+json">
+        @Html.Raw(ViewData["JsonLd"])
+    </script>
+}

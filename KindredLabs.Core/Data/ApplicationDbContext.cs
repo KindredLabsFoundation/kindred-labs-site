@@ -75,6 +75,11 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDataPro
     public DbSet<UserEmail> UserEmails { get; set; } = null!;
 
     /// <summary>
+    /// Gets or sets the administrative activity logs.
+    /// </summary>
+    public DbSet<AdminActivityLog> AdminActivityLogs { get; set; } = null!;
+
+    /// <summary>
     /// Configures the schema needed for the identity framework and application entities.
     /// </summary>
     /// <param name="modelBuilder">The builder being used to construct the model for this context.</param>
@@ -131,6 +136,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDataPro
 
             entity.HasIndex(e => e.UserId);
             entity.HasIndex(e => e.Status);
+            entity.HasIndex(e => e.Email);
         });
 
         // CommentPeriod
@@ -205,6 +211,28 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDataPro
 
             entity.HasIndex(e => e.Email).IsUnique();
             entity.HasIndex(e => e.UserId);
+        });
+
+        // AdminActivityLog
+        modelBuilder.Entity<AdminActivityLog>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity
+                .HasOne(e => e.AdminUser)
+                .WithMany()
+                .HasForeignKey(e => e.AdminUserId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            entity
+                .HasOne(e => e.TargetUser)
+                .WithMany()
+                .HasForeignKey(e => e.TargetUserId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            entity.HasIndex(e => e.AdminUserId);
+            entity.HasIndex(e => e.TargetUserId);
+            entity.HasIndex(e => e.PerformedAt);
         });
     }
 }

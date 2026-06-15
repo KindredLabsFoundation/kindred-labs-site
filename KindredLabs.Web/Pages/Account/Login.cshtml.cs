@@ -26,6 +26,7 @@ namespace KindredLabs.Web.Pages.Account
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ISecurityService _securityService;
+        private readonly IConfiguration _configuration;
         private readonly ILogger<LoginModel> _logger;
         private readonly IStringLocalizer<Login> _localizer;
 
@@ -33,6 +34,7 @@ namespace KindredLabs.Web.Pages.Account
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
             ISecurityService securityService,
+            IConfiguration configuration,
             ILogger<LoginModel> logger,
             IStringLocalizer<Login> localizer
         )
@@ -40,6 +42,7 @@ namespace KindredLabs.Web.Pages.Account
             _signInManager = signInManager;
             _userManager = userManager;
             _securityService = securityService;
+            _configuration = configuration;
             _logger = logger;
             _localizer = localizer;
         }
@@ -129,6 +132,58 @@ namespace KindredLabs.Web.Pages.Account
 
             if (ModelState.IsValid)
             {
+                var user = await _userManager.FindByEmailAsync(Input.Email);
+
+                if (user != null)
+                {
+                    // Check if the user is suspended BEFORE attempting to sign in
+                    if (user.IsSuspended)
+                    {
+                        _logger.LogWarning(
+                            "Suspended user account '{UserId}' attempted to log in.",
+                            user.Id
+                        );
+                        ModelState.AddModelError(string.Empty, _localizer["AccountSuspended"]);
+                        return Page();
+                    }
+
+                    // Check if the user is scheduled for deletion
+                    if (user.IsDeleted)
+                    {
+                        _logger.LogWarning(
+                            "Soft-deleted user account '{UserId}' attempted to log in.",
+                            user.Id
+                        );
+                        ModelState.AddModelError(
+                            string.Empty,
+                            _localizer["AccountScheduledForDeletion"]
+                        );
+                        return Page();
+                    }
+
+                    // Check password manually since PasswordSignInAsync signs the user in
+                    var isPasswordValid = await _userManager.CheckPasswordAsync(
+                        user,
+                        Input.Password
+                    );
+
+                    await _securityService.RecordLoginAttemptAsync(
+                        user.Id,
+                        isPasswordValid,
+                        HttpContext.Connection.RemoteIpAddress?.ToString(),
+                        Request.Headers["User-Agent"].ToString()
+                    );
+
+                    if (!isPasswordValid)
+                    {
+                        ModelState.AddModelError(
+                            string.Empty,
+                            _localizer["Invalid login attempt."]
+                        );
+                        return Page();
+                    }
+                }
+
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(
@@ -137,8 +192,6 @@ namespace KindredLabs.Web.Pages.Account
                     Input.RememberMe,
                     lockoutOnFailure: false
                 );
-
-                var user = await _userManager.FindByEmailAsync(Input.Email);
 
                 if (result.Succeeded)
                 {
@@ -153,31 +206,32 @@ namespace KindredLabs.Web.Pages.Account
                         return Page();
                     }
 
-                    if (user != null)
+                    _logger.LogInformation("User logged in.");
+
+                    // Check if policy re-acceptance is needed
+                    var currentPrivacyVersion = _configuration["PolicyVersions:PrivacyPolicy"];
+                    var currentTermsVersion = _configuration["PolicyVersions:TermsOfService"];
+
+                    if (
+                        user.PrivacyPolicyVersion != currentPrivacyVersion
+                        || user.TermsOfServiceVersion != currentTermsVersion
+                    )
                     {
-                        await _securityService.RecordLoginAttemptAsync(
-                            user.Id,
-                            true,
-                            HttpContext.Connection.RemoteIpAddress?.ToString(),
-                            Request.Headers["User-Agent"].ToString()
+                        var culture =
+                            HttpContext
+                                .Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>()
+                                ?.RequestCulture.Culture.TwoLetterISOLanguageName
+                            ?? "en";
+                        return RedirectToPage(
+                            "./ReviewPolicies",
+                            new { ReturnUrl = returnUrl, culture = culture }
                         );
                     }
 
-                    _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    if (user != null)
-                    {
-                        await _securityService.RecordLoginAttemptAsync(
-                            user.Id,
-                            false,
-                            HttpContext.Connection.RemoteIpAddress?.ToString(),
-                            Request.Headers["User-Agent"].ToString()
-                        );
-                    }
-
                     var culture =
                         HttpContext
                             .Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>()
@@ -192,16 +246,6 @@ namespace KindredLabs.Web.Pages.Account
                             RememberMe = Input.RememberMe,
                             culture = culture,
                         }
-                    );
-                }
-
-                if (user != null)
-                {
-                    await _securityService.RecordLoginAttemptAsync(
-                        user.Id,
-                        false,
-                        HttpContext.Connection.RemoteIpAddress?.ToString(),
-                        Request.Headers["User-Agent"].ToString()
                     );
                 }
 

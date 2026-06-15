@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Title" xml:space="preserve">
+    <value>Terms of Service</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Last updated: June 7, 2025</value>
+  </data>
+  <data name="Section1_Title" xml:space="preserve">
+    <value>1. Acceptance of Terms</value>
+  </data>
+  <data name="Section1_Text1" xml:space="preserve">
+    <value>By accessing or using kindredlabsfoundation.org (the "Site"), you agree to these Terms of Service ("Terms"). If you do not agree, do not use the Site.</value>
+  </data>
+  <data name="Section1_Text2" xml:space="preserve">
+    <value>Kindred Labs Foundation ("we," "us," or "the Foundation") is in the process of incorporating as a Delaware nonprofit corporation. These Terms form a binding agreement between you and the Foundation.</value>
+  </data>
+  <data name="Section2_Title" xml:space="preserve">
+    <value>2. Use of the Site</value>
+  </data>
+  <data name="Section2_1_Title" xml:space="preserve">
+    <value>2.1 Permitted Use</value>
+  </data>
+  <data name="Section2_1_Text" xml:space="preserve">
+    <value>You may use the Site for lawful purposes consistent with its mission: engaging with AI governance research, applying to participate in the Community Data Review Panel (CDRP), accessing published frameworks and resources, and contacting the Foundation.</value>
+  </data>
+  <data name="Section2_2_Title" xml:space="preserve">
+    <value>2.2 Prohibited Conduct</value>
+  </data>
+  <data name="Section2_2_Intro" xml:space="preserve">
+    <value>You agree not to:</value>
+  </data>
+  <data name="Section2_2_Item1" xml:space="preserve">
+    <value>Use the Site for any unlawful purpose or in violation of any applicable law</value>
+  </data>
+  <data name="Section2_2_Item2" xml:space="preserve">
+    <value>Attempt to gain unauthorized access to any account, system, or data</value>
+  </data>
+  <data name="Section2_2_Item3" xml:space="preserve">
+    <value>Interfere with or disrupt the Site or its infrastructure</value>
+  </data>
+  <data name="Section2_2_Item4" xml:space="preserve">
+    <value>Scrape, harvest, or extract data from the Site in a manner that burdens its operation</value>
+  </data>
+  <data name="Section2_2_Item5" xml:space="preserve">
+    <value>Impersonate another person or entity</value>
+  </data>
+  <data name="Section2_2_Item6" xml:space="preserve">
+    <value>Submit false, misleading, or fraudulent information through any form</value>
+  </data>
+  <data name="Section3_Title" xml:space="preserve">
+    <value>3. Accounts</value>
+  </data>
+  <data name="Section3_1_Title" xml:space="preserve">
+    <value>3.1 Registration</value>
+  </data>
+  <data name="Section3_1_Text" xml:space="preserve">
+    <value>To access certain features, you must create an account. You agree to provide accurate, complete information and to keep it current.</value>
+  </data>
+  <data name="Section3_2_Title" xml:space="preserve">
+    <value>3.2 Account Security</value>
+  </data>
+  <data name="Section3_2_Text" xml:space="preserve">
+    <value>You are responsible for maintaining the confidentiality of your credentials and for all activity that occurs under your account. Notify us immediately at security@kindredlabsfoundation.org if you suspect unauthorized access.</value>
+  </data>
+  <data name="Section3_3_Title" xml:space="preserve">
+    <value>3.3 Termination</value>
+  </data>
+  <data name="Section3_3_Text" xml:space="preserve">
+    <value>We may suspend or terminate your account at our discretion if we have reason to believe you have violated these Terms, provided false information, or engaged in conduct harmful to the Foundation or its community.</value>
+  </data>
+  <data name="Section4_Title" xml:space="preserve">
+    <value>4. CDRP Applications</value>
+  </data>
+  <data name="Section4_Text" xml:space="preserve">
+    <value>Submission of a CDRP application does not guarantee selection, appointment, or any ongoing relationship with the Foundation. We reserve the right to decline, defer, or discontinue any application or appointment at any time. Applicants are expected to provide truthful and complete disclosures, including conflicts of interest.</value>
+  </data>
+  <data name="Section5_Title" xml:space="preserve">
+    <value>5. Intellectual Property</value>
+  </data>
+  <data name="Section5_1_Title" xml:space="preserve">
+    <value>5.1 Site Content</value>
+  </data>
+  <data name="Section5_1_Text" xml:space="preserve">
+    <value>Unless otherwise noted, content published on the Site is the property of Kindred Labs Foundation and is protected by applicable intellectual property law.</value>
+  </data>
+  <data name="Section5_2_Title" xml:space="preserve">
+    <value>5.2 Upstream Governance Framework</value>
+  </data>
+  <data name="Section5_2_Text" xml:space="preserve">
+    <value>The Upstream Governance Framework is published as an open standard. Attribution and conformance terms are defined in the framework document itself. Those terms govern use of the framework and are incorporated here by reference.</value>
+  </data>
+  <data name="Section5_3_Title" xml:space="preserve">
+    <value>5.3 Kindred Labs Codex</value>
+  </data>
+  <data name="Section5_3_Text" xml:space="preserve">
+    <value>The Kindred Labs Codex is published for educational and research purposes with attribution. Commercial reproduction requires written consent from the Foundation.</value>
+  </data>
+  <data name="Section5_4_Title" xml:space="preserve">
+    <value>5.4 Your Submissions</value>
+  </data>
+  <data name="Section5_4_Text" xml:space="preserve">
+    <value>By submitting content through the Site (including contact forms and CDRP applications), you grant the Foundation a limited, non-exclusive license to use that content for the purpose for which it was submitted. You represent that you have the right to submit the content.</value>
+  </data>
+  <data name="Section6_Title" xml:space="preserve">
+    <value>6. Disclaimers</value>
+  </data>
+  <data name="Section6_Text1" xml:space="preserve">
+    <value>The Site and its content are provided "as is" without warranty of any kind, express or implied. The Foundation makes no representations regarding the accuracy, completeness, or fitness for a particular purpose of any content published on the Site.</value>
+  </data>
+  <data name="Section6_Text2" xml:space="preserve">
+    <value>Nothing on the Site constitutes legal, financial, or professional advice.</value>
+  </data>
+  <data name="Section7_Title" xml:space="preserve">
+    <value>7. Limitation of Liability</value>
+  </data>
+  <data name="Section7_Text1" xml:space="preserve">
+    <value>To the fullest extent permitted by applicable law, the Foundation and its officers, directors, volunteers, and agents will not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of or inability to use the Site, even if we have been advised of the possibility of such damages.</value>
+  </data>
+  <data name="Section7_Text2" xml:space="preserve">
+    <value>Our total liability for any claim arising under these Terms will not exceed the amount you paid us in the twelve months preceding the claim, or $100, whichever is greater. (For most users, this means $0, as the Site is free.)</value>
+  </data>
+  <data name="Section8_Title" xml:space="preserve">
+    <value>8. Third-Party Links and Services</value>
+  </data>
+  <data name="Section8_Text" xml:space="preserve">
+    <value>The Site may link to third-party websites or resources. We are not responsible for the content, availability, or practices of third-party sites. Links do not constitute endorsement.</value>
+  </data>
+  <data name="Section9_Title" xml:space="preserve">
+    <value>9. Governing Law and Disputes</value>
+  </data>
+  <data name="Section9_Text1" xml:space="preserve">
+    <value>These Terms are governed by the laws of the State of Delaware, without regard to conflict of law principles, except where superseded by applicable federal law.</value>
+  </data>
+  <data name="Section9_Text2" xml:space="preserve">
+    <value>Any dispute arising under these Terms that cannot be resolved informally will be submitted to binding arbitration under the rules of the American Arbitration Association, with proceedings conducted in English. Each party bears its own costs. Nothing in this section prevents either party from seeking injunctive relief in a court of competent jurisdiction.</value>
+  </data>
+  <data name="Section10_Title" xml:space="preserve">
+    <value>10. Changes to These Terms</value>
+  </data>
+  <data name="Section10_Text" xml:space="preserve">
+    <value>We may update these Terms as the Site and its services evolve. Material changes will be communicated by updating the "Last updated" date and, where appropriate, by email notification to registered users. Continued use of the Site after any change constitutes acceptance of the updated Terms.</value>
+  </data>
+  <data name="Section11_Title" xml:space="preserve">
+    <value>11. Contact</value>
+  </data>
+</root>

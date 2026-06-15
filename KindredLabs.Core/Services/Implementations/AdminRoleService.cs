@@ -25,7 +25,8 @@ public class AdminRoleService : IAdminRoleService
     public AdminRoleService(
         UserManager<ApplicationUser> userManager,
         RoleManager<IdentityRole> roleManager,
-        ApplicationDbContext context)
+        ApplicationDbContext context
+    )
     {
         _userManager = userManager;
         _roleManager = roleManager;
@@ -38,7 +39,9 @@ public class AdminRoleService : IAdminRoleService
         if (role == AppRoles.OwnerRole)
         {
             await LogActionAsync(performedByUserId, targetUserId, "GrantRole_Failed", role);
-            throw new InvalidOperationException("The Owner role cannot be granted via this service.");
+            throw new InvalidOperationException(
+                "The Owner role cannot be granted via this service."
+            );
         }
 
         var performer = await _userManager.FindByIdAsync(performedByUserId);
@@ -67,7 +70,9 @@ public class AdminRoleService : IAdminRoleService
         if (role == AppRoles.OwnerRole)
         {
             await LogActionAsync(performedByUserId, targetUserId, "RevokeRole_Failed", role);
-            throw new InvalidOperationException("The Owner role cannot be revoked via this service.");
+            throw new InvalidOperationException(
+                "The Owner role cannot be revoked via this service."
+            );
         }
 
         var performer = await _userManager.FindByIdAsync(performedByUserId);
@@ -99,8 +104,8 @@ public class AdminRoleService : IAdminRoleService
     /// <inheritdoc />
     public async Task<IEnumerable<AdminAuditLog>> GetAuditLogAsync(int pageSize = 50, int page = 0)
     {
-        return await _context.AdminAuditLogs
-            .OrderByDescending(l => l.PerformedAt)
+        return await _context
+            .AdminAuditLogs.OrderByDescending(l => l.PerformedAt)
             .Skip(page * pageSize)
             .Take(pageSize)
             .ToListAsync();
@@ -109,21 +114,21 @@ public class AdminRoleService : IAdminRoleService
     /// <inheritdoc />
     public async Task SeedOwnerRoleAsync(string ownerEmail)
     {
-        if (string.IsNullOrWhiteSpace(ownerEmail))
-        {
-            return;
-        }
-
         // Ensure Owner role exists
         if (!await _roleManager.RoleExistsAsync(AppRoles.OwnerRole))
         {
             await _roleManager.CreateAsync(new IdentityRole(AppRoles.OwnerRole));
         }
 
-        // Ensure Admin role exists (common utility)
+        // Ensure Admin role exists
         if (!await _roleManager.RoleExistsAsync(AppRoles.AdminRole))
         {
             await _roleManager.CreateAsync(new IdentityRole(AppRoles.AdminRole));
+        }
+
+        if (string.IsNullOrWhiteSpace(ownerEmail))
+        {
+            return;
         }
 
         var user = await _userManager.FindByEmailAsync(ownerEmail);
@@ -136,7 +141,12 @@ public class AdminRoleService : IAdminRoleService
         }
     }
 
-    private async Task LogActionAsync(string performerId, string targetId, string action, string role)
+    private async Task LogActionAsync(
+        string performerId,
+        string targetId,
+        string action,
+        string role
+    )
     {
         var log = new AdminAuditLog
         {
@@ -145,7 +155,7 @@ public class AdminRoleService : IAdminRoleService
             TargetUserId = targetId,
             Action = action,
             Role = role,
-            PerformedAt = DateTime.UtcNow
+            PerformedAt = DateTime.UtcNow,
         };
 
         _context.AdminAuditLogs.Add(log);
